@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/bottom_settings" />
+    <item
+        android:id="@+id/itemReserve"
+        android:icon="@drawable/ic_reserve"
+        android:title="@string/bottom_reserve" />
+    <item
+        android:id="@+id/itemHistory"
+        android:icon="@drawable/ic_history"
+        android:title="@string/bottom_history" />
+</menu>

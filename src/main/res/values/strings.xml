@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ورزشی رزرو</string>
+    <string name="app_version">نسخه 1.0</string>
+    <string name="splash_title">ورزشی رزرو</string>
+    <string name="splash_description">رزرو آنلاین مکان های ورزشی</string>
+    <string name="content_description_post_thumbnail">post thumbnail</string>
+    <string name="content_description_vector_location">vector location</string>
+    <string name="content_description_appbar_image_view">AppBar Image View</string>
+    <string name="verification_step">verification step</string>
+    <string name="reserve_step">reserveHistory step</string>
+    <string name="login_title">ورود به حساب</string>
+    <string name="tel">تلفن</string>
+    <string name="lorem">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</string>
+    <string name="enter">ورود</string>
+    <string name="password">پسورد</string>
+    <string name="tel_sample">09168865663 مثل</string>
+    <string name="login_description">به حساب خود در ورزشی رزرو وارد شوید تا از تاریخچه رزرو خود با خبر شوید.</string>
+    <string name="empty_password">پسورد اجباری است. لطفا پسورد را وارد کنید.</string>
+    <string name="empty_phone">تلفن اجباری است. لطفا تلفن را وارد کنید.</string>
+    <string name="invalid_phone">تلفن وارد شده صحیح نمی باشد.</string>
+    <string name="invalid_password">اطلاعات وارد شده صحیح نیستند.</string>
+    <string name="bottom_history">تاریخچه</string>
+    <string name="bottom_settings">تنظیمات</string>
+    <string name="bottom_reserve">رزرو</string>
+    <string name="history_user_name">نام</string>
+    <string name="history_location">مکان</string>
+    <string name="history_date">تاریخ</string>
+    <string name="history_time">سانس</string>
+    <string name="accept">تایید</string>
+    <string name="repassword">رمز عبور را مجدد وارد نمایید</string>
+    <string name="enter_valid_password">رمز عبور معتبر وارد نمایید</string>
+    <string name="change_password">تغییر رمز عبور</string>
+    <string name="logout">خروج از سیستم</string>
+</resources>
