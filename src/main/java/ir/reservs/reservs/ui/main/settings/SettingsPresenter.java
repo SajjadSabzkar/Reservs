@@ -2,7 +2,7 @@ package ir.reservs.reservs.ui.main.settings;
 
 import ir.reservs.reservs.data.DataManager;
 
-public class SettingsPresenter implements ISettingsPresenter {
+public class SettingsPresenter implements SettingsContract.Presenter {
 
     private DataManager dataManager;
 

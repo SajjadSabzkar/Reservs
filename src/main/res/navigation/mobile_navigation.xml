@@ -3,11 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/settingsFragment">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="ir.reservs.reservs.ui.main.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="ir.reservs.reservs.ui.main.history.HistoryFragment"
+        android:label="layout_history"
+        tools:layout="@layout/layout_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_reserveFragment"
+            app:destination="@id/reserveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reserveFragment"
+        android:name="ir.reservs.reservs.ui.main.reserve.ReserveFragment"
+        android:label="layout_reserve"
+        tools:layout="@layout/layout_reserve" >
+        <action
+            android:id="@+id/action_reserveFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_reserveFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ir.reservs.reservs.ui.main.settings.SettingsFragment"
+        android:label="layout_settings"
+        tools:layout="@layout/layout_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_reserveFragment"
+            app:destination="@id/reserveFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
 </navigation>

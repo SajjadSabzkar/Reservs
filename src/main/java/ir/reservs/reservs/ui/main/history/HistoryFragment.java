@@ -1,6 +1,7 @@
 package ir.reservs.reservs.ui.main.history;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,28 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.ui.main.base.BaseFragment;
 
-public class HistoryFragment extends BaseFragment implements IHistoryView {
+public class HistoryFragment extends BaseFragment implements HistoryContract.View {
+    @Inject
+    HistoryAdapter historyAdapter;
 
-    private HistoryAdapter historyAdapter;
-    private HistoryPresenter historyPresenter;
-    private RecyclerView historyRecycler;
+    @Inject
+    HistoryPresenter historyPresenter;
 
-    public static HistoryFragment newInstance(int page, String title) {
-        HistoryFragment historyFragment = new HistoryFragment();
-        return historyFragment;
-    }
+    @BindView(R.id.historyRecycler)
+    RecyclerView historyRecycler;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_history, container, false);
-        historyRecycler = view.findViewById(R.id.historyRecycler);
-        historyAdapter = new HistoryAdapter();
-        historyRecycler.setAdapter(historyAdapter);
-        historyPresenter = new HistoryPresenter(appComponent.getDataManager(), appComponent.getCompositeDisposable());
+        ButterKnife.bind(this, view);
+        getActivityComponent().inject(this);
         return view;
     }
 
@@ -40,6 +43,7 @@ public class HistoryFragment extends BaseFragment implements IHistoryView {
     public void onResume() {
         super.onResume();
         historyPresenter.onAttach(this);
+        historyRecycler.setAdapter(historyAdapter);
     }
 
     @Override
@@ -52,6 +56,12 @@ public class HistoryFragment extends BaseFragment implements IHistoryView {
 
     @Override
     public void setHistoryData(List<ReserveHistory> reserves) {
+        Log.e("HistoryFragment", "setHistoryData" + ": " + reserves.size());
         historyAdapter.addItems(reserves);
+    }
+
+    @Override
+    public void setup() {
+        super.setup();
     }
 }

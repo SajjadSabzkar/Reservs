@@ -4,19 +4,26 @@ import io.reactivex.disposables.CompositeDisposable;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.ui.base.BasePresenter;
 
-public class MainPresenter<V extends IMainView>
-        extends BasePresenter<V>
-        implements IMainPresenter<V> {
+public class MainPresenter implements BasePresenter<MainContract.View> {
+    private DataManager dataManager;
+    private CompositeDisposable compositeDisposable;
+
     MainPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        super(dataManager, compositeDisposable);
+
+        this.dataManager = dataManager;
+        this.compositeDisposable = compositeDisposable;
+    }
+
+    @Override
+    public void onAttach(MainContract.View view) {
+
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        mView = null;
-        mDataManager = null;
-        mCompositeDisposable = null;
+        if (!compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+        }
 
     }
 }

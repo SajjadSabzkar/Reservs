@@ -17,6 +17,7 @@ public class AppDataManager implements DataManager {
         this.mApiHelper = apiHelper;
     }
 
+
     @Override
     public Single<Token> login(String phone, String password) {
         return mApiHelper.login(phone, password);

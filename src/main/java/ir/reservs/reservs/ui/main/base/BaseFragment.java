@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import ir.reservs.reservs.di.component.ApplicationComponent;
-import ir.reservs.reservs.ui.base.IView;
+import ir.reservs.reservs.di.component.ActivityComponent;
+import ir.reservs.reservs.ui.base.BaseActivity;
+import ir.reservs.reservs.ui.base.BaseView;
 
-public class BaseFragment extends Fragment implements IView {
-    protected ApplicationComponent appComponent;
+public class BaseFragment extends Fragment implements BaseView {
+    private BaseActivity mActivity;
 
     @Nullable
     @Override
@@ -21,9 +23,21 @@ public class BaseFragment extends Fragment implements IView {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    public void setComponent(ApplicationComponent appComponent) {
-        this.appComponent = appComponent;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BaseActivity) {
+            this.mActivity = (BaseActivity) context;
+        }
     }
+
+    protected ActivityComponent getActivityComponent() {
+        if (mActivity != null) {
+            return mActivity.getActivityComponent();
+        }
+        return null;
+    }
+
 
     @Override
     public void onError(String error) {
@@ -31,12 +45,8 @@ public class BaseFragment extends Fragment implements IView {
     }
 
     @Override
-    public void onError(long resId) {
+    public void setup() {
 
     }
 
-    @Override
-    public void init() {
-
-    }
 }

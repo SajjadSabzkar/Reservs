@@ -1,47 +1,50 @@
 package ir.reservs.reservs.ui.splash;
 
+import android.util.Log;
+
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import ir.reservs.reservs.data.DataManager;
-import ir.reservs.reservs.ui.base.BasePresenter;
 
-public class SplashPresenter<V extends ISplashView>
-        extends BasePresenter<V>
-        implements ISplashPresenter {
+public class SplashPresenter implements SplashContract.Presenter {
 
-    SplashPresenter(DataManager dataManager,
-                    CompositeDisposable compositeDisposable) {
-        this.mDataManager = dataManager;
-        this.mCompositeDisposable = compositeDisposable;
+    private DataManager dataManager;
+    private Disposable disposable;
+    private SplashContract.View view;
+
+    @Inject
+    public SplashPresenter(DataManager dataManager, CompositeDisposable disposable) {
+        this.dataManager = dataManager;
+        this.disposable = disposable;
     }
 
 
+    private void decideNextActivity() {
+        disposable = Observable.timer(3, TimeUnit.SECONDS).subscribe(aLong -> {
+            if (dataManager.getAccessToken() != null) {
+                view.openMainActivity();
+            } else {
+                view.openLoginActivity();
+            }
+        });
+    }
+
     @Override
-    public void onAttach(V view) {
-        super.onAttach(view);
+    public void onAttach(SplashContract.View view) {
+        this.view = view;
+        Log.e("SplashPresenter","onAttach");
         decideNextActivity();
     }
 
     @Override
     public void onDetach() {
-        super.onDetach();
-        mView = null;
-        mDataManager = null;
-        mCompositeDisposable = null;
-
+        view = null;
+        if (!disposable.isDisposed())
+            disposable.dispose();
     }
-
-    private void decideNextActivity() {
-        getCompositeDisposable().add(
-                Observable.timer(3, TimeUnit.SECONDS).subscribe(aLong -> {
-                    if (getDataManager().getAccessToken() != null) {
-                        getView().openMainActivity();
-                    } else {
-                        getView().openLoginActivity();
-                    }
-                }));
-    }
-
 }

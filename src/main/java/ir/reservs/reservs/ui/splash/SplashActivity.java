@@ -6,25 +6,43 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
+import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.ui.base.BaseActivity;
 import ir.reservs.reservs.ui.login.LoginActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
 
-public class SplashActivity extends BaseActivity implements ISplashView {
+public class SplashActivity extends BaseActivity implements SplashContract.View {
+
     @BindView(R.id.txtVersion)
     TextView txtVersion;
 
-    SplashPresenter<SplashActivity> mPresenter;
+    @Inject
+    DataManager dataManager;
+
+    //
+    @Inject
+    SplashPresenter splashPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_splash);
+    }
+
+    @Override
+    public void setup() {
+        super.setup();
         ButterKnife.bind(this);
-        init();
+        getActivityComponent().inject(this);
+
+        //todo : most inject not build here
+        //splashPresenter = new SplashPresenter(dataManager, new CompositeDisposable());
+        splashPresenter.onAttach(this);
     }
 
     @Override
@@ -46,20 +64,11 @@ public class SplashActivity extends BaseActivity implements ISplashView {
         Snackbar.make(txtVersion, error, Snackbar.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onError(long resId) {
-        onError(getString((int) resId));
-    }
-
-
-    public void init() {
-        mPresenter = new SplashPresenter<>(appComponent.getDataManager(), appComponent.getCompositeDisposable());
-        mPresenter.onAttach(this);
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter = null;
+        splashPresenter.onDetach();
+        splashPresenter = null;
     }
 }

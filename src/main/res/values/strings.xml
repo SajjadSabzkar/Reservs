@@ -31,4 +31,5 @@
     <string name="enter_valid_password">رمز عبور معتبر وارد نمایید</string>
     <string name="change_password">تغییر رمز عبور</string>
     <string name="logout">خروج از سیستم</string>
+    <string name="city">شهر</string>
 </resources>

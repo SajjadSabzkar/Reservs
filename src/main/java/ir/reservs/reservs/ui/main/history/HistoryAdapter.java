@@ -17,7 +17,11 @@ import ir.reservs.reservs.utils.CommonUtils;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.Holder> {
 
-    private List<ReserveHistory> mData = new ArrayList<>();
+    private List<ReserveHistory> mData;
+
+    public HistoryAdapter(ArrayList<ReserveHistory> mData) {
+        this.mData = mData;
+    }
 
     @NonNull
     @Override

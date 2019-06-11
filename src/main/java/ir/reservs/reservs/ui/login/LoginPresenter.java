@@ -1,38 +1,20 @@
 package ir.reservs.reservs.ui.login;
 
-import android.util.Log;
-
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.utils.CommonUtils;
 
-public class LoginPresenter<V extends ILoginView>
-        extends BasePresenter<V>
-        implements ILoginPresenter<V> {
+public class LoginPresenter {
 
     LoginPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        super(dataManager, compositeDisposable);
-        if (dataManager.getAccessToken() != null) {
+        /*if (dataManager.getAccessToken() != null) {
             getView().openMainActivity();
-        }
+        }*/
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCompositeDisposable.dispose();
-        mView = null;
-        mDataManager = null;
-        mCompositeDisposable = null;
 
-    }
 
-    @Override
     public void onLogin(String phone, String password) {
-        if (phone == null || phone.isEmpty()) {
+        /*if (phone == null || phone.isEmpty()) {
             getView().onError(R.string.empty_phone);
             return;
         }
@@ -56,11 +38,11 @@ public class LoginPresenter<V extends ILoginView>
                 }, error -> {
                     getView().onError(R.string.invalid_password);
                     Log.e("LoginPresenter", "onLogin" + ": " + error.getMessage());
-                }));
+                }));*/
     }
 
     private void saveToken(String token) {
-        getDataManager().setAccessToken(token);
+//        getDataManager().setAccessToken(token);
     }
 
 

@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/itemSettings"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:title="@string/bottom_settings" />
     <item
-        android:id="@+id/itemReserve"
+        android:id="@+id/reserveFragment"
         android:icon="@drawable/ic_reserve"
         android:title="@string/bottom_reserve" />
     <item
-        android:id="@+id/itemHistory"
+        android:id="@+id/historyFragment"
         android:icon="@drawable/ic_history"
         android:title="@string/bottom_history" />
 </menu>

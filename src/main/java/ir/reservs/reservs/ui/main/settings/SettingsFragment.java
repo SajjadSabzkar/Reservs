@@ -24,7 +24,6 @@ public class SettingsFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        appComponent = null;
     }
 
     void openLoginActivity() {

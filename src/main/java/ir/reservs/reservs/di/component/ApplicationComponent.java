@@ -1,27 +1,29 @@
 package ir.reservs.reservs.di.component;
 
-import android.content.Context;
+import android.app.Application;
+
+import javax.inject.Singleton;
 
 import dagger.Component;
-import io.reactivex.disposables.CompositeDisposable;
-import ir.reservs.reservs.data.AppDataManager;
-import ir.reservs.reservs.data.network.ApiHelper;
-import ir.reservs.reservs.data.prefs.AppPreferencesHelper;
-import ir.reservs.reservs.di.module.ApiModule;
+import ir.reservs.reservs.ReserveApplication;
+import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.di.module.ApplicationModule;
-import ir.reservs.reservs.di.scope.ApplicationScope;
+import ir.reservs.reservs.di.module.DataModule;
+import ir.reservs.reservs.di.module.NetworkModule;
+import ir.reservs.reservs.di.module.PreferenceModule;
 
-@ApplicationScope
-@Component(modules = {ApplicationModule.class, ApiModule.class})
+@Singleton
+@Component(modules = {
+        ApplicationModule.class,
+        DataModule.class,
+        NetworkModule.class,
+        PreferenceModule.class
+})
 public interface ApplicationComponent {
 
-    Context getContext();
+    void inject(ReserveApplication app);
 
-    ApiHelper getApiService();
+    Application application();
 
-    AppPreferencesHelper getAppPreferencesHelper();
-
-    CompositeDisposable getCompositeDisposable();
-
-    AppDataManager getDataManager();
+    DataManager getDataManager();
 }
