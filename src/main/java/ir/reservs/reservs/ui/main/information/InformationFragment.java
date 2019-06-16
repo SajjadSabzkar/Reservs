@@ -15,7 +15,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
-import butterknife.OnClick;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
 
@@ -42,10 +41,6 @@ public class InformationFragment extends BaseFragment implements InformationCont
         informationPresenter.onAttach(this);
     }
 
-    @OnClick(R.id.btnConfirm)
-    void onConfirm() {
-
-    }
 
     @Override
     public void onError(String error) {

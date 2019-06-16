@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.ui.base.BaseActivity;
@@ -36,7 +35,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     public void setup() {
         super.setup();
-        ButterKnife.bind(this);
         getActivityComponent().inject(this);
 
         //todo : most inject not build here
