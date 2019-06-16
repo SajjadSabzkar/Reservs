@@ -5,8 +5,9 @@ import java.util.List;
 import io.reactivex.Single;
 import ir.reservs.reservs.data.network.ApiHelper;
 import ir.reservs.reservs.data.prefs.PreferencesHelper;
+import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.model.ReserveHistory;
-import ir.reservs.reservs.model.Token;
+import ir.reservs.reservs.model.Salon;
 
 public class AppDataManager implements DataManager {
     private final PreferencesHelper mPreferencesHelper;
@@ -19,13 +20,18 @@ public class AppDataManager implements DataManager {
 
 
     @Override
-    public Single<Token> login(String phone, String password) {
+    public Single<Login> login(String phone, String password) {
         return mApiHelper.login(phone, password);
     }
 
     @Override
     public Single<List<ReserveHistory>> reserves() {
         return mApiHelper.reserves();
+    }
+
+    @Override
+    public Single<List<Salon>> salons() {
+        return mApiHelper.salons();
     }
 
     @Override
@@ -56,6 +62,16 @@ public class AppDataManager implements DataManager {
     @Override
     public void setCurrentUserName(String name) {
         mPreferencesHelper.setCurrentUserName(name);
+    }
+
+    @Override
+    public void setUserImage(String image) {
+        mPreferencesHelper.setUserImage(image);
+    }
+
+    @Override
+    public String getCurrentUserImage() {
+        return null;
     }
 
     @Override

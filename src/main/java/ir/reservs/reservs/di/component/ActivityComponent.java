@@ -6,7 +6,9 @@ import ir.reservs.reservs.di.module.ActivityModule;
 import ir.reservs.reservs.ui.login.LoginActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
 import ir.reservs.reservs.ui.main.history.HistoryFragment;
-import ir.reservs.reservs.ui.main.reserve.ReserveFragment;
+import ir.reservs.reservs.ui.main.results.ResultFragment;
+import ir.reservs.reservs.ui.main.salons.SalonFragment;
+import ir.reservs.reservs.ui.main.search.SearchFragment;
 import ir.reservs.reservs.ui.main.settings.SettingsFragment;
 import ir.reservs.reservs.ui.splash.SplashActivity;
 
@@ -24,6 +26,10 @@ public interface ActivityComponent {
 
     void inject(SettingsFragment fragment);
 
-    void inject(ReserveFragment fragment);
+    void inject(SearchFragment fragment);
+
+    void inject(ResultFragment fragment);
+
+    void inject(SalonFragment fragment);
 }
 

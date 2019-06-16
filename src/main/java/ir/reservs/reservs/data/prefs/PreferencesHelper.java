@@ -13,6 +13,10 @@ public interface PreferencesHelper {
 
     void setCurrentUserName(String name);
 
+    void setUserImage(String image);
+
+    String getCurrentUserImage();
+
     String getAccessToken();
 
     void setAccessToken(String token);

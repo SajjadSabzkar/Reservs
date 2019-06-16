@@ -11,6 +11,10 @@
     <color name="colorDialogButton">#2A93FF</color>
     <color name="colorButton">#8074C8</color>
     <color name="colorText">#A1A4C1</color>
-    <color name="colorText2">#212121</color>
+    <color name="colorText2">#686767</color>
+    <color name="colorText3">#212121</color>
     <color name="colorDivider">#ECECF0</color>
+    <color name="colorCancel">#F9467E</color>
+    <color name="colorInProcess">#FCB949</color>
+    <color name="colorFuture">#33ACFD</color>
 </resources>

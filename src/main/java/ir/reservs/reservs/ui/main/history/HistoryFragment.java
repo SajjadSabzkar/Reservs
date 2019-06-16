@@ -49,9 +49,13 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     @Override
     public void onDestroy() {
         super.onDestroy();
-        historyRecycler.setAdapter(null);
-        historyPresenter.onDetach();
-        historyPresenter = null;
+        if (historyRecycler != null)
+            historyRecycler.setAdapter(null);
+
+        if (historyPresenter != null) {
+            historyPresenter.onDetach();
+            historyPresenter = null;
+        }
     }
 
     @Override
@@ -63,5 +67,15 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     @Override
     public void setup() {
         super.setup();
+    }
+
+    @Override
+    public void onError(String error) {
+        super.onError(error);
+    }
+
+    @Override
+    public void onError(int resId) {
+        onError(getString(resId));
     }
 }

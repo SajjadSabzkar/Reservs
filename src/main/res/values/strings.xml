@@ -32,4 +32,11 @@
     <string name="change_password">تغییر رمز عبور</string>
     <string name="logout">خروج از سیستم</string>
     <string name="city">شهر</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">جستجو</string>
+    <string name="location">مکان</string>
+    <string name="date">تاریخ</string>
+    <string name="waiting">لطفا صبر کنید</string>
 </resources>

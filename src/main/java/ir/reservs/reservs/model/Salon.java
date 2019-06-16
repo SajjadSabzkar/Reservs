@@ -10,16 +10,23 @@ public class Salon {
     String description;
     String thumbnail;
     int week;
+    int minPrice;
+    int maxPrice;
+    String cityName;
 
     public Salon() {
     }
 
-    public Salon(int id, String title, String description, String thumbnail, int week) {
+    public Salon(int id, String title, String description, String thumbnail, int week, int minPrice,
+                 int maxPrice, String cityName) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.thumbnail = thumbnail;
         this.week = week;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.cityName = cityName;
     }
 
     public int getId() {
@@ -42,4 +49,15 @@ public class Salon {
         return week;
     }
 
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+
+    public int getMinPrice() {
+        return minPrice;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
 }

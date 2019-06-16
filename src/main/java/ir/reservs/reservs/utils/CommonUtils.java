@@ -77,8 +77,8 @@ public class CommonUtils {
     }
 
     public static String dateFormatStandard(String date){
-        return date.replace("-","\\")
-                .replace("-","\\")
-                .replace("-","\\");
+        return date.replace("-","/")
+                .replace("-","/")
+                .replace("-","/");
     }
 }

@@ -33,6 +33,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
+    public void onError(int resId) {
+        onError(getString(resId));
+    }
+
+    @Override
     public void setup() {
         super.setup();
         ButterKnife.bind(this);

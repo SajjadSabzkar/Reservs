@@ -38,10 +38,20 @@ public class BaseFragment extends Fragment implements BaseView {
         return null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setup();
+    }
 
     @Override
     public void onError(String error) {
 
+    }
+
+    @Override
+    public void onError(int resId) {
+        onError(getString(resId));
     }
 
     @Override

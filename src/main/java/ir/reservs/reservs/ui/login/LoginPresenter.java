@@ -1,49 +1,78 @@
 package ir.reservs.reservs.ui.login;
 
+import android.util.Log;
+
+import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
+import ir.reservs.reservs.model.Login;
+import ir.reservs.reservs.utils.CommonUtils;
 
-public class LoginPresenter {
+public class LoginPresenter implements LoginContract.presenter {
+    private DataManager dataManager;
+    private CompositeDisposable compositeDisposable;
+    private LoginContract.View view;
 
+    @Inject
     LoginPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        /*if (dataManager.getAccessToken() != null) {
-            getView().openMainActivity();
-        }*/
+        this.dataManager = dataManager;
+        this.compositeDisposable = compositeDisposable;
+    }
+
+    private void saveUser(Login user) {
+        dataManager.setAccessToken(user.getToken());
+        dataManager.setCurrentUserName(user.getName());
+        dataManager.setCurrentUserPhone(user.getPhone());
+        dataManager.setUserImage(user.getImage());
     }
 
 
-
-    public void onLogin(String phone, String password) {
-        /*if (phone == null || phone.isEmpty()) {
-            getView().onError(R.string.empty_phone);
+    @Override
+    public void login(String phone, String password) {
+        if (phone == null || phone.isEmpty()) {
+            view.onError(R.string.empty_phone);
             return;
         }
         if (!CommonUtils.isPhoneValid(phone)) {
-            getView().onError(R.string.invalid_phone);
+            view.onError(R.string.invalid_phone);
             return;
         }
         if (password == null || password.isEmpty()) {
-            getView().onError(R.string.empty_password);
+            view.onError(R.string.empty_password);
             return;
         }
         Log.e("LoginPresenter", "onLogin" + ": " + phone + "," + password);
-        getCompositeDisposable().add(getDataManager()
+        view.showProgress();
+        compositeDisposable.add(dataManager
                 .login(phone, password)
-                .observeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(token -> {
-                    Log.e("LoginPresenter", "onLogin" + ": " + token.getToken());
-                    saveToken(token.getToken());
-                    getView().openMainActivity();
+                .subscribe(user -> {
+                    Log.e("LoginPresenter", "onLogin" + ": " + user.getName());
+                    saveUser(user);
+                    view.hideProgress();
+                    view.openMainActivity();
                 }, error -> {
-                    getView().onError(R.string.invalid_password);
+                    view.onError(R.string.invalid_password);
+                    view.hideProgress();
                     Log.e("LoginPresenter", "onLogin" + ": " + error.getMessage());
-                }));*/
+                }));
     }
 
-    private void saveToken(String token) {
-//        getDataManager().setAccessToken(token);
+    @Override
+    public void onAttach(LoginContract.View view) {
+        this.view = view;
     }
 
-
+    @Override
+    public void onDetach() {
+        view = null;
+        if (!compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+        }
+    }
 }

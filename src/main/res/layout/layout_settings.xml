@@ -5,7 +5,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <com.google.android.material.card.MaterialCardView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/profileCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintCircleRadius="12dp"
+        android:background="@drawable/appbar_bg">
+  <!--  <com.google.android.material.card.MaterialCardView
         android:id="@+id/profileCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -13,7 +22,7 @@
         app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent">-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,7 +58,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imgAvatar" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/txtPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -64,7 +73,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.appbar.AppBarLayout>
+    <!--</com.google.android.material.card.MaterialCardView>-->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/editCard"

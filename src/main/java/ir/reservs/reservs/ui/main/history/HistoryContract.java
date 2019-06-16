@@ -7,7 +7,7 @@ import ir.reservs.reservs.ui.base.BasePresenter;
 import ir.reservs.reservs.ui.base.BaseView;
 
 public class HistoryContract {
-    public interface Presenter extends BasePresenter<HistoryContract.View> {
+    public interface Presenter extends BasePresenter<View> {
         void getDataHistory();
     }
 

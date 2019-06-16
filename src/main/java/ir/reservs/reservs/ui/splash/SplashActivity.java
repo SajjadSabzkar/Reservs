@@ -64,6 +64,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         Snackbar.make(txtVersion, error, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onError(int resId) {
+        onError(getString(resId));
+    }
+
 
     @Override
     protected void onDestroy() {

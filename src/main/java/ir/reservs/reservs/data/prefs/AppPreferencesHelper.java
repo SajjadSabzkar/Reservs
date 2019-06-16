@@ -9,6 +9,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private static final String USER_ID = "PREF_KEY_USER_ID";
     private static final String USER_PHONE = "PREF_KEY_USER_PHONE";
     private static final String USER_NAME = "PREF_KEY_USER_NAME";
+    private static final String USER_IMAGE = "PREF_KEY_USER_IMAGE";
     private static final String ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";
 
 
@@ -50,6 +51,17 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setCurrentUserName(String name) {
         mPrefs.edit().putString(USER_NAME, name).apply();
+    }
+
+    @Override
+    public void setUserImage(String image) {
+        mPrefs.edit().putString(USER_IMAGE, image).apply();
+    }
+
+    @Override
+    public String getCurrentUserImage() {
+        String userImage = mPrefs.getString(USER_IMAGE, "-1");
+        return Objects.equals(userImage, "-1") ? null : userImage;
     }
 
     @Override
