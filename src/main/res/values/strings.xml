@@ -39,4 +39,10 @@
     <string name="location">مکان</string>
     <string name="date">تاریخ</string>
     <string name="waiting">لطفا صبر کنید</string>
+    <string name="confirm_changes">ثبت تغییرات</string>
+    <string name="current_password">رمز فعلی شما</string>
+    <string name="new_password">رمز جدید</string>
+    <string name="please_input_official_name">از این نام برای شناسایی شما هنگام ورود به مکان ورزشی استفاده میشود لطفا نام رسمی خود را وارد کنید.</string>
+    <string name="name_example">مثل: حسن رضایی</string>
+    <string name="official_name">نام و نام خانوادگی</string>
 </resources>
