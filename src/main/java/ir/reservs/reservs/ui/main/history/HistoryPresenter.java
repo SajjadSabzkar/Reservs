@@ -1,7 +1,5 @@
 package ir.reservs.reservs.ui.main.history;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -17,13 +15,11 @@ public class HistoryPresenter implements HistoryContract.Presenter {
 
     @Inject
     public HistoryPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-
         this.dataManager = dataManager;
         this.compositeDisposable = compositeDisposable;
     }
 
     public void getDataHistory() {
-        Log.e("HistoryPresenter", "getDataHistory" + ": " + 2);
         compositeDisposable.add(
                 dataManager.reserves()
                         .subscribeOn(Schedulers.io())
@@ -46,8 +42,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
+            compositeDisposable.clear();
         }
-        dataManager = null;
     }
 }

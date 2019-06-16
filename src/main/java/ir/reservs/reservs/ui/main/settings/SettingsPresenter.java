@@ -30,7 +30,6 @@ public class SettingsPresenter implements SettingsContract.Presenter {
     }
 
     public void setUserProfileData() {
-        Log.e("SettingsPresenter", "setUserProfileData" + ": " + 2);
         view.setUserInfo(dataManager.getCurrentUserName(),
                 dataManager.getCurrentUserPhone(),
                 dataManager.getCurrentUserImage());

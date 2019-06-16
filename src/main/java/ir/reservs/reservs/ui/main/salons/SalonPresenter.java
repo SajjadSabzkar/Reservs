@@ -29,7 +29,6 @@ public class SalonPresenter implements SalonContract.Presenter {
     }
 
     private void getSalonsFromServer() {
-        Log.e("SalonPresenter", "getSalonsFromServer" + ": " + 1);
         compositeDisposable.add(
                 dataManager.salons()
                         .subscribeOn(Schedulers.io())
@@ -45,7 +44,7 @@ public class SalonPresenter implements SalonContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
+            compositeDisposable.clear();
         }
     }
 }

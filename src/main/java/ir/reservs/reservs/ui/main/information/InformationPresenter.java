@@ -25,40 +25,31 @@ public class InformationPresenter implements InformationContract.Presenter {
     @Override
     public void onAttach(InformationContract.View view) {
         this.view = view;
-        Log.e("InformationPresenter", "onAttach");
     }
 
     @Override
     public void onDetach() {
-        Log.e("InformationPresenter", "onDetach");
         if (!compositeDisposable.isDisposed())
-            compositeDisposable.dispose();
+            compositeDisposable.clear();
+
         view = null;
     }
 
     @Override
     public void confirmInformation(String name) {
-        Log.e("InformationPresenter", "confirmInformation");
         if (name.length() == 0) {
             view.onError(R.string.input_your_name);
         }
-        Log.e("InformationPresenter", "confirmInformation" + ": " + compositeDisposable.toString());
-        Log.e("InformationPresenter", "confirmInformation" + ": " + dataManager.toString());
         compositeDisposable.add(
                 dataManager.updateName(name)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 success -> {
-                                    Log.e("InformationPresenter", "confirmInformation" + 2);
                                     dataManager.setCurrentUserName(name);
                                     view.nameUpdated(name);
                                 },
-                                error -> {
-                                    view.onError(error.getMessage());
-                                    Log.e("InformationPresenter", "confirmInformation"
-                                            + ":error---");
-                                }
+                                error -> view.onError(error.getMessage())
                         )
         );
     }
