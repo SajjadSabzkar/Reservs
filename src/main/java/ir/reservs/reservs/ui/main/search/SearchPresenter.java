@@ -67,7 +67,7 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
         cities = new CharSequence[]{"گتوند", "شوشتر", "دزفول", "اهواز"};
         adb.setSingleChoiceItems(cities, 0, (d, n) -> {
             selectedCity = n;
-            view.setCity(cities[n].toString());
+            //view.setCity(cities[n].toString());
             d.dismiss();
         });
         adb.setTitle("انتخاب شهر");

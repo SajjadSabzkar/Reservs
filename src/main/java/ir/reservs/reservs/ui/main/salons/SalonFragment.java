@@ -14,8 +14,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.ui.base.BaseFragment;
@@ -23,18 +21,16 @@ import ir.reservs.reservs.ui.base.BaseFragment;
 public class SalonFragment extends BaseFragment implements SalonContract.View {
     @Inject
     SalonPresenter salonPresenter;
-
     @Inject
     SalonAdapter salonAdapter;
 
-    @BindView(R.id.salonRecyclerView)
     RecyclerView salonRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_salons, container, false);
-        ButterKnife.bind(this, view);
+        salonRecyclerView=view.findViewById(R.id.salonRecyclerView);
         getActivityComponent().inject(this);
         return view;
     }

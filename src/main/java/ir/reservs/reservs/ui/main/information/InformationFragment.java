@@ -1,10 +1,10 @@
 package ir.reservs.reservs.ui.main.information;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -15,8 +15,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
@@ -25,7 +23,6 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Inject
     InformationPresenter informationPresenter;
 
-    @BindView(R.id.txtName)
     EditText txtName;
 
     @Nullable
@@ -33,7 +30,9 @@ public class InformationFragment extends BaseFragment implements InformationCont
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_informaion, container, false);
         getActivityComponent().inject(this);
-        ButterKnife.bind(this, view);
+        txtName = view.findViewById(R.id.txtName);
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        btnConfirm.setOnClickListener((e)->informationPresenter.confirmInformation(txtName.getText().toString()));
         return view;
     }
 
@@ -45,8 +44,7 @@ public class InformationFragment extends BaseFragment implements InformationCont
 
     @OnClick(R.id.btnConfirm)
     void onConfirm() {
-        Log.e("InformationFragment", "onConfirm");
-        informationPresenter.confirmInformation(txtName.getText().toString());
+
     }
 
     @Override
@@ -68,7 +66,6 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Override
     public void nameUpdated(String name) {
         onError(String.format("نام شما به %s تغییر کرد.", name));
-        Log.e("InformationFragment", "nameUpdated");
         NavHostFragment.findNavController(this).popBackStack();
     }
 }

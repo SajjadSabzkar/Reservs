@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
 
@@ -18,7 +17,6 @@ public class ResultFragment extends BaseFragment implements ResultContract.View 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_result, container, false);
-        ButterKnife.bind(this, view);
         getActivityComponent().inject(this);
         return view;
     }

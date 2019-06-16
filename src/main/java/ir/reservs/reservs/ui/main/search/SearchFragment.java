@@ -8,41 +8,38 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class SearchFragment extends BaseFragment implements SearchContract.View {
 
-    @BindView(R.id.txtDate)
-    TextView txtDate;
-
-    @BindView(R.id.txtCityName)
-    TextView txtCityName;
-
-    @BindView(R.id.txtLocation)
-    TextView txtLocation;
+    private TextView txtDate;
+    private TextView txtCityName;
+    private TextView txtLocation;
 
     @Inject
     SearchPresenter searchPresenter;
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_search, container, false);
-        ButterKnife.bind(this, view);
         getActivityComponent().inject(this);
+        txtCityName = view.findViewById(R.id.txtCityName);
+        txtDate = view.findViewById(R.id.txtDate);
+        txtLocation = view.findViewById(R.id.txtLocation);
+        ConstraintLayout constraintLayoutDate, constraintLayoutCity, constraintLayoutLocation;
+        constraintLayoutDate=view.findViewById(R.id.constraintLayoutLocation);
+        constraintLayoutCity=view.findViewById(R.id.constraintLayoutCity);
+        constraintLayoutLocation=view.findViewById(R.id.constraintLayoutLocation);
+        constraintLayoutDate.setOnClickListener((v)->searchPresenter.getDate());
+        constraintLayoutCity.setOnClickListener((v)->searchPresenter.getCity());
+        constraintLayoutLocation.setOnClickListener((v)->searchPresenter.getLocation());
         return view;
     }
 
@@ -50,21 +47,6 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
     public void onResume() {
         super.onResume();
         searchPresenter.onAttach(this);
-    }
-
-    @OnClick(R.id.ConstraintLayoutDate)
-    void onDateClick() {
-        searchPresenter.getDate();
-    }
-
-    @OnClick(R.id.constraintLayoutCity)
-    void onCityClick() {
-        searchPresenter.getCity();
-    }
-
-    @OnClick(R.id.ConstraintLayoutLocation)
-    void onLocationClick() {
-        searchPresenter.getLocation();
     }
 
     @Override
@@ -98,8 +80,6 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
         if (searchPresenter != null) {
             searchPresenter.onDetach();
             searchPresenter = null;
-            txtCityName = null;
-            txtDate = null;
         }
 
     }

@@ -55,5 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mActivityComponent = null;
+    }
 }

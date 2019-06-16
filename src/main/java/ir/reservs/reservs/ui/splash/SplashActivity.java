@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
@@ -18,7 +17,6 @@ import ir.reservs.reservs.ui.main.MainActivity;
 
 public class SplashActivity extends BaseActivity implements SplashContract.View {
 
-    @BindView(R.id.txtVersion)
     TextView txtVersion;
 
     @Inject
@@ -32,6 +30,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_splash);
+        txtVersion = findViewById(R.id.txtVersion);
     }
 
     @Override

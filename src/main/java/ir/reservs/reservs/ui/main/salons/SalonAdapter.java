@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.salons;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,11 @@ import ir.reservs.reservs.model.Salon;
 public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
 
     private List<Salon> mData;
-    private RequestManager requestManager;
+    private Context context;
 
-    public SalonAdapter(ArrayList<Salon> mData, RequestManager requestManager) {
+    public SalonAdapter(ArrayList<Salon> mData, Context context) {
         this.mData = mData;
-        this.requestManager = requestManager;
+        this.context = context;
     }
 
     @NonNull
@@ -42,9 +43,10 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         Salon salon = mData.get(position);
         Log.e("SalonAdapter", "onBindViewHolder" + ": " + salon.getThumbnail());
-     /*   requestManager.load(salon.getThumbnail())
+        Glide.with(context)
+                .load(salon.getThumbnail())
                 .centerCrop()
-                .into(holder.imgThumbnail);*/
+                .into(holder.imgThumbnail);
         holder.txtLocation.setText(salon.getTitle());
         holder.txtCity.setText(salon.getCityName());
         holder.txtPrice.setText(

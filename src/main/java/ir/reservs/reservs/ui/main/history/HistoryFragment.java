@@ -14,8 +14,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.ui.base.BaseFragment;
@@ -27,14 +25,14 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     @Inject
     HistoryPresenter historyPresenter;
 
-    @BindView(R.id.historyRecycler)
+
     RecyclerView historyRecycler;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_history, container, false);
-        ButterKnife.bind(this, view);
+        historyRecycler=view.findViewById(R.id.historyRecycler);
         getActivityComponent().inject(this);
         return view;
     }

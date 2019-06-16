@@ -96,8 +96,8 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    SalonAdapter provideSalonAdapter(RequestManager requestManager) {
-        return new SalonAdapter(new ArrayList<>(), requestManager);
+    SalonAdapter provideSalonAdapter(AppCompatActivity context) {
+        return new SalonAdapter(new ArrayList<>(), context);
     }
 
     @Provides

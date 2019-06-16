@@ -3,26 +3,17 @@ package ir.reservs.reservs.ui.login;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import dmax.dialog.SpotsDialog;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
-
-    @BindView(R.id.txtPhone)
-    EditText txtPhone;
-
-    @BindView(R.id.txtPassword)
-    EditText txtPassword;
 
     @Inject
     LoginPresenter loginPresenter;
@@ -33,7 +24,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login);
-        ButterKnife.bind(this);
     }
 
     @Override
@@ -44,7 +34,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void setup() {
         super.setup();
-        ButterKnife.bind(this);
         getActivityComponent().inject(this);
         loginPresenter.onAttach(this);
         dialog = new SpotsDialog.Builder()
@@ -52,13 +41,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 .setCancelable(false)
                 .setMessage(R.string.waiting)
                 .build();
-    }
 
+        EditText txtPhone=findViewById(R.id.txtPhone);
+        EditText txtPassword=findViewById(R.id.txtPassword);
+        Button btnLogin=findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener((v)->loginPresenter.login(txtPhone.getText().toString(), txtPassword.getText().toString()));
 
-    @OnClick(R.id.btnLogin)
-    void onLoginClick() {
-        Log.e("LoginActivity", "onLoginClick" + ": " + 1);
-        loginPresenter.login(txtPhone.getText().toString(), txtPassword.getText().toString());
     }
 
     @Override
