@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.ReserveHistory;
-import ir.reservs.reservs.ui.main.base.BaseFragment;
+import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class HistoryFragment extends BaseFragment implements HistoryContract.View {
     @Inject

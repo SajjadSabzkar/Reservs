@@ -8,6 +8,7 @@ import ir.reservs.reservs.data.prefs.PreferencesHelper;
 import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
+import ir.reservs.reservs.model.Success;
 
 public class AppDataManager implements DataManager {
     private final PreferencesHelper mPreferencesHelper;
@@ -87,5 +88,10 @@ public class AppDataManager implements DataManager {
     @Override
     public void removeAccessToken() {
         mPreferencesHelper.removeAccessToken();
+    }
+
+    @Override
+    public Single<Success> updateName(String name) {
+        return mApiHelper.updateName(name);
     }
 }

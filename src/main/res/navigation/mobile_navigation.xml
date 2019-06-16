@@ -9,7 +9,7 @@
         android:id="@+id/historyFragment"
         android:name="ir.reservs.reservs.ui.main.history.HistoryFragment"
         android:label="layout_history"
-        tools:layout="@layout/layout_history" >
+        tools:layout="@layout/layout_history">
         <action
             android:id="@+id/action_historyFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
@@ -42,7 +42,7 @@
         android:id="@+id/settingsFragment"
         android:name="ir.reservs.reservs.ui.main.settings.SettingsFragment"
         android:label="layout_settings"
-        tools:layout="@layout/layout_settings" >
+        tools:layout="@layout/layout_settings">
         <action
             android:id="@+id/action_settingsFragment_to_reserveFragment"
             app:destination="@id/searchFragment" />
@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_settingsFragment_to_salonFragment"
             app:destination="@id/salonFragment" />
+        <action
+            android:id="@+id/settingsToInformation"
+            app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/settingsToPassword"
+            app:destination="@id/passwordFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
@@ -62,7 +68,7 @@
         android:id="@+id/salonFragment"
         android:name="ir.reservs.reservs.ui.main.salons.SalonFragment"
         android:label="layout_salons"
-        tools:layout="@layout/layout_salons" >
+        tools:layout="@layout/layout_salons">
         <action
             android:id="@+id/action_salonFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -72,5 +78,22 @@
         <action
             android:id="@+id/action_salonFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="ir.reservs.reservs.ui.main.password.PasswordFragment"
+        android:label="PasswordFragment">
+        <action
+            android:id="@+id/action_passwordFragment_to_settingsFragment"
+            app:destination="@+id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="ir.reservs.reservs.ui.main.information.InformationFragment"
+        android:label="layout_informaion"
+        tools:layout="@layout/layout_informaion">
+        <action
+            android:id="@+id/action_informationFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 </navigation>

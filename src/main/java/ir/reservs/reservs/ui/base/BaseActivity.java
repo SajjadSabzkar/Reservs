@@ -43,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     public void onError(String msg) {
-        //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
     }
 
     public void hideKeyboard() {

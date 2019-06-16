@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.Salon;
-import ir.reservs.reservs.ui.main.base.BaseFragment;
+import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class SalonFragment extends BaseFragment implements SalonContract.View {
     @Inject

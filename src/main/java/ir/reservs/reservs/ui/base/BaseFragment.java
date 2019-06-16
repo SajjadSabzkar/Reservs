@@ -1,4 +1,4 @@
-package ir.reservs.reservs.ui.main.base;
+package ir.reservs.reservs.ui.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import ir.reservs.reservs.di.component.ActivityComponent;
-import ir.reservs.reservs.ui.base.BaseActivity;
-import ir.reservs.reservs.ui.base.BaseView;
 
 public class BaseFragment extends Fragment implements BaseView {
     private BaseActivity mActivity;

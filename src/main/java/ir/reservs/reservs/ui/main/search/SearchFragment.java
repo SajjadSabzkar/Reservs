@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ir.reservs.reservs.R;
-import ir.reservs.reservs.ui.main.base.BaseFragment;
+import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class SearchFragment extends BaseFragment implements SearchContract.View {
 

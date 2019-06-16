@@ -22,6 +22,7 @@ import ir.reservs.reservs.di.PerActivity;
 import ir.reservs.reservs.ui.main.history.HistoryAdapter;
 import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
+import ir.reservs.reservs.ui.main.information.InformationPresenter;
 import ir.reservs.reservs.ui.main.salons.SalonAdapter;
 import ir.reservs.reservs.ui.splash.SplashPresenter;
 
@@ -103,5 +104,12 @@ public class ActivityModule {
     @PerActivity
     RequestManager provideRequestManager(Application context) {
         return Glide.with(context);
+    }
+
+    @Provides
+    @PerActivity
+    InformationPresenter provideInformationPresenter(DataManager dataManager,
+                                                     CompositeDisposable compositeDisposable) {
+        return new InformationPresenter(dataManager, compositeDisposable);
     }
 }

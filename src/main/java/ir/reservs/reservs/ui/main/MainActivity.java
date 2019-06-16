@@ -7,7 +7,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,12 +28,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void onError(String error) {
-        Snackbar.make(mBottomView, error, Snackbar.LENGTH_LONG).show();
+        //Snackbar.make(mBottomView, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(int resId) {
-        onError(getString(resId));
+        //onError(getString(resId));
     }
 
     @Override

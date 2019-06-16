@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.fragment.NavHostFragment;
 
 import javax.inject.Inject;
 
@@ -17,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ir.reservs.reservs.R;
-import ir.reservs.reservs.ui.main.base.BaseFragment;
+import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class SettingsFragment extends BaseFragment implements SettingsContract.View {
     @Inject
@@ -66,6 +67,16 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
     @OnClick(R.id.cardLogout)
     void logoutClick() {
         settingsPresenter.logoutUser();
+    }
+
+    @OnClick(R.id.cardEdit)
+    void editClick() {
+        NavHostFragment.findNavController(this).navigate(R.id.settingsToInformation);
+    }
+
+    @OnClick(R.id.passwordCard)
+    void passwordClick() {
+        NavHostFragment.findNavController(this).navigate(R.id.settingsToPassword);
     }
 
 

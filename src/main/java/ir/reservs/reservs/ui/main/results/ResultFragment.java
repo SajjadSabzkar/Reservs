@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import butterknife.ButterKnife;
 import ir.reservs.reservs.R;
-import ir.reservs.reservs.ui.main.base.BaseFragment;
+import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class ResultFragment extends BaseFragment implements ResultContract.View {
 
