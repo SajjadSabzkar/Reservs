@@ -1,7 +1,6 @@
 package ir.reservs.reservs.ui.main.salons;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
-                .from(parent.getContext())
+                .from(context)
                 .inflate(R.layout.item_salon, parent, false);
 
         return new Holder(view);
@@ -42,16 +41,16 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         Salon salon = mData.get(position);
-        Log.e("SalonAdapter", "onBindViewHolder" + ": " + salon.getThumbnail());
-        Glide.with(context)
+        Picasso.get()
                 .load(salon.getThumbnail())
-                .centerCrop()
+                .resize(136,136)
+                .error(R.drawable.avatar)
                 .into(holder.imgThumbnail);
+
         holder.txtLocation.setText(salon.getTitle());
         holder.txtCity.setText(salon.getCityName());
         holder.txtPrice.setText(
-                String.format("از %s تا %s تومان", salon.getMinPrice(), salon.getMaxPrice()))
-        ;
+                String.format("از %s تا %s تومان", salon.getMinPrice(), salon.getMaxPrice()));
 
     }
 

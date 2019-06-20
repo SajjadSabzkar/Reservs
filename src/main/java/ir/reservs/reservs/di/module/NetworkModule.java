@@ -25,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
 
     @Provides
+    @Singleton
     ApiHelper provideApiHelper(Retrofit retrofit) {
         return retrofit.create(ApiHelper.class);
     }
@@ -77,8 +78,8 @@ public class NetworkModule {
         return GsonConverterFactory.create(gson);
     }
 
-    @Singleton
     @Provides
+    @Singleton
     static Gson provideGson() {
         return new Gson();
     }

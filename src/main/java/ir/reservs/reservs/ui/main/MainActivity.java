@@ -13,7 +13,6 @@ import ir.reservs.reservs.ui.base.BaseActivity;
 
 
 public class MainActivity extends BaseActivity implements MainContract.View {
-
     BottomNavigationView mBottomView;
 
     @Override
@@ -36,7 +35,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         super.setup();
         getActivityComponent().inject(this);
         NavController navController = Navigation.findNavController(this, R.id.my_nav_host_fragment);
-        //NavigationUI.setupWithNavController(mBottomView, navController);
         mBottomView=findViewById(R.id.bottomNavigation);
         NavigationUI.setupWithNavController(mBottomView, navController);
     }

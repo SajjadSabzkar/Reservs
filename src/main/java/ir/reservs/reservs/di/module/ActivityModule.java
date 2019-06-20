@@ -1,6 +1,5 @@
 package ir.reservs.reservs.di.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
@@ -8,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alirezaafkar.sundatepicker.DatePicker;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 
 import java.util.ArrayList;
 
@@ -24,6 +21,7 @@ import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
 import ir.reservs.reservs.ui.main.information.InformationPresenter;
 import ir.reservs.reservs.ui.main.salons.SalonAdapter;
+import ir.reservs.reservs.ui.main.salons.SalonPresenter;
 import ir.reservs.reservs.ui.splash.SplashPresenter;
 
 @Module
@@ -41,7 +39,6 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerActivity
     AppCompatActivity provideActivity() {
         return mActivity;
     }
@@ -53,7 +50,6 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerActivity
     CompositeDisposable provideCompositeDisposable() {
         return new CompositeDisposable();
     }
@@ -64,8 +60,8 @@ public class ActivityModule {
         return new HistoryPresenter(datamanager, disposable);
     }
 
+
     @Provides
-    @PerActivity
     HistoryAdapter provideHistoryAdapter() {
         return new HistoryAdapter(new ArrayList<>());
     }
@@ -95,15 +91,14 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerActivity
     SalonAdapter provideSalonAdapter(AppCompatActivity context) {
         return new SalonAdapter(new ArrayList<>(), context);
     }
 
     @Provides
     @PerActivity
-    RequestManager provideRequestManager(Application context) {
-        return Glide.with(context);
+    SalonPresenter provideSalonPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        return new SalonPresenter(dataManager, compositeDisposable);
     }
 
     @Provides

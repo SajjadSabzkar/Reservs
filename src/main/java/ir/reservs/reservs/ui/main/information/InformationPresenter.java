@@ -1,7 +1,5 @@
 package ir.reservs.reservs.ui.main.information;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -39,6 +37,7 @@ public class InformationPresenter implements InformationContract.Presenter {
     public void confirmInformation(String name) {
         if (name.length() == 0) {
             view.onError(R.string.input_your_name);
+            return;
         }
         compositeDisposable.add(
                 dataManager.updateName(name)

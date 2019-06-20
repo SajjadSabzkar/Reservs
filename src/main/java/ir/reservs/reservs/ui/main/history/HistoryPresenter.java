@@ -1,9 +1,12 @@
 package ir.reservs.reservs.ui.main.history;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.data.DataManager;
 
@@ -15,21 +18,25 @@ public class HistoryPresenter implements HistoryContract.Presenter {
 
     @Inject
     public HistoryPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        Log.e("HistoryPresenter","HistoryPresenter"+": Created now");
+        Log.e("HistoryPresenter","HistoryPresenter"+": "+dataManager.toString());
         this.dataManager = dataManager;
         this.compositeDisposable = compositeDisposable;
     }
 
     public void getDataHistory() {
-        compositeDisposable.add(
-                dataManager.reserves()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                reserves -> view.setHistoryData(reserves),
-                                error -> view.onError(error.getMessage())
-                        )
-        );
-
+        Log.e("SalonPresenter","getSalonsFromServer"+": "+compositeDisposable.size());
+        Disposable disposable = dataManager.reserves()
+                .subscribeOn(Schedulers.io())
+                .doOnError(error -> {
+                    Log.e("HistoryPresenter", "getDataHistory" + ": " + error.getMessage());
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        reserves -> view.setHistoryData(reserves),
+                        error -> view.onError(error.getMessage())
+                );
+        compositeDisposable.add(disposable);
     }
 
     @Override
@@ -42,6 +49,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
+            Log.e("SalonPresenter", "onDetach" + ": composite clear");
             compositeDisposable.clear();
         }
     }

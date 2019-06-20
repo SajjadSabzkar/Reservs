@@ -26,7 +26,7 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     HistoryPresenter historyPresenter;
 
 
-    RecyclerView historyRecycler;
+    private RecyclerView historyRecycler;
 
 
     @Override
@@ -38,22 +38,20 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         historyPresenter.onAttach(this);
         historyRecycler.setAdapter(historyAdapter);
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-        if (historyRecycler != null)
-            historyRecycler.setAdapter(null);
-
+        historyRecycler.setAdapter(null);
         if (historyPresenter != null) {
             historyPresenter.onDetach();
             historyPresenter = null;
         }
+        super.onDestroy();
     }
 
     @Override

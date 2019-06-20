@@ -24,20 +24,20 @@ public class SalonFragment extends BaseFragment implements SalonContract.View {
     @Inject
     SalonAdapter salonAdapter;
 
-    RecyclerView salonRecyclerView;
+    private RecyclerView salonRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_salons, container, false);
-        salonRecyclerView=view.findViewById(R.id.salonRecyclerView);
+        salonRecyclerView = view.findViewById(R.id.salonRecyclerView);
         getActivityComponent().inject(this);
         return view;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         salonPresenter.onAttach(this);
         salonRecyclerView.setAdapter(salonAdapter);
     }
@@ -59,15 +59,13 @@ public class SalonFragment extends BaseFragment implements SalonContract.View {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (salonRecyclerView != null)
-            salonRecyclerView.setAdapter(null);
-
+    public void onDestroyView() {
+        salonRecyclerView.setAdapter(null);
         if (salonPresenter != null) {
             salonPresenter.onDetach();
             salonPresenter = null;
         }
-
+        super.onDestroyView();
     }
+
 }
