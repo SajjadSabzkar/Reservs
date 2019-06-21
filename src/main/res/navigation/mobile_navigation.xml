@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/salonFragment">
+    app:startDestination="@+id/salonFragment">
 
     <fragment
         android:id="@+id/historyFragment"
@@ -11,13 +11,7 @@
         android:label="layout_history"
         tools:layout="@layout/layout_history">
         <action
-            android:id="@+id/action_historyFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_historyFragment_to_reserveFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_historyFragment_to_salonFragment"
+            android:id="@+id/action_historyFragment_to_salonFragment2"
             app:destination="@id/salonFragment" />
     </fragment>
     <fragment
@@ -26,32 +20,17 @@
         android:label="layout_search"
         tools:layout="@layout/layout_search">
         <action
-            android:id="@+id/action_reserveFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
-        <action
-            android:id="@+id/action_reserveFragment_to_settingsFragment"
+            android:id="@+id/action_searchFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
         <action
-            android:id="@+id/action_reserveFragment_to_resultFragment"
+            android:id="@+id/action_searchFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_salonFragment"
-            app:destination="@id/salonFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="ir.reservs.reservs.ui.main.settings.SettingsFragment"
         android:label="layout_settings"
         tools:layout="@layout/layout_settings">
-        <action
-            android:id="@+id/action_settingsFragment_to_reserveFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_salonFragment"
-            app:destination="@id/salonFragment" />
         <action
             android:id="@+id/settingsToInformation"
             app:destination="@id/informationFragment" />
@@ -72,28 +51,14 @@
         <action
             android:id="@+id/action_salonFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_salonFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_salonFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"
         android:name="ir.reservs.reservs.ui.main.password.PasswordFragment"
-        android:label="PasswordFragment">
-        <action
-            android:id="@+id/action_passwordFragment_to_settingsFragment"
-            app:destination="@+id/settingsFragment" />
-    </fragment>
+        android:label="PasswordFragment" />
     <fragment
         android:id="@+id/informationFragment"
         android:name="ir.reservs.reservs.ui.main.information.InformationFragment"
         android:label="layout_informaion"
-        tools:layout="@layout/layout_informaion">
-        <action
-            android:id="@+id/action_informationFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-    </fragment>
+        tools:layout="@layout/layout_informaion" />
 </navigation>
