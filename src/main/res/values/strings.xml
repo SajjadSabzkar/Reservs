@@ -46,4 +46,6 @@
     <string name="name_example">مثل: حسن رضایی</string>
     <string name="official_name">نام و نام خانوادگی</string>
     <string name="input_your_name">نام خود را وارد کنید.</string>
+    <string name="refill_password">تکرار رمز عبور</string>
+    <string name="password_description">برای حفظ اطلاعات حساب تان رمز عبور خود را در مدت های کوتاه تغییر دهید.</string>
 </resources>
