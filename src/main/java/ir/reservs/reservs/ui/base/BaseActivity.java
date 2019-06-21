@@ -10,7 +10,7 @@ import ir.reservs.reservs.di.component.ActivityComponent;
 import ir.reservs.reservs.di.component.DaggerActivityComponent;
 import ir.reservs.reservs.di.module.ActivityModule;
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseContract.View {
 
     private ActivityComponent mActivityComponent;
 
@@ -27,21 +27,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         return mActivityComponent;
     }
 
-    @Override
-    public void setup() {
-
-    }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        setup();
+    public abstract void onError(String msg);
+
+    public void onError(int resId) {
+        onError(getString(resId));
     }
 
-    @Override
-    public void onError(String msg) {
-
-    }
+    ;
 
     @Override
     protected void onDestroy() {

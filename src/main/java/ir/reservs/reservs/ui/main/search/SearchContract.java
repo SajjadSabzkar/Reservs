@@ -1,10 +1,9 @@
 package ir.reservs.reservs.ui.main.search;
 
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.ui.base.BaseView;
+import ir.reservs.reservs.ui.base.BaseContract;
 
 public class SearchContract {
-    interface View extends BaseView {
+    interface View extends BaseContract.BaseView {
         void setDate(int year, int month, int day);
 
         void setCity(String city);
@@ -12,7 +11,7 @@ public class SearchContract {
         void setLocation(String location);
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter extends BaseContract.BasePresenter<View> {
         void getDate();
 
         void getCity();

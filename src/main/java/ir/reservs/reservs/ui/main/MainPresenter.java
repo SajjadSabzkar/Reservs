@@ -2,9 +2,9 @@ package ir.reservs.reservs.ui.main;
 
 import io.reactivex.disposables.CompositeDisposable;
 import ir.reservs.reservs.data.DataManager;
-import ir.reservs.reservs.ui.base.BasePresenter;
+import ir.reservs.reservs.ui.base.BaseContract;
 
-public class MainPresenter implements BasePresenter<MainContract.View> {
+public class MainPresenter implements BaseContract.BasePresenter<MainContract.View> {
     private DataManager dataManager;
     private CompositeDisposable compositeDisposable;
 

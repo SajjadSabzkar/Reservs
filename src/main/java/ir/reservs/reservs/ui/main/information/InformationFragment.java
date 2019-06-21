@@ -22,7 +22,7 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Inject
     InformationPresenter informationPresenter;
 
-    EditText txtName;
+    private EditText txtName;
 
     @Nullable
     @Override
@@ -31,7 +31,7 @@ public class InformationFragment extends BaseFragment implements InformationCont
         getActivityComponent().inject(this);
         txtName = view.findViewById(R.id.txtName);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
-        btnConfirm.setOnClickListener((e)->informationPresenter.confirmInformation(txtName.getText().toString()));
+        btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));
         return view;
     }
 

@@ -1,14 +1,13 @@
 package ir.reservs.reservs.ui.main.results;
 
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.ui.base.BaseView;
+import ir.reservs.reservs.ui.base.BaseContract;
 
 public class ResultContract {
-    interface View extends BaseView {
+    interface View extends BaseContract.BaseView {
 
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter extends BaseContract.BasePresenter<View> {
         
     }
 }

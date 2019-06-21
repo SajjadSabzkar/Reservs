@@ -1,10 +1,9 @@
 package ir.reservs.reservs.ui.login;
 
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.ui.base.BaseView;
+import ir.reservs.reservs.ui.base.BaseContract;
 
 public class LoginContract {
-    interface View extends BaseView {
+    interface View extends BaseContract.BaseView {
         void openMainActivity();
 
         void showProgress();
@@ -12,7 +11,7 @@ public class LoginContract {
         void hideProgress();
     }
 
-    interface presenter extends BasePresenter<View> {
+    interface presenter extends BaseContract.BasePresenter<View> {
         void login(String phone, String password);
     }
 }

@@ -1,14 +1,13 @@
 package ir.reservs.reservs.ui.main.settings;
 
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.ui.base.BaseView;
+import ir.reservs.reservs.ui.base.BaseContract;
 
 public class SettingsContract {
-    interface View extends BaseView {
+    interface View extends BaseContract.BaseView {
         void setUserInfo(String name, String phone, String image);
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter extends BaseContract.BasePresenter<View> {
         void logoutUser();
     }
 }

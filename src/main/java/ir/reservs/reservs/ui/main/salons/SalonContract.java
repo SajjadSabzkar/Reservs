@@ -3,15 +3,14 @@ package ir.reservs.reservs.ui.main.salons;
 import java.util.List;
 
 import ir.reservs.reservs.model.Salon;
-import ir.reservs.reservs.ui.base.BasePresenter;
-import ir.reservs.reservs.ui.base.BaseView;
+import ir.reservs.reservs.ui.base.BaseContract;
 
 public class SalonContract {
 
-    interface View extends BaseView {
+    interface View extends BaseContract.BaseView {
         void setSalonsData(List<Salon> salons);
     }
 
-    interface Presenter extends BasePresenter<View> {
+    interface Presenter extends BaseContract.BasePresenter<View> {
     }
 }
