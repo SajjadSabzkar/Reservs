@@ -49,4 +49,6 @@
     <string name="refill_password">تکرار رمز عبور</string>
     <string name="password_description">برای حفظ اطلاعات حساب تان رمز عبور خود را در مدت های کوتاه تغییر دهید.</string>
     <string name="your_password_changed">رمز شما تغییر کرد.</string>
+    <string name="new_password_most_have_3_letter">رمز جدید باید بیشتر از سه حرف داشته باشد.</string>
+    <string name="password_wrong">رمز عبور وارد شده اشتباه است.</string>
 </resources>

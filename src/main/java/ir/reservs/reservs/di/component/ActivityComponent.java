@@ -5,6 +5,7 @@ import ir.reservs.reservs.di.PerActivity;
 import ir.reservs.reservs.di.module.ActivityModule;
 import ir.reservs.reservs.ui.login.LoginActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
+import ir.reservs.reservs.ui.main.details.DetailsFragment;
 import ir.reservs.reservs.ui.main.history.HistoryFragment;
 import ir.reservs.reservs.ui.main.information.InformationFragment;
 import ir.reservs.reservs.ui.main.password.PasswordFragment;
@@ -31,6 +32,8 @@ public interface ActivityComponent {
     void inject(SearchFragment fragment);
 
     void inject(ResultFragment fragment);
+
+    void inject(DetailsFragment fragment);
 
     void inject(SalonFragment fragment);
 

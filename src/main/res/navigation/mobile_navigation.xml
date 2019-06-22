@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="ir.reservs.reservs.ui.main.results.ResultFragment"
+        android:name="ir.reservs.reservs.ui.main.results.DetailsFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
     <fragment

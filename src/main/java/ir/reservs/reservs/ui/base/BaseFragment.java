@@ -39,6 +39,7 @@ public abstract class BaseFragment extends Fragment implements BaseContract.View
 
     public abstract void setup(View view);
 
+    @Override
     public void onError(int resId) {
         onError(getString(resId));
     }

@@ -11,13 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import javax.inject.Inject;
 
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
 
 public class PasswordFragment extends BaseFragment implements PasswordContract.View {
-
+    Button btnConfirm;
     @Inject
     PasswordPresenter passwordPresenter;
 
@@ -44,12 +46,12 @@ public class PasswordFragment extends BaseFragment implements PasswordContract.V
 
     @Override
     public void onError(String msg) {
-
+        Snackbar.make(btnConfirm, msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void setup(View view) {
-        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        btnConfirm = view.findViewById(R.id.btnConfirm);
         EditText txtCurrentPassword, txtNewPassword;
         txtCurrentPassword = view.findViewById(R.id.txtCurrentPassword);
         txtNewPassword = view.findViewById(R.id.txtNewPassword);
