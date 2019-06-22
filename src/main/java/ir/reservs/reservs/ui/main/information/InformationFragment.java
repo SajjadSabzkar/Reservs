@@ -29,9 +29,6 @@ public class InformationFragment extends BaseFragment implements InformationCont
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_informaion, container, false);
         getActivityComponent().inject(this);
-        txtName = view.findViewById(R.id.txtName);
-        Button btnConfirm = view.findViewById(R.id.btnConfirm);
-        btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));
         return view;
     }
 
@@ -45,6 +42,13 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Override
     public void onError(String error) {
         Snackbar.make(txtName, error, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setup(View view) {
+        txtName = view.findViewById(R.id.txtName);
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));
     }
 
     @Override

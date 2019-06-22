@@ -5,14 +5,14 @@ package ir.reservs.reservs.model;
  * Created by mhrezai on 03/10/2018.
  */
 public class Salon {
-    int id;
-    String title;
-    String description;
-    String thumbnail;
-    int week;
-    int minPrice;
-    int maxPrice;
-    String cityName;
+    private int id;
+    private String title;
+    private String description;
+    private String thumbnail;
+    private int week;
+    private int minPrice;
+    private int maxPrice;
+    private String cityName;
 
     public Salon() {
     }

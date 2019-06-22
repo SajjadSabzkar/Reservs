@@ -23,6 +23,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
                 .build();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setup();
+    }
+
     public ActivityComponent getActivityComponent() {
         return mActivityComponent;
     }
@@ -42,4 +48,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
         super.onDestroy();
         mActivityComponent = null;
     }
+
+    public abstract void setup();
 }

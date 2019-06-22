@@ -20,6 +20,7 @@ import ir.reservs.reservs.ui.main.history.HistoryAdapter;
 import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
 import ir.reservs.reservs.ui.main.information.InformationPresenter;
+import ir.reservs.reservs.ui.main.password.PasswordPresenter;
 import ir.reservs.reservs.ui.main.salons.SalonAdapter;
 import ir.reservs.reservs.ui.main.salons.SalonPresenter;
 import ir.reservs.reservs.ui.splash.SplashPresenter;
@@ -91,8 +92,8 @@ public class ActivityModule {
     }
 
     @Provides
-    SalonAdapter provideSalonAdapter(AppCompatActivity context) {
-        return new SalonAdapter(new ArrayList<>(), context);
+    SalonAdapter provideSalonAdapter() {
+        return new SalonAdapter(new ArrayList<>());
     }
 
     @Provides
@@ -106,5 +107,13 @@ public class ActivityModule {
     InformationPresenter provideInformationPresenter(DataManager dataManager,
                                                      CompositeDisposable compositeDisposable) {
         return new InformationPresenter(dataManager, compositeDisposable);
+    }
+
+    @Provides
+    @PerActivity
+    PasswordPresenter providePasswordPresenter(DataManager dataManager,
+                                               CompositeDisposable compositeDisposable) {
+        return new PasswordPresenter(dataManager, compositeDisposable);
+
     }
 }

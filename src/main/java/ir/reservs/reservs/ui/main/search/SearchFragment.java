@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import javax.inject.Inject;
 
 import ir.reservs.reservs.R;
@@ -27,20 +29,10 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_search, container, false);
-        getActivityComponent().inject(this);
-        txtCityName = view.findViewById(R.id.txtCityName);
-        txtDate = view.findViewById(R.id.txtDate);
-        txtLocation = view.findViewById(R.id.txtLocation);
-        ConstraintLayout constraintLayoutDate, constraintLayoutCity, constraintLayoutLocation;
-        constraintLayoutDate=view.findViewById(R.id.constraintLayoutLocation);
-        constraintLayoutCity=view.findViewById(R.id.constraintLayoutCity);
-        constraintLayoutLocation=view.findViewById(R.id.constraintLayoutLocation);
-        constraintLayoutDate.setOnClickListener((v)->searchPresenter.getDate());
-        constraintLayoutCity.setOnClickListener((v)->searchPresenter.getCity());
-        constraintLayoutLocation.setOnClickListener((v)->searchPresenter.getLocation());
-        return view;
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.layout_search, container, false);
     }
 
     @Override
@@ -66,7 +58,22 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
 
     @Override
     public void onError(String error) {
-        super.onError(error);
+        Snackbar.make(txtDate, error, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setup(View view) {
+        getActivityComponent().inject(this);
+        txtCityName = view.findViewById(R.id.txtCityName);
+        txtDate = view.findViewById(R.id.txtDate);
+        txtLocation = view.findViewById(R.id.txtLocation);
+        ConstraintLayout constraintLayoutDate, constraintLayoutCity, constraintLayoutLocation;
+        constraintLayoutDate = view.findViewById(R.id.constraintLayoutLocation);
+        constraintLayoutCity = view.findViewById(R.id.constraintLayoutCity);
+        constraintLayoutLocation = view.findViewById(R.id.constraintLayoutLocation);
+        constraintLayoutDate.setOnClickListener((v) -> searchPresenter.getDate());
+        constraintLayoutCity.setOnClickListener((v) -> searchPresenter.getCity());
+        constraintLayoutLocation.setOnClickListener((v) -> searchPresenter.getLocation());
     }
 
     @Override

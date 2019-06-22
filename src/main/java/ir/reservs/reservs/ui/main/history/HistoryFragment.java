@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,7 +34,6 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_history, container, false);
-        historyRecycler=view.findViewById(R.id.historyRecycler);
         getActivityComponent().inject(this);
         return view;
     }
@@ -61,13 +62,13 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     }
 
     @Override
-    public void setup() {
-        super.setup();
+    public void onError(String error) {
+        Snackbar.make(historyRecycler, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void onError(String error) {
-        super.onError(error);
+    public void setup(View view) {
+        historyRecycler = view.findViewById(R.id.historyRecycler);
     }
 
     @Override

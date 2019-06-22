@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.Single;
 import ir.reservs.reservs.data.network.ApiHelper;
 import ir.reservs.reservs.data.prefs.PreferencesHelper;
+import ir.reservs.reservs.model.ChangePassword;
 import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
@@ -93,5 +94,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<Success> updateName(String name) {
         return mApiHelper.updateName(name);
+    }
+
+    @Override
+    public Single<ChangePassword> updatePassword(String current_password, String new_password) {
+        return mApiHelper.updatePassword(current_password, new_password);
     }
 }

@@ -25,7 +25,8 @@ public class SplashPresenter implements SplashContract.Presenter {
 
 
     private void decideNextActivity() {
-        disposable = Observable.timer(3, TimeUnit.SECONDS).subscribe(aLong -> {
+        Log.e("SplashPresenter","decideNextActivity");
+        disposable = Observable.timer(1500, TimeUnit.MILLISECONDS).subscribe(aLong -> {
             if (dataManager.getAccessToken() != null) {
                 view.openMainActivity();
             } else {

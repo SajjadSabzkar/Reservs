@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import javax.inject.Inject;
 
 import dmax.dialog.SpotsDialog;
@@ -17,7 +19,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Inject
     LoginPresenter loginPresenter;
-
+    Button btnLogin;
     AlertDialog dialog;
 
     @Override
@@ -27,13 +29,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
+    public void onError(String msg) {
+        Snackbar.make(btnLogin, msg, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
     public void onError(int resId) {
         onError(getString(resId));
     }
 
     @Override
     public void setup() {
-        super.setup();
         getActivityComponent().inject(this);
         loginPresenter.onAttach(this);
         dialog = new SpotsDialog.Builder()
@@ -42,10 +48,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 .setMessage(R.string.waiting)
                 .build();
 
-        EditText txtPhone=findViewById(R.id.txtPhone);
-        EditText txtPassword=findViewById(R.id.txtPassword);
-        Button btnLogin=findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener((v)->loginPresenter.login(txtPhone.getText().toString(), txtPassword.getText().toString()));
+        EditText txtPhone = findViewById(R.id.txtPhone);
+        EditText txtPassword = findViewById(R.id.txtPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener((v) -> loginPresenter.login(txtPhone.getText().toString(), txtPassword.getText().toString()));
 
     }
 

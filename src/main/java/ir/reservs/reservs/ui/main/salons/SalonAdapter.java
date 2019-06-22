@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.main.salons;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +20,16 @@ import ir.reservs.reservs.model.Salon;
 public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
 
     private List<Salon> mData;
-    private Context context;
 
-    public SalonAdapter(ArrayList<Salon> mData, Context context) {
+    public SalonAdapter(ArrayList<Salon> mData) {
         this.mData = mData;
-        this.context = context;
     }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater
-                .from(context)
+                .from(parent.getContext())
                 .inflate(R.layout.item_salon, parent, false);
 
         return new Holder(view);
@@ -40,17 +37,19 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        Salon salon = mData.get(position);
+        // Salon salon = mData.get(position);
         Picasso.get()
-                .load(salon.getThumbnail())
-                .resize(136,136)
+                .load(mData.get(position).getThumbnail())
+                .resize(136, 136)
                 .error(R.drawable.avatar)
                 .into(holder.imgThumbnail);
 
-        holder.txtLocation.setText(salon.getTitle());
-        holder.txtCity.setText(salon.getCityName());
+        holder.txtLocation.setText(mData.get(position).getTitle());
+        holder.txtCity.setText(mData.get(position).getCityName());
         holder.txtPrice.setText(
-                String.format("از %s تا %s تومان", salon.getMinPrice(), salon.getMaxPrice()));
+                String.format("از %s تا %s تومان",
+                        mData.get(position).getMinPrice(),
+                        mData.get(position).getMaxPrice()));
 
     }
 
@@ -80,3 +79,4 @@ public class SalonAdapter extends RecyclerView.Adapter<SalonAdapter.Holder> {
         }
     }
 }
+

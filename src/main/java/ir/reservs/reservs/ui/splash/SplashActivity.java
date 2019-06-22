@@ -29,12 +29,12 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_splash);
-        txtVersion = findViewById(R.id.txtVersion);
+
     }
 
     @Override
     public void setup() {
-        super.setup();
+        txtVersion = findViewById(R.id.txtVersion);
         getActivityComponent().inject(this);
 
         //todo : most inject not build here
@@ -62,15 +62,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     }
 
     @Override
-    public void onError(int resId) {
-        onError(getString(resId));
-    }
-
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
-        splashPresenter.onDetach();
-        splashPresenter = null;
+        if (splashPresenter != null) {
+            splashPresenter.onDetach();
+            splashPresenter = null;
+        }
     }
 }

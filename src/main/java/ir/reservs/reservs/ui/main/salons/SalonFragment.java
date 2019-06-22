@@ -1,7 +1,6 @@
 package ir.reservs.reservs.ui.main.salons;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,46 +20,39 @@ import ir.reservs.reservs.ui.base.BaseFragment;
 public class SalonFragment extends BaseFragment implements SalonContract.View {
     @Inject
     SalonPresenter salonPresenter;
+
     @Inject
     SalonAdapter salonAdapter;
 
-    private RecyclerView salonRecyclerView;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_salons, container, false);
-        salonRecyclerView = view.findViewById(R.id.salonRecyclerView);
-        getActivityComponent().inject(this);
-        return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        salonPresenter.onAttach(this);
-        salonRecyclerView.setAdapter(salonAdapter);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.layout_salons, container, false);
     }
 
     @Override
     public void onError(String error) {
-        super.onError(error);
+        //Snackbar.make(salonRecyclerView, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void onError(int resId) {
-        onError(getString(resId));
+    public void setup(View view) {
+        RecyclerView salonRecyclerView = view.findViewById(R.id.salonRecyclerView);
+        getActivityComponent().inject(this);
+        salonRecyclerView.setAdapter(salonAdapter);
+        salonPresenter.onAttach(this);
     }
 
     @Override
     public void setSalonsData(List<Salon> salons) {
-        Log.e("SalonFragment", "setSalonsData" + ": " + salons.size());
         salonAdapter.addItems(salons);
     }
 
     @Override
     public void onDestroyView() {
-        salonRecyclerView.setAdapter(null);
         if (salonPresenter != null) {
             salonPresenter.onDetach();
             salonPresenter = null;

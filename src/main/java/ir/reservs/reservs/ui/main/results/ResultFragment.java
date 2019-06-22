@@ -16,9 +16,8 @@ public class ResultFragment extends BaseFragment implements ResultContract.View 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_result, container, false);
-        getActivityComponent().inject(this);
-        return view;
+
+        return inflater.inflate(R.layout.fragment_result, container, false);
     }
 
 
@@ -28,12 +27,9 @@ public class ResultFragment extends BaseFragment implements ResultContract.View 
     }
 
     @Override
-    public void onError(int resId) {
-        onError(getString(resId));
+    public void setup(View view) {
+        getActivityComponent().inject(this);
     }
 
-    @Override
-    public void setup() {
 
-    }
 }

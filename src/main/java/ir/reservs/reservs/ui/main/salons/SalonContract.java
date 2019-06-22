@@ -7,10 +7,10 @@ import ir.reservs.reservs.ui.base.BaseContract;
 
 public class SalonContract {
 
-    interface View extends BaseContract.BaseView {
+    interface View extends BaseContract.View {
         void setSalonsData(List<Salon> salons);
     }
 
-    interface Presenter extends BaseContract.BasePresenter<View> {
+    interface Presenter extends BaseContract.Presenter<View> {
     }
 }

@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.fragment.NavHostFragment;
 
 import javax.inject.Inject;
 
@@ -23,6 +26,7 @@ public class PasswordFragment extends BaseFragment implements PasswordContract.V
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_change_password, container, false);
         getActivityComponent().inject(this);
+
         return view;
     }
 
@@ -41,5 +45,25 @@ public class PasswordFragment extends BaseFragment implements PasswordContract.V
     @Override
     public void onError(String msg) {
 
+    }
+
+    @Override
+    public void setup(View view) {
+        Button btnConfirm = view.findViewById(R.id.btnConfirm);
+        EditText txtCurrentPassword, txtNewPassword;
+        txtCurrentPassword = view.findViewById(R.id.txtCurrentPassword);
+        txtNewPassword = view.findViewById(R.id.txtNewPassword);
+        btnConfirm.setOnClickListener(v -> {
+            passwordPresenter.changePassword(
+                    txtCurrentPassword.getText().toString(),
+                    txtNewPassword.getText().toString()
+            );
+        });
+    }
+
+    @Override
+    public void passwordChangedSuccessful() {
+        onError(getString(R.string.your_password_changed));
+        NavHostFragment.findNavController(this).popBackStack();
     }
 }

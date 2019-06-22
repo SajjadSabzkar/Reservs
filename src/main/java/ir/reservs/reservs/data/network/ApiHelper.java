@@ -3,6 +3,7 @@ package ir.reservs.reservs.data.network;
 import java.util.List;
 
 import io.reactivex.Single;
+import ir.reservs.reservs.model.ChangePassword;
 import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
@@ -28,4 +29,11 @@ public interface ApiHelper {
     @PUT("mobile/info")
     @FormUrlEncoded
     Single<Success> updateName(@Field("name") String name);
+
+
+    @PUT("mobile/password")
+    @FormUrlEncoded
+    Single<ChangePassword> updatePassword(@Field("current_password") String current_password,
+                                          @Field("new_password") String new_password);
+
 }

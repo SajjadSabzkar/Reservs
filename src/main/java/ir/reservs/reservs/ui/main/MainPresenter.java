@@ -4,7 +4,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.ui.base.BaseContract;
 
-public class MainPresenter implements BaseContract.BasePresenter<MainContract.View> {
+public class MainPresenter implements BaseContract.Presenter<MainContract.View> {
     private DataManager dataManager;
     private CompositeDisposable compositeDisposable;
 

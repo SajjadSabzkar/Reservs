@@ -18,8 +18,6 @@ public class SalonPresenter implements SalonContract.Presenter {
 
     @Inject
     public SalonPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        Log.e("SalonPresenter", "SalonPresenter" + ": Created now");
-        Log.e("SalonPresenter","SalonPresenter"+": "+dataManager.toString());
         this.dataManager = dataManager;
         this.compositeDisposable = compositeDisposable;
     }
@@ -31,12 +29,8 @@ public class SalonPresenter implements SalonContract.Presenter {
     }
 
     private void getSalonsFromServer() {
-        Log.e("SalonPresenter", "getSalonsFromServer" + ": " + compositeDisposable.size());
         Disposable disposable = dataManager.salons()
                 .subscribeOn(Schedulers.io())
-                .doOnError(error -> {
-                    Log.e("HistoryPresenter", "getDataHistory" + ": " + error.getMessage());
-                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         salons -> {

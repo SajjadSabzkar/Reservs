@@ -11,7 +11,7 @@ class SplashContract {
         void onError(String text);
     }
 
-    interface Presenter extends BaseContract.BasePresenter<View> {
+    interface Presenter extends BaseContract.Presenter<View> {
 
     }
 }
