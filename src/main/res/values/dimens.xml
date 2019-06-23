@@ -3,4 +3,8 @@
     <dimen name="actionbar_text_size">20dp</dimen>
     <dimen name="body_text_size">18dp</dimen>
     <dimen name="label_text_size">14dp</dimen>
+
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
 </resources>

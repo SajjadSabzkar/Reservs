@@ -17,4 +17,15 @@
     <color name="colorCancel">#F9467E</color>
     <color name="colorInProcess">#FCB949</color>
     <color name="colorFuture">#33ACFD</color>
+
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+
+    <color name="grey_80">#37474F</color>
+    <color name="grey_90">#263238</color>
+    <color name="grey_60">#666666</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="overlay_dark_10">#1A000000</color>
+
 </resources>
