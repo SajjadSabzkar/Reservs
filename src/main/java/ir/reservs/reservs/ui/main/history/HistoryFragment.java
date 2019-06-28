@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,7 +45,6 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
 
     @Override
     public void onDestroy() {
-        historyRecycler.setAdapter(null);
         if (historyPresenter != null) {
             historyPresenter.onDetach();
             historyPresenter = null;
@@ -63,7 +60,8 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
 
     @Override
     public void onError(String error) {
-        Snackbar.make(historyRecycler, error, Snackbar.LENGTH_LONG).show();
+        //todo IllegalArgumentException: No suitable parent found from the given view. Please provide a valid view.
+        //Snackbar.make(historyRecycler, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

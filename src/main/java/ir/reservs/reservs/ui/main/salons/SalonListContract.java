@@ -5,7 +5,7 @@ import java.util.List;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.ui.base.BaseContract;
 
-public class SalonContract {
+public class SalonListContract {
 
     interface View extends BaseContract.View {
         void setSalonsData(List<Salon> salons);

@@ -49,6 +49,11 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">14dp</item>
         <item name="android:padding">6dp</item>
+    </style>
 
+    <style name="WeekNameTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/iransans</item>
+        <item name="android:textColor">@color/colorText3</item>
+        <item name="android:textSize">14dp</item>
     </style>
 </resources>

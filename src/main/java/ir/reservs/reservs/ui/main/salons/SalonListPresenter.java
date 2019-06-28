@@ -1,7 +1,5 @@
 package ir.reservs.reservs.ui.main.salons;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -10,20 +8,20 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.data.DataManager;
 
-public class SalonPresenter implements SalonContract.Presenter {
+public class SalonListPresenter implements SalonListContract.Presenter {
 
-    private SalonContract.View view;
+    private SalonListContract.View view;
     private DataManager dataManager;
     private CompositeDisposable compositeDisposable;
 
     @Inject
-    public SalonPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+    public SalonListPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         this.dataManager = dataManager;
         this.compositeDisposable = compositeDisposable;
     }
 
     @Override
-    public void onAttach(SalonContract.View view) {
+    public void onAttach(SalonListContract.View view) {
         this.view = view;
         getSalonsFromServer();
     }
@@ -46,7 +44,6 @@ public class SalonPresenter implements SalonContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
-            Log.e("SalonPresenter", "onDetach" + ": composite clear");
             compositeDisposable.clear();
         }
     }

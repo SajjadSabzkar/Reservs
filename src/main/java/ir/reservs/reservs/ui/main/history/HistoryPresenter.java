@@ -25,7 +25,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     }
 
     public void getDataHistory() {
-        Log.e("SalonPresenter","getSalonsFromServer"+": "+compositeDisposable.size());
+        Log.e("SalonListPresenter","getSalonsFromServer"+": "+compositeDisposable.size());
         Disposable disposable = dataManager.reserves()
                 .subscribeOn(Schedulers.io())
                 .doOnError(error -> {
@@ -49,7 +49,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
-            Log.e("SalonPresenter", "onDetach" + ": composite clear");
+            Log.e("SalonListPresenter", "onDetach" + ": composite clear");
             compositeDisposable.clear();
         }
     }

@@ -4,6 +4,7 @@
     <string name="splash_title">ورزشی رزرو</string>
     <string name="splash_description">رزرو آنلاین مکان های ورزشی</string>
     <string name="content_description_post_thumbnail">post thumbnail</string>
+    <string name="content_description">content description</string>
     <string name="content_description_vector_location">vector location</string>
     <string name="content_description_appbar_image_view">AppBar Image View</string>
     <string name="verification_step">verification step</string>
@@ -52,4 +53,11 @@
     <string name="new_password_most_have_3_letter">رمز جدید باید بیشتر از سه حرف داشته باشد.</string>
     <string name="password_wrong">رمز عبور وارد شده اشتباه است.</string>
     <string name="reserve">رزرو کردن</string>
+    <string name="seventh">ج</string>
+    <string name="sixth">پ</string>
+    <string name="fiveth">چ</string>
+    <string name="fourth">س</string>
+    <string name="threeth">د</string>
+    <string name="twoth">ی</string>
+    <string name="oneth">ش</string>
 </resources>

@@ -1,6 +1,6 @@
 package ir.reservs.reservs.ui.main.settings;
 
-import java.lang.ref.WeakReference;
+import android.util.Log;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ public class SettingsPresenter implements SettingsContract.Presenter {
         view.openLoginActivity();
     }
 
-    private void setUserProfileData() {
+    void setUserProfileData() {
         view.setUserInfo(dataManager.getCurrentUserName(),
                 dataManager.getCurrentUserPhone(),
                 dataManager.getCurrentUserImage());
@@ -32,11 +32,11 @@ public class SettingsPresenter implements SettingsContract.Presenter {
     @Override
     public void onAttach(SettingsContract.View view) {
         this.view = view;
-        setUserProfileData();
     }
 
     @Override
     public void onDetach() {
+        Log.e("SettingsPresenter","onDetach"+": "+"---------------");
         view = null;
     }
 }

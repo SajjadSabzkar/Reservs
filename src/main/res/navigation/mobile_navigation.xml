@@ -3,28 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/historyFragment">
+    app:startDestination="@id/settingsFragment">
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="ir.reservs.reservs.ui.main.history.HistoryFragment"
         android:label="layout_history"
-        tools:layout="@layout/layout_history">
-        <action
-            android:id="@+id/action_historyFragment_to_salonFragment2"
-            app:destination="@id/salonFragment" />
-    </fragment>
+        tools:layout="@layout/layout_history" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="ir.reservs.reservs.ui.main.search.SearchFragment"
         android:label="layout_search"
         tools:layout="@layout/layout_search">
         <action
-            android:id="@+id/action_searchFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            android:id="@+id/action_searchFragment_to_navigation"
+            app:destination="@id/timesFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -39,18 +32,13 @@
             app:destination="@id/passwordFragment" />
     </fragment>
     <fragment
-        android:id="@+id/resultFragment"
-        android:name="ir.reservs.reservs.ui.main.results.DetailsFragment"
-        android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
-    <fragment
-        android:id="@+id/salonFragment"
-        android:name="ir.reservs.reservs.ui.main.salons.SalonFragment"
-        android:label="layout_salons"
-        tools:layout="@layout/layout_salons">
+        android:id="@+id/salonListFragment"
+        android:name="ir.reservs.reservs.ui.main.salons.SalonListFragment"
+        android:label="fragment_salon_list"
+        tools:layout="@layout/fragment_salon_list">
         <action
-            android:id="@+id/action_salonFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            android:id="@+id/salonToTimes"
+            app:destination="@id/timesFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"
@@ -61,4 +49,9 @@
         android:name="ir.reservs.reservs.ui.main.information.InformationFragment"
         android:label="layout_informaion"
         tools:layout="@layout/layout_informaion" />
+    <fragment
+        android:id="@+id/timesFragment"
+        android:name="ir.reservs.reservs.ui.main.times.TimesFragment"
+        android:label="fragment_times"
+        tools:layout="@layout/fragment_times" />
 </navigation>

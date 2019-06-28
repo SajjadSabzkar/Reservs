@@ -2,7 +2,6 @@ package ir.reservs.reservs.ui.main.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,17 +34,11 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        settingsPresenter.onAttach(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
         if (settingsPresenter != null) {
             settingsPresenter.onDetach();
         }
+        super.onDestroyView();
     }
 
     @Override
@@ -69,8 +62,10 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
     @Override
     public void setup(View view) {
         getActivityComponent().inject(this);
+        settingsPresenter.onAttach(this);
         txtName = view.findViewById(R.id.txtName);
         txtPhone = view.findViewById(R.id.txtPhone);
+        settingsPresenter.setUserProfileData();
         //ImageView imgAvatar = view.findViewById(R.id.imgAvatar);
         CardView cardLogout = view.findViewById(R.id.cardLogout);
         CardView cardEdit = view.findViewById(R.id.cardEdit);

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import com.alirezaafkar.sundatepicker.DatePicker;
 
@@ -21,8 +20,8 @@ import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
 import ir.reservs.reservs.ui.main.information.InformationPresenter;
 import ir.reservs.reservs.ui.main.password.PasswordPresenter;
-import ir.reservs.reservs.ui.main.salons.SalonAdapter;
-import ir.reservs.reservs.ui.main.salons.SalonPresenter;
+import ir.reservs.reservs.ui.main.salons.SalonListAdapter;
+import ir.reservs.reservs.ui.main.salons.SalonListPresenter;
 import ir.reservs.reservs.ui.splash.SplashPresenter;
 
 @Module
@@ -79,11 +78,11 @@ public class ActivityModule {
         return new DatePicker.Builder();
     }
 
-    @Provides
+   /* @Provides
     @PerActivity
     FragmentManager provideFragmentManager(AppCompatActivity activity) {
         return activity.getSupportFragmentManager();
-    }
+    }*/
 
     @Provides
     @PerActivity
@@ -92,14 +91,14 @@ public class ActivityModule {
     }
 
     @Provides
-    SalonAdapter provideSalonAdapter() {
-        return new SalonAdapter(new ArrayList<>());
+    SalonListAdapter provideSalonAdapter() {
+        return new SalonListAdapter(new ArrayList<>());
     }
 
     @Provides
     @PerActivity
-    SalonPresenter provideSalonPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        return new SalonPresenter(dataManager, compositeDisposable);
+    SalonListPresenter provideSalonPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        return new SalonListPresenter(dataManager, compositeDisposable);
     }
 
     @Provides

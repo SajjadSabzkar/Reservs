@@ -2,7 +2,6 @@ package ir.reservs.reservs.ui.main.search;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentManager;
 
 import com.alirezaafkar.sundatepicker.DatePicker;
 import com.alirezaafkar.sundatepicker.interfaces.DateSetListener;
@@ -17,7 +16,7 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
     private AlertDialog.Builder adb;
     private AlertDialog ad;
     private DatePicker.Builder datePickerBuilder;
-    private FragmentManager fragmentManager;
+    //private FragmentManager fragmentManager;
     private CharSequence[] cities;
     private int selectedCity = -1;
     private CharSequence[] locations;
@@ -25,11 +24,10 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
 
     @Inject
     public SearchPresenter(AlertDialog.Builder alertDialogBuilder,
-                           DatePicker.Builder datePickerBuilder,
-                           FragmentManager fragmentManager) {
+                           DatePicker.Builder datePickerBuilder) {
         this.adb = alertDialogBuilder;
         this.datePickerBuilder = datePickerBuilder;
-        this.fragmentManager = fragmentManager;
+       // this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -41,7 +39,7 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
     @Override
     public void onDetach() {
         view = null;
-        fragmentManager = null;
+        //fragmentManager = null;
         datePickerBuilder = null;
         if (ad != null)
             ad.dismiss();
@@ -58,8 +56,8 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
                 .minDate(minDate)
                 .maxDate(maxDate)
                 .date(minDate)
-                .build(this)
-                .show(fragmentManager, "date");
+                .build(this);
+              //  .show(fragmentManager, "date");
     }
 
     @Override

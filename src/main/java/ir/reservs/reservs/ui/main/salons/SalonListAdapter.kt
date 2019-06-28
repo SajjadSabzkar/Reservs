@@ -1,0 +1,67 @@
+package ir.reservs.reservs.ui.main.salons
+
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+import ir.reservs.reservs.R
+import ir.reservs.reservs.model.Salon
+
+class SalonListAdapter(val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
+    var listener: SalonOnClickListener? = null
+        set(value) {
+            field = value
+        }
+
+    fun addData(data: MutableList<Salon>) {
+        mData.addAll(data)
+        notifyDataSetChanged()
+        Log.e("Salon Adapter", "mDataSize:" + mData.size)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        val view = LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_salon, parent, false)
+
+        return Holder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return mData.size
+    }
+
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.salonCard.setOnClickListener {
+            run {
+                listener?.onClick(mData.get(position))
+            }
+        }
+        Picasso.get()
+                .load(mData[position].thumbnail)
+                .resize(136, 136)
+                .error(R.drawable.avatar)
+                .into(holder.imgThumbnail)
+
+        holder.txtLocation.text = mData[position].title
+        holder.txtCity.text = mData[position].cityName
+        holder.txtPrice.text = String.format("%s < %s",
+                mData[position].minPrice,
+                mData[position].maxPrice)
+    }
+
+    class Holder(view: View) : RecyclerView.ViewHolder(view) {
+        var salonCard: CardView = view.findViewById(R.id.salonCard)
+        var imgThumbnail: ImageView = view.findViewById(R.id.imgThumbnail)
+        var txtLocation: TextView = view.findViewById(R.id.txtLocation)
+        var txtCity: TextView = view.findViewById(R.id.txtCityName)
+        var txtPrice: TextView = view.findViewById(R.id.txtPrice)
+
+    }
+
+}
