@@ -7,6 +7,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.data.DataManager;
+import ir.reservs.reservs.utils.RetrofitError;
 
 public class SalonListPresenter implements SalonListContract.Presenter {
 
@@ -37,7 +38,7 @@ public class SalonListPresenter implements SalonListContract.Presenter {
                             view.hideProgress();
                         },
                         error -> {
-                            view.onError(error.getMessage());
+                            RetrofitError.INSTANCE.handle(view, error);
                             view.hideProgress();
                         }
                 );

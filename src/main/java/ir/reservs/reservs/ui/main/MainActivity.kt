@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -7,8 +8,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseActivity
+import ir.reservs.reservs.ui.login.LoginActivity
 
 class MainActivity : BaseActivity(), MainContract.View {
+
+
     override fun onError(msg: String) {
 
     }

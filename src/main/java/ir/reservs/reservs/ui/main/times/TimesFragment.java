@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,7 +47,7 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
 
     @Override
     public void onError(String msg) {
-
+        Snackbar.make(getView(), msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -54,14 +57,8 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
 
         timeRecyclerView = view.findViewById(R.id.timesRecyclerView);
         timesProgressBar = view.findViewById(R.id.timesProgressBar);
-        view.findViewById(R.id.nextConstraint).setOnClickListener(v -> {
-            timesPresenter.nextDay();
-            clearOldTimes();
-        });
-        view.findViewById(R.id.backConstraint).setOnClickListener(v -> {
-            timesPresenter.backDay();
-            clearOldTimes();
-        });
+        view.findViewById(R.id.nextConstraint).setOnClickListener(v -> timesPresenter.nextDay());
+        view.findViewById(R.id.backConstraint).setOnClickListener(v -> timesPresenter.backDay());
         dayRecyclerView.setAdapter(weekDayAdapter);
         timeRecyclerView.setAdapter(timesAdapter);
         timesPresenter.onAttach(this);
@@ -98,6 +95,7 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
         weekDayAdapter.selectDay(day);
     }
 
+    @Override
     public void clearOldTimes() {
         timesAdapter.clearAll();
     }

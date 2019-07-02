@@ -30,12 +30,6 @@ public class InformationFragment extends BaseFragment implements InformationCont
         return inflater.inflate(R.layout.layout_informaion, container, false);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        informationPresenter.onAttach(this);
-    }
-
 
     @Override
     public void onError(String error) {
@@ -45,6 +39,8 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Override
     public void setup(View view) {
         getFragmentComponent().inject(this);
+        informationPresenter.onAttach(this);
+        informationPresenter.initializeViews();
         txtName = view.findViewById(R.id.txtName);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));
@@ -65,5 +61,10 @@ public class InformationFragment extends BaseFragment implements InformationCont
     public void nameUpdated(String name) {
         onError(String.format("نام شما به %s تغییر کرد.", name));
         NavHostFragment.findNavController(this).popBackStack();
+    }
+
+    @Override
+    public void initializeViews(String name) {
+        txtName.setText(name);
     }
 }

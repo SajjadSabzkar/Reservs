@@ -7,6 +7,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
+import ir.reservs.reservs.utils.RetrofitError;
 
 public class InformationPresenter implements InformationContract.Presenter {
     private DataManager dataManager;
@@ -48,8 +49,13 @@ public class InformationPresenter implements InformationContract.Presenter {
                                     dataManager.setCurrentUserName(name);
                                     view.nameUpdated(name);
                                 },
-                                error -> view.onError(error.getMessage())
+                                error -> RetrofitError.INSTANCE.handle(view, error)
                         )
         );
+    }
+
+    @Override
+    public void initializeViews() {
+        view.initializeViews(dataManager.getCurrentUserName());
     }
 }

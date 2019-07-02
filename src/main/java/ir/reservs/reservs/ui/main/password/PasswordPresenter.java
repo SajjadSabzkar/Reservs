@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
+import ir.reservs.reservs.utils.RetrofitError;
 import retrofit2.HttpException;
 
 public class PasswordPresenter implements PasswordContract.Presenter {
@@ -54,26 +55,8 @@ public class PasswordPresenter implements PasswordContract.Presenter {
                             dataManager.setAccessToken(response.getToken());
                             view.passwordChangedSuccessful();
                         },
-                        error -> handleError(error)
+                        error -> RetrofitError.INSTANCE.handle(view, error)
                 );
         compositeDisposable.add(disposable);
-    }
-
-    private void handleError(Throwable error) {
-        try {
-            HttpException exception = (HttpException) error;
-            Log.e("PasswordPresenter", "handleError" + ": " + exception.code());
-            switch (exception.code()) {
-                case 404:
-                case 403:
-                case 405:
-                case 500:
-                case 503:
-            }
-        }catch (Throwable e){
-            Log.e("PasswordPresenter","handleError"+": "+e.getStackTrace().toString());
-            Log.e("PasswordPresenter","handleError"+": "+e.getMessage());
-            Log.e("PasswordPresenter","handleError"+": "+e.getLocalizedMessage());
-        }
     }
 }

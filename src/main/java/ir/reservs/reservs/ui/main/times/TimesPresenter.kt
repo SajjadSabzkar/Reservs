@@ -9,6 +9,8 @@ import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Time
+import ir.reservs.reservs.ui.base.BaseContract
+import ir.reservs.reservs.utils.RetrofitError
 import java.util.*
 
 class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable) : TimesContract.Presenter {
@@ -44,8 +46,8 @@ class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDis
                     view?.hideProgress()
                     view?.updateTimes(times)
                 }, { error: Throwable ->
+                    RetrofitError.handle(view as BaseContract.View, error)
                     view?.hideProgress()
-                    Log.e("error", error.message)
                 })
         if (disposable != null)
             compositeDisposable?.add(disposable)
@@ -65,12 +67,18 @@ class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDis
     }
 
     fun nextDay() {
+        view?.clearOldTimes()
         currentDate = currentDate.tomorrow
         getTimesFromServer(salonId!!, dateFormat(currentDate))
         view?.changeSelectedDay(getDayFromDate(currentDate))
     }
 
     fun backDay() {
+        if (currentDate == JalaliCalendar(GregorianCalendar())) {
+            view?.onError("شما در زمان حال هستید")
+            return;
+        }
+        view?.clearOldTimes()
         currentDate = currentDate.yesterday
         getTimesFromServer(salonId!!, dateFormat(currentDate))
         view?.changeSelectedDay(getDayFromDate(currentDate))

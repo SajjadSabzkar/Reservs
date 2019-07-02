@@ -11,6 +11,7 @@ import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.utils.CommonUtils;
+import ir.reservs.reservs.utils.RetrofitError;
 
 public class LoginPresenter implements LoginContract.presenter {
     private DataManager dataManager;
@@ -57,7 +58,7 @@ public class LoginPresenter implements LoginContract.presenter {
                     view.hideProgress();
                     view.openMainActivity();
                 }, error -> {
-                    view.onError(R.string.invalid_password);
+                    RetrofitError.INSTANCE.handle(view, error);
                     view.hideProgress();
                     Log.e("LoginPresenter", "onLogin" + ": " + error.getMessage());
                 }));

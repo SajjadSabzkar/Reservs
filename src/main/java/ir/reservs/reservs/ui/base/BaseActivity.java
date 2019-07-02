@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -9,6 +10,7 @@ import ir.reservs.reservs.ReserveApplication;
 import ir.reservs.reservs.di.component.ActivityComponent;
 import ir.reservs.reservs.di.component.DaggerActivityComponent;
 import ir.reservs.reservs.di.module.ActivityModule;
+import ir.reservs.reservs.ui.login.LoginActivity;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseContract.View {
 
@@ -41,7 +43,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
         onError(getString(resId));
     }
 
-    ;
+    @Override
+    public void onTokenExpire() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
 
     @Override
     protected void onDestroy() {

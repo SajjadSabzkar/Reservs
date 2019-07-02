@@ -11,6 +11,7 @@ class TimesContract {
         fun showProgress()
         fun hideProgress()
         fun changeSelectedDay(day: Day)
+        fun clearOldTimes()
     }
 
     interface Presenter : BaseContract.Presenter<View> {

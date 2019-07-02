@@ -9,6 +9,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.data.DataManager;
+import ir.reservs.reservs.utils.RetrofitError;
+import retrofit2.HttpException;
 
 public class HistoryPresenter implements HistoryContract.Presenter {
 
@@ -36,7 +38,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
                             view.hideProgress();
                         },
                         error -> {
-                            view.onError(error.getMessage());
+                            RetrofitError.INSTANCE.handle(view, error);
                             view.hideProgress();
                         }
                 );

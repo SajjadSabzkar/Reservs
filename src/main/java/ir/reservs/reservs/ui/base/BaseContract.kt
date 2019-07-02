@@ -4,6 +4,7 @@ class BaseContract {
     interface View {
         fun onError(msg: String)
         fun onError(resId: Int)
+        fun onTokenExpire()
     }
 
     interface Presenter<T> {

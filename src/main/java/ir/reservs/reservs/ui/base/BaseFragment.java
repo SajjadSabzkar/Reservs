@@ -1,17 +1,22 @@
 package ir.reservs.reservs.ui.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 import ir.reservs.reservs.ReserveApplication;
 import ir.reservs.reservs.di.component.DaggerFragmentComponent;
 import ir.reservs.reservs.di.component.FragmentComponent;
 import ir.reservs.reservs.di.module.FragmentModule;
+import ir.reservs.reservs.ui.login.LoginActivity;
 
 public abstract class BaseFragment extends Fragment implements BaseContract.View {
     private FragmentComponent fragmentComponent;
@@ -27,6 +32,13 @@ public abstract class BaseFragment extends Fragment implements BaseContract.View
 
     protected FragmentComponent getFragmentComponent() {
         return fragmentComponent;
+    }
+
+    @Override
+    public void onTokenExpire() {
+        Intent i = new Intent(getContext(), LoginActivity.class);
+        startActivity(i);
+        Objects.requireNonNull(getActivity()).finish();
     }
 
 

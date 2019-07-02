@@ -61,4 +61,7 @@
     <string name="twoth">ی</string>
     <string name="oneth">ش</string>
     <string name="toman">تومان</string>
+    <string name="aboutme">درباره ما</string>
+    <string name="dont_have_account">آیا حساب ندارید؟</string>
+    <string name="create">ایجاد</string>
 </resources>
