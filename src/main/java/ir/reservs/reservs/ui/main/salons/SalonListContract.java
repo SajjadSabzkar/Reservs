@@ -9,6 +9,10 @@ public class SalonListContract {
 
     interface View extends BaseContract.View {
         void setSalonsData(List<Salon> salons);
+
+        void showProgress();
+
+        void hideProgress();
     }
 
     interface Presenter extends BaseContract.Presenter<View> {

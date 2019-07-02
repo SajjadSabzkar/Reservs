@@ -37,6 +37,9 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
     public void onDestroyView() {
         if (settingsPresenter != null) {
             settingsPresenter.onDetach();
+            settingsPresenter = null;
+            txtName = null;
+            txtPhone = null;
         }
         super.onDestroyView();
     }
@@ -61,7 +64,7 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
 
     @Override
     public void setup(View view) {
-        getActivityComponent().inject(this);
+        getFragmentComponent().inject(this);
         settingsPresenter.onAttach(this);
         txtName = view.findViewById(R.id.txtName);
         txtPhone = view.findViewById(R.id.txtPhone);

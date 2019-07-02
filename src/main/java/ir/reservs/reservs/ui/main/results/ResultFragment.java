@@ -28,7 +28,7 @@ public class ResultFragment extends BaseFragment implements ResultContract.View 
 
     @Override
     public void setup(View view) {
-        getActivityComponent().inject(this);
+        getFragmentComponent().inject(this);
     }
 
 

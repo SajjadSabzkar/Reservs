@@ -18,14 +18,12 @@ public class HistoryPresenter implements HistoryContract.Presenter {
 
     @Inject
     public HistoryPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
-        Log.e("HistoryPresenter","HistoryPresenter"+": Created now");
-        Log.e("HistoryPresenter","HistoryPresenter"+": "+dataManager.toString());
         this.dataManager = dataManager;
         this.compositeDisposable = compositeDisposable;
     }
 
     public void getDataHistory() {
-        Log.e("SalonListPresenter","getSalonsFromServer"+": "+compositeDisposable.size());
+        view.showProgress();
         Disposable disposable = dataManager.reserves()
                 .subscribeOn(Schedulers.io())
                 .doOnError(error -> {
@@ -33,8 +31,14 @@ public class HistoryPresenter implements HistoryContract.Presenter {
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        reserves -> view.setHistoryData(reserves),
-                        error -> view.onError(error.getMessage())
+                        reserves -> {
+                            view.setHistoryData(reserves);
+                            view.hideProgress();
+                        },
+                        error -> {
+                            view.onError(error.getMessage());
+                            view.hideProgress();
+                        }
                 );
         compositeDisposable.add(disposable);
     }

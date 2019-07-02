@@ -26,10 +26,7 @@ public class PasswordFragment extends BaseFragment implements PasswordContract.V
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_change_password, container, false);
-        getActivityComponent().inject(this);
-
-        return view;
+        return inflater.inflate(R.layout.layout_change_password, container, false);
     }
 
     @Override
@@ -51,6 +48,7 @@ public class PasswordFragment extends BaseFragment implements PasswordContract.V
 
     @Override
     public void setup(View view) {
+        getFragmentComponent().inject(this);
         btnConfirm = view.findViewById(R.id.btnConfirm);
         EditText txtCurrentPassword, txtNewPassword;
         txtCurrentPassword = view.findViewById(R.id.txtCurrentPassword);

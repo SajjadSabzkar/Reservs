@@ -8,6 +8,6 @@ public class ResultContract {
     }
 
     interface Presenter extends BaseContract.Presenter<View> {
-        
+
     }
 }

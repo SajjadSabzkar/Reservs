@@ -63,7 +63,7 @@ public class SearchFragment extends BaseFragment implements SearchContract.View 
 
     @Override
     public void setup(View view) {
-        getActivityComponent().inject(this);
+        getFragmentComponent().inject(this);
         txtCityName = view.findViewById(R.id.txtCityName);
         txtDate = view.findViewById(R.id.txtDate);
         txtLocation = view.findViewById(R.id.txtLocation);

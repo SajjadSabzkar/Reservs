@@ -27,9 +27,7 @@ public class InformationFragment extends BaseFragment implements InformationCont
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_informaion, container, false);
-        getActivityComponent().inject(this);
-        return view;
+        return inflater.inflate(R.layout.layout_informaion, container, false);
     }
 
     @Override
@@ -46,6 +44,7 @@ public class InformationFragment extends BaseFragment implements InformationCont
 
     @Override
     public void setup(View view) {
+        getFragmentComponent().inject(this);
         txtName = view.findViewById(R.id.txtName);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));

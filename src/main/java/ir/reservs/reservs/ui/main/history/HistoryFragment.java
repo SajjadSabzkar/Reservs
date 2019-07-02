@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,12 +29,11 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
 
     private RecyclerView historyRecycler;
 
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_history, container, false);
-        getActivityComponent().inject(this);
-        return view;
+        return inflater.inflate(R.layout.layout_history, container, false);
     }
 
     @Override
@@ -43,34 +43,49 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
         historyRecycler.setAdapter(historyAdapter);
     }
 
-    @Override
-    public void onDestroy() {
-        if (historyPresenter != null) {
-            historyPresenter.onDetach();
-            historyPresenter = null;
-        }
-        super.onDestroy();
-    }
+
 
     @Override
     public void setHistoryData(List<ReserveHistory> reserves) {
-        Log.e("HistoryFragment", "setHistoryData" + ": " + reserves.size());
         historyAdapter.addItems(reserves);
     }
 
     @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+        historyRecycler.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
+        historyRecycler.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onError(String error) {
-        //todo IllegalArgumentException: No suitable parent found from the given view. Please provide a valid view.
         //Snackbar.make(historyRecycler, error, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void setup(View view) {
+        getFragmentComponent().inject(this);
+        progressBar = view.findViewById(R.id.progressBar);
         historyRecycler = view.findViewById(R.id.historyRecycler);
     }
 
     @Override
     public void onError(int resId) {
         onError(getString(resId));
+    }
+
+    @Override
+    public void onDestroy() {
+        if (historyPresenter != null) {
+            historyPresenter.onDetach();
+            historyPresenter = null;
+            progressBar = null;
+        }
+        super.onDestroy();
     }
 }

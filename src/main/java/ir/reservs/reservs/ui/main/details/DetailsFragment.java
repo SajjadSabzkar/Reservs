@@ -16,7 +16,6 @@ public class DetailsFragment extends BaseFragment implements DetailsContract.Vie
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_result, container, false);
     }
 
@@ -28,7 +27,7 @@ public class DetailsFragment extends BaseFragment implements DetailsContract.Vie
 
     @Override
     public void setup(View view) {
-        getActivityComponent().inject(this);
+        getFragmentComponent().inject(this);
     }
 
 

@@ -1,6 +1,7 @@
 package ir.reservs.reservs.ui.main.times;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,16 +30,19 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.ViewHold
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.week_list_item, parent, false);
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.e("WeekDayAdapter", "onBindViewHolder: " + days.get(position).getNum());
+        Log.e("WeekDayAdapter", "onBindViewHolder: " + selectedDay.getNum());
         holder.txtDayName.setText(days.get(position).getName() + "");
         holder.txtDate.setText(days.get(position).getNum() + "");
         if (days.get(position).equals(selectedDay)) {
             holder.txtDate = textSelectStyle(holder.txtDate);
+        } else {
+            holder.txtDate = textNormalStyle(holder.txtDate);
         }
     }
 
@@ -48,14 +52,27 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.ViewHold
         return txt;
     }
 
+    private TextView textNormalStyle(TextView txt) {
+        txt.setBackgroundResource(R.drawable.square_bg);
+        txt.setTextColor(Color.GRAY);
+        return txt;
+    }
+
     @Override
     public int getItemCount() {
         return days.size();
     }
 
 
+    public void setDays(List<Day> days) {
+        this.days.addAll(days);
+        notifyDataSetChanged();
+    }
+
     public void selectDay(Day day) {
         this.selectedDay = day;
+        notifyDataSetChanged();
+        //notifyItemChanged(days.indexOf(selectedDay));
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

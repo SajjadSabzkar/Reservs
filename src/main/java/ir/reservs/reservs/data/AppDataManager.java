@@ -10,6 +10,7 @@ import ir.reservs.reservs.model.Login;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.model.Success;
+import ir.reservs.reservs.model.Time;
 
 public class AppDataManager implements DataManager {
     private final PreferencesHelper mPreferencesHelper;
@@ -99,5 +100,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<ChangePassword> updatePassword(String current_password, String new_password) {
         return mApiHelper.updatePassword(current_password, new_password);
+    }
+
+    @Override
+    public Single<List<Time>> times(int salon_id, String date) {
+        return mApiHelper.times(salon_id, date);
     }
 }

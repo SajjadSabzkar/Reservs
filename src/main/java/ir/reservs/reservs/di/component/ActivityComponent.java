@@ -5,14 +5,6 @@ import ir.reservs.reservs.di.PerActivity;
 import ir.reservs.reservs.di.module.ActivityModule;
 import ir.reservs.reservs.ui.login.LoginActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
-import ir.reservs.reservs.ui.main.details.DetailsFragment;
-import ir.reservs.reservs.ui.main.history.HistoryFragment;
-import ir.reservs.reservs.ui.main.information.InformationFragment;
-import ir.reservs.reservs.ui.main.password.PasswordFragment;
-import ir.reservs.reservs.ui.main.results.ResultFragment;
-import ir.reservs.reservs.ui.main.salons.SalonListFragment;
-import ir.reservs.reservs.ui.main.search.SearchFragment;
-import ir.reservs.reservs.ui.main.settings.SettingsFragment;
 import ir.reservs.reservs.ui.splash.SplashActivity;
 
 
@@ -25,21 +17,6 @@ public interface ActivityComponent {
 
     void inject(MainActivity activity);
 
-    void inject(HistoryFragment fragment);
 
-    void inject(SettingsFragment fragment);
-
-    void inject(SearchFragment fragment);
-
-    void inject(ResultFragment fragment);
-
-    void inject(DetailsFragment fragment);
-
-    void inject(SalonListFragment fragment);
-
-
-    void inject(InformationFragment fragment);
-
-    void inject(PasswordFragment fragment);
 }
 

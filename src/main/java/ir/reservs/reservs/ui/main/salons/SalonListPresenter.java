@@ -27,17 +27,21 @@ public class SalonListPresenter implements SalonListContract.Presenter {
     }
 
     private void getSalonsFromServer() {
+        view.showProgress();
         Disposable disposable = dataManager.salons()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         salons -> {
                             view.setSalonsData(salons);
+                            view.hideProgress();
                         },
-                        error -> view.onError(error.getMessage())
+                        error -> {
+                            view.onError(error.getMessage());
+                            view.hideProgress();
+                        }
                 );
         compositeDisposable.add(disposable);
-
     }
 
     @Override

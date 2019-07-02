@@ -4,13 +4,12 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseActivity
 
 class MainActivity : BaseActivity(), MainContract.View {
-    override fun onError(msg: String?) {
+    override fun onError(msg: String) {
 
     }
 
@@ -29,6 +28,14 @@ class MainActivity : BaseActivity(), MainContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

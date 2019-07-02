@@ -1,6 +1,6 @@
 package ir.reservs.reservs.ui.main;
 
-public class MainContract {
+class MainContract {
     interface View {
 
     }

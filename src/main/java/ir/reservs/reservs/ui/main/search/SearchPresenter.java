@@ -23,9 +23,8 @@ public class SearchPresenter implements SearchContract.Presenter, DateSetListene
     private int selectedLocation = -1;
 
     @Inject
-    public SearchPresenter(AlertDialog.Builder alertDialogBuilder,
-                           DatePicker.Builder datePickerBuilder) {
-        this.adb = alertDialogBuilder;
+    public SearchPresenter(DatePicker.Builder datePickerBuilder) {
+        //this.adb = alertDialogBuilder;
         this.datePickerBuilder = datePickerBuilder;
        // this.fragmentManager = fragmentManager;
     }
