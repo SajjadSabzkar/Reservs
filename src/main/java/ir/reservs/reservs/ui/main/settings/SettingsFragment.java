@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.ui.base.BaseFragment;
-import ir.reservs.reservs.ui.login.LoginActivity;
+import ir.reservs.reservs.ui.login.LoginRegisterActivity;
 
 public class SettingsFragment extends BaseFragment implements SettingsContract.View {
     @Inject
@@ -53,7 +53,7 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
 
     @Override
     public void openLoginActivity() {
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginRegisterActivity.class));
         getActivity().finish();
     }
 

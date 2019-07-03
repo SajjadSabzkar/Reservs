@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -16,7 +16,7 @@ import ir.reservs.reservs.ReserveApplication;
 import ir.reservs.reservs.di.component.DaggerFragmentComponent;
 import ir.reservs.reservs.di.component.FragmentComponent;
 import ir.reservs.reservs.di.module.FragmentModule;
-import ir.reservs.reservs.ui.login.LoginActivity;
+import ir.reservs.reservs.ui.login.LoginRegisterActivity;
 
 public abstract class BaseFragment extends Fragment implements BaseContract.View {
     private FragmentComponent fragmentComponent;
@@ -36,13 +36,17 @@ public abstract class BaseFragment extends Fragment implements BaseContract.View
 
     @Override
     public void onTokenExpire() {
-        Intent i = new Intent(getContext(), LoginActivity.class);
+        Intent i = new Intent(getContext(), LoginRegisterActivity.class);
         startActivity(i);
         Objects.requireNonNull(getActivity()).finish();
     }
 
 
-    public abstract void onError(@NotNull String msg);
+    public void onError(String msg) {
+        if (getView() != null) {
+            Snackbar.make(getView(), msg, Snackbar.LENGTH_LONG).show();
+        }
+    }
 
     public abstract void setup(View view);
 

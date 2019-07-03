@@ -6,7 +6,7 @@ import io.reactivex.Single;
 import ir.reservs.reservs.data.network.ApiHelper;
 import ir.reservs.reservs.data.prefs.PreferencesHelper;
 import ir.reservs.reservs.model.ChangePassword;
-import ir.reservs.reservs.model.Login;
+import ir.reservs.reservs.model.User;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.model.Success;
@@ -23,7 +23,12 @@ public class AppDataManager implements DataManager {
 
 
     @Override
-    public Single<Login> login(String phone, String password) {
+    public Single<User> register(String name, String phone, String password) {
+        return mApiHelper.register(name, phone, password);
+    }
+
+    @Override
+    public Single<User> login(String phone, String password) {
         return mApiHelper.login(phone, password);
     }
 
@@ -68,13 +73,13 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public void setUserImage(String image) {
-        mPreferencesHelper.setUserImage(image);
+    public void setCurrentUserImage(String image) {
+        mPreferencesHelper.setCurrentUserImage(image);
     }
 
     @Override
     public String getCurrentUserImage() {
-        return null;
+        return mPreferencesHelper.getCurrentUserImage();
     }
 
     @Override

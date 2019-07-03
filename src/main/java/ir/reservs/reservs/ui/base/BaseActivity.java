@@ -10,7 +10,7 @@ import ir.reservs.reservs.ReserveApplication;
 import ir.reservs.reservs.di.component.ActivityComponent;
 import ir.reservs.reservs.di.component.DaggerActivityComponent;
 import ir.reservs.reservs.di.module.ActivityModule;
-import ir.reservs.reservs.ui.login.LoginActivity;
+import ir.reservs.reservs.ui.login.LoginRegisterActivity;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseContract.View {
 
@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseCont
 
     @Override
     public void onTokenExpire() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LoginRegisterActivity.class));
         finish();
     }
 

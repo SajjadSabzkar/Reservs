@@ -3,6 +3,8 @@ package ir.reservs.reservs.di.component;
 import dagger.Component;
 import ir.reservs.reservs.di.PerFragment;
 import ir.reservs.reservs.di.module.FragmentModule;
+import ir.reservs.reservs.ui.login.login.LoginFragment;
+import ir.reservs.reservs.ui.login.register.RegisterFragment;
 import ir.reservs.reservs.ui.main.details.DetailsFragment;
 import ir.reservs.reservs.ui.main.history.HistoryFragment;
 import ir.reservs.reservs.ui.main.information.InformationFragment;
@@ -33,4 +35,8 @@ public interface FragmentComponent {
     void inject(PasswordFragment fragment);
 
     void inject(TimesFragment fragment);
+
+    void inject(LoginFragment fragment);
+
+    void inject(RegisterFragment fragment);
 }

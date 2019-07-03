@@ -13,7 +13,7 @@
     <string name="tel">تلفن</string>
     <string name="lorem">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</string>
     <string name="enter">ورود</string>
-    <string name="password">پسورد</string>
+    <string name="password">رمز عبور</string>
     <string name="tel_sample">09168865663 مثل</string>
     <string name="login_description">به حساب خود در ورزشی رزرو وارد شوید تا از تاریخچه رزرو خود با خبر شوید.</string>
     <string name="empty_password">پسورد اجباری است. لطفا پسورد را وارد کنید.</string>
@@ -64,4 +64,9 @@
     <string name="aboutme">درباره ما</string>
     <string name="dont_have_account">آیا حساب ندارید؟</string>
     <string name="create">ایجاد</string>
+    <string name="create_account">ایجاد حساب</string>
+    <string name="register_description">برای رزرو مکان و اطلاع از رزرو ها قبلی نیاز به ایجاد حساب دارید</string>
+    <string name="name_family">نام و نام خانوادگی</string>
+    <string name="name_sample">مثل محمدحسن رضایی</string>
+    <string name="your_password">رمز شما</string>
 </resources>

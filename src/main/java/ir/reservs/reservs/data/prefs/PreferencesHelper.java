@@ -13,7 +13,7 @@ public interface PreferencesHelper {
 
     void setCurrentUserName(String name);
 
-    void setUserImage(String image);
+    void setCurrentUserImage(String image);
 
     String getCurrentUserImage();
 

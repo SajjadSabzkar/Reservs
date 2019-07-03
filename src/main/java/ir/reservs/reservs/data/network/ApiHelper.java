@@ -4,7 +4,7 @@ import java.util.List;
 
 import io.reactivex.Single;
 import ir.reservs.reservs.model.ChangePassword;
-import ir.reservs.reservs.model.Login;
+import ir.reservs.reservs.model.User;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.model.Success;
@@ -17,10 +17,16 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiHelper {
+    @POST("auth/register")
+    @FormUrlEncoded
+    Single<User> register(@Field("name") String name,
+                          @Field("phone") String phone,
+                          @Field("password") String password);
+
 
     @POST("auth/login")
     @FormUrlEncoded
-    Single<Login> login(@Field("phone") String phone, @Field("password") String password);
+    Single<User> login(@Field("phone") String phone, @Field("password") String password);
 
     @GET("reserves")
     Single<List<ReserveHistory>> reserves();

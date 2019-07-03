@@ -13,16 +13,12 @@ import ir.reservs.reservs.ui.base.BaseContract
 import ir.reservs.reservs.utils.RetrofitError
 import java.util.*
 
-class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable) : TimesContract.Presenter {
-    private var dataManager: DataManager? = null
-    private var compositeDisposable: CompositeDisposable? = null
+class TimesPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : TimesContract.Presenter {
     private var view: TimesContract.View? = null
     private var currentDate: JalaliCalendar
     private var salonId: Int? = null
 
     init {
-        this.dataManager = dataManager
-        this.compositeDisposable = compositeDisposable
         this.currentDate = JalaliCalendar(GregorianCalendar())
     }
 
@@ -32,14 +28,14 @@ class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDis
 
     override fun onDetach() {
         this.view = null
-        if (compositeDisposable?.isDisposed != true) {
-            compositeDisposable?.clear()
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.clear()
         }
     }
 
     private fun getTimesFromServer(salon_id: Int, date: String) {
         view?.showProgress()
-        val disposable: Disposable? = dataManager?.times(salon_id, date)
+        val disposable = dataManager.times(salon_id, date)
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribeOn(Schedulers.io())
                 ?.subscribe({ times: MutableList<Time> ->
@@ -50,7 +46,7 @@ class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDis
                     view?.hideProgress()
                 })
         if (disposable != null)
-            compositeDisposable?.add(disposable)
+            compositeDisposable.add(disposable)
     }
 
     fun initializeViews(salon_id: Int) {
@@ -76,7 +72,7 @@ class TimesPresenter(dataManager: DataManager, compositeDisposable: CompositeDis
     fun backDay() {
         if (currentDate == JalaliCalendar(GregorianCalendar())) {
             view?.onError("شما در زمان حال هستید")
-            return;
+            return
         }
         view?.clearOldTimes()
         currentDate = currentDate.yesterday

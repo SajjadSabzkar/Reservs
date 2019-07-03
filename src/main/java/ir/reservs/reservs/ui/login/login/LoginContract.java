@@ -1,4 +1,4 @@
-package ir.reservs.reservs.ui.login;
+package ir.reservs.reservs.ui.login.login;
 
 import ir.reservs.reservs.ui.base.BaseContract;
 

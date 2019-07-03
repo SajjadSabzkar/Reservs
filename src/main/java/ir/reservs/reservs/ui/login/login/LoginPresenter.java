@@ -1,4 +1,4 @@
-package ir.reservs.reservs.ui.login;
+package ir.reservs.reservs.ui.login.login;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
-import ir.reservs.reservs.model.Login;
+import ir.reservs.reservs.model.User;
 import ir.reservs.reservs.utils.CommonUtils;
 import ir.reservs.reservs.utils.RetrofitError;
 
@@ -24,11 +24,11 @@ public class LoginPresenter implements LoginContract.presenter {
         this.compositeDisposable = compositeDisposable;
     }
 
-    private void saveUser(Login user) {
+    private void saveUser(User user) {
         dataManager.setAccessToken(user.getToken());
         dataManager.setCurrentUserName(user.getName());
         dataManager.setCurrentUserPhone(user.getPhone());
-        dataManager.setUserImage(user.getImage());
+        dataManager.setCurrentUserImage(user.getImage());
     }
 
 

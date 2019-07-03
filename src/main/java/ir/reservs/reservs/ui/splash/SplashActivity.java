@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.ui.base.BaseActivity;
-import ir.reservs.reservs.ui.login.LoginActivity;
+import ir.reservs.reservs.ui.login.LoginRegisterActivity;
 import ir.reservs.reservs.ui.main.MainActivity;
 
 public class SplashActivity extends BaseActivity implements SplashContract.View {
@@ -51,7 +51,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Override
     public void openLoginActivity() {
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this, LoginRegisterActivity.class);
         startActivity(i);
         finish();
     }
