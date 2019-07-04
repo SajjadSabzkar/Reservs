@@ -9,6 +9,7 @@ import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.di.PerFragment;
+import ir.reservs.reservs.ui.login.register.RegisterPresenter;
 import ir.reservs.reservs.ui.main.history.HistoryAdapter;
 import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
@@ -104,5 +105,11 @@ public class FragmentModule {
     @PerFragment
     TimesAdapter provideTimesAdapter() {
         return new TimesAdapter();
+    }
+
+    @Provides
+    @PerFragment
+    RegisterPresenter provideRegisterPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        return new RegisterPresenter(dataManager, compositeDisposable);
     }
 }

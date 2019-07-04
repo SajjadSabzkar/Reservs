@@ -73,6 +73,7 @@ public class SettingsFragment extends BaseFragment implements SettingsContract.V
         CardView cardLogout = view.findViewById(R.id.cardLogout);
         CardView cardEdit = view.findViewById(R.id.cardEdit);
         CardView passwordCard = view.findViewById(R.id.passwordCard);
+        view.findViewById(R.id.cardAboutMe).setOnClickListener(v -> NavHostFragment.findNavController(this).navigate(R.id.settingsToAbout));
         cardLogout.setOnClickListener((v) -> settingsPresenter.logoutUser());
         cardEdit.setOnClickListener((v) -> NavHostFragment.findNavController(this).navigate(R.id.settingsToInformation));
         passwordCard.setOnClickListener((v) -> NavHostFragment.findNavController(this).navigate(R.id.settingsToPassword));

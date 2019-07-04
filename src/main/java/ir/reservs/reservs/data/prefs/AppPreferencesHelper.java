@@ -54,7 +54,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
-    public void setUserImage(String image) {
+    public void setCurrentUserImage(String image) {
         mPrefs.edit().putString(USER_IMAGE, image).apply();
     }
 

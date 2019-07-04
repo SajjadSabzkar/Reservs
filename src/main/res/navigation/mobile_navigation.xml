@@ -30,6 +30,9 @@
         <action
             android:id="@+id/settingsToPassword"
             app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/settingsToAbout"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/salonListFragment"
@@ -54,4 +57,8 @@
         android:name="ir.reservs.reservs.ui.main.times.TimesFragment"
         android:label="fragment_times"
         tools:layout="@layout/fragment_times" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ir.reservs.reservs.ui.main.about.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>

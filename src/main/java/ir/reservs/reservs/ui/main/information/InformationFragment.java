@@ -40,10 +40,10 @@ public class InformationFragment extends BaseFragment implements InformationCont
     public void setup(View view) {
         getFragmentComponent().inject(this);
         informationPresenter.onAttach(this);
-        informationPresenter.initializeViews();
         txtName = view.findViewById(R.id.txtName);
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener((e) -> informationPresenter.confirmInformation(txtName.getText().toString()));
+        informationPresenter.initializeViews();
     }
 
     @Override
