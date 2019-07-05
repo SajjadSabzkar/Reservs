@@ -29,7 +29,7 @@ class LoginFragment : BaseFragment(), LoginContract.View {
         fragmentComponent.inject(this)
         loginPresenter?.onAttach(this)
         val btnCreateAccount: Button? = view?.findViewById(R.id.btnCreateAccount)
-        btnCreateAccount?.setOnClickListener { v -> findNavController().navigate(R.id.go_to_register) }
+        btnCreateAccount?.setOnClickListener { findNavController().navigate(R.id.go_to_register) }
         dialog = SpotsDialog.Builder()
                 .setContext(context)
                 .setCancelable(false)
@@ -39,7 +39,7 @@ class LoginFragment : BaseFragment(), LoginContract.View {
         val txtPhone = view?.findViewById<EditText>(R.id.txtPhone)
         val txtPassword = view?.findViewById<EditText>(R.id.txtPassword)
         val btnLogin = view?.findViewById<Button>(R.id.btnLogin)
-        btnLogin?.setOnClickListener { v ->
+        btnLogin?.setOnClickListener {
             loginPresenter?.login(txtPhone?.text.toString(),
                     txtPassword?.text.toString())
         }

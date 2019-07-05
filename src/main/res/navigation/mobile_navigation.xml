@@ -56,9 +56,27 @@
         android:id="@+id/timesFragment"
         android:name="ir.reservs.reservs.ui.main.times.TimesFragment"
         android:label="fragment_times"
-        tools:layout="@layout/fragment_times" />
+        tools:layout="@layout/fragment_times" >
+        <action
+            android:id="@+id/goToReserve"
+            app:destination="@+id/reserveFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="ir.reservs.reservs.ui.main.about.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/reserveFragment"
+        android:name="ir.reservs.reservs.ui.main.reserve.ReserveFragment"
+        android:label="ReserveFragment">
+        <argument
+            android:name="time"
+            app:argType="ir.reservs.reservs.model.Time" />
+        <argument
+            android:name="salon"
+            app:argType="ir.reservs.reservs.model.Salon" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="reservs://payment" />
+    </fragment>
 </navigation>

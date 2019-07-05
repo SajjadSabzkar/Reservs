@@ -1,5 +1,7 @@
 package ir.reservs.reservs.ui.main.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +14,19 @@ import ir.reservs.reservs.ui.base.BaseFragment
 class AboutFragment : BaseFragment() {
     override fun setup(view: View?) {
         view?.findViewById<Button>(R.id.btnGithub)?.setOnClickListener {
-            Toast.makeText(context, "Github", Toast.LENGTH_LONG).show()
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://github.com/rfmhb2/reservs")
+            startActivity(intent)
         }
         view?.findViewById<Button>(R.id.btnInstagram)?.setOnClickListener {
-            Toast.makeText(context, "Instagram", Toast.LENGTH_LONG).show()
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://instagram.com/mhbolivand")
+            startActivity(intent)
         }
         view?.findViewById<Button>(R.id.btnTelegram)?.setOnClickListener {
-            Toast.makeText(context, "Telegram", Toast.LENGTH_LONG).show()
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://t.me/rfmhb")
+            startActivity(intent)
         }
     }
 

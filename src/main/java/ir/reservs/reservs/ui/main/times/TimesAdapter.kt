@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.main.times
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,8 @@ import kotlinx.android.synthetic.main.times_item.view.*
 
 class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
     val times: MutableList<Time> = arrayListOf()
+    var listener: OnClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.times_item, parent, false)
         return Holder(view)
@@ -26,11 +27,18 @@ class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
         holder.txtStart.text = times[position].start
         holder.txtEnd.text = times[position].end
         holder.btnReserve.text = "${times[position].price} تومان "
+        holder.btnReserve.setOnClickListener {
+            listener?.click(times[position])
+        }
     }
 
     fun addTimes(times: MutableList<Time>) {
         this.times.addAll(times)
         notifyDataSetChanged()
+    }
+
+    fun setOnClickListener(listener: OnClickListener) {
+        this.listener = listener
     }
 
     fun clearAll() {
@@ -42,9 +50,5 @@ class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
         val txtEnd: TextView = view.txtEnd
         val txtStart: TextView = view.txtStart
         val btnReserve: Button = view.btnReserve
-
-        init {
-            btnReserve.setOnClickListener { Log.e("TimesAdapter", adapterPosition.toString()) }
-        }
     }
 }

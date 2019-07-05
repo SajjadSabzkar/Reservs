@@ -39,7 +39,7 @@ class SalonListAdapter(val mData: MutableList<Salon>) : RecyclerView.Adapter<Sal
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.salonCard.setOnClickListener {
             run {
-                listener?.onClick(mData.get(position))
+                listener?.onClick(mData[position])
             }
         }
         Picasso.get()

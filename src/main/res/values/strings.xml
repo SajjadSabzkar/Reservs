@@ -74,4 +74,8 @@
     <string name="github">گیت هاب</string>
     <string name="instagram">اینستاگرام</string>
     <string name="telegram">تلگرام</string>
+    <string name="city_semi">شهر:</string>
+    <string name="phone_semi">تلفن:</string>
+    <string name="pay_means_accept_rules">با پرداخت کردن هزینه موافقت خود را با تمامی قوانین و مقررات ورزشی رزرو اعلام میکنید</string>
+    <string name="payment">پرداخت</string>
 </resources>

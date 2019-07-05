@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <TextView
+        android:id="@+id/labelSalonInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/iransans"
+        android:text="اطلاعات رزرو"
+        android:textColor="@color/colorText2"
+        android:textSize="@dimen/label_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/salonInfoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelSalonInfo">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <View
+                android:id="@+id/topDot"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/dot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/timeline"
+                android:layout_width="2dp"
+                android:layout_height="48dp"
+                android:background="@color/colorCancel"
+                app:layout_constraintEnd_toEndOf="@id/topDot"
+                app:layout_constraintStart_toStartOf="@id/topDot"
+                app:layout_constraintTop_toBottomOf="@id/topDot" />
+
+            <View
+                android:id="@+id/bottomDot"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/dot"
+                app:layout_constraintEnd_toEndOf="@id/timeline"
+                app:layout_constraintStart_toStartOf="@id/timeline"
+                app:layout_constraintTop_toBottomOf="@id/timeline" />
+
+            <TextView
+                android:id="@+id/txtStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText2"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/topDot"
+                app:layout_constraintEnd_toStartOf="@id/topDot"
+                app:layout_constraintTop_toTopOf="@id/topDot"
+                tools:text="18:30" />
+
+            <TextView
+                android:id="@+id/txtEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText2"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bottomDot"
+                app:layout_constraintEnd_toStartOf="@id/bottomDot"
+                app:layout_constraintTop_toTopOf="@id/bottomDot"
+                tools:text="19:00" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@id/bottomDot"
+                app:layout_constraintEnd_toStartOf="@id/timeline"
+                app:layout_constraintTop_toTopOf="@id/topDot"
+                tools:text="۱ ساعت و 30 دقیقه" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorText"
+                app:layout_constraintTop_toBottomOf="@id/bottomDot" />
+
+            <TextView
+                android:id="@+id/labelLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="اسم مکان:"
+                android:textColor="@color/colorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+            <TextView
+                android:id="@+id/txtLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:textColor="@color/colorText2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/labelLocation"
+                app:layout_constraintEnd_toStartOf="@id/labelLocation"
+                app:layout_constraintTop_toTopOf="@id/labelLocation"
+                tools:text="سالن شماره یک" />
+
+            <TextView
+                android:id="@+id/txtCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/txtLocation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txtLocation"
+                tools:text="گتوند" />
+
+            <TextView
+                android:id="@+id/labelCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/iransans"
+                android:text="@string/city_semi"
+                android:textColor="@color/colorText"
+                app:layout_constraintBottom_toBottomOf="@id/txtCity"
+                app:layout_constraintStart_toEndOf="@id/txtCity"
+                app:layout_constraintTop_toTopOf="@id/txtCity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/labelUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/iransans"
+        android:text="اطلاعات کاربر"
+        android:textColor="@color/colorText2"
+        android:textSize="@dimen/label_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/salonInfoCard" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/userInfoCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelUserInfo">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/labelUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="نام:"
+                android:textColor="@color/colorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/labelUserName"
+                app:layout_constraintEnd_toStartOf="@id/labelUserName"
+                app:layout_constraintTop_toTopOf="@id/labelUserName"
+                tools:text="محمدحسن رضایی تبار" />
+
+            <TextView
+                android:id="@+id/labelPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="@string/phone_semi"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelUserName" />
+
+            <TextView
+                android:id="@+id/txtPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:text="09168865663"
+                android:textColor="@color/colorText2"
+                android:textSize="@dimen/label_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/labelPhone"
+                app:layout_constraintEnd_toStartOf="@id/labelPhone"
+                app:layout_constraintTop_toTopOf="@id/labelPhone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/txtRules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_info"
+                android:drawablePadding="8dp"
+                android:focusable="true"
+                android:fontFamily="@font/iransans"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/pay_means_accept_rules"
+                android:textColor="@color/colorText2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/labelPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="مبلغ قابل پرداخت"
+                android:textColor="@color/colorText3"
+                android:textSize="@dimen/label_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtRules" />
+
+            <TextView
+                android:id="@+id/labelToman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="@string/toman"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintBottom_toBottomOf="@id/labelPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/labelPrice" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText3"
+                android:textSize="@dimen/label_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/labelPrice"
+                app:layout_constraintStart_toEndOf="@id/labelToman"
+                app:layout_constraintTop_toTopOf="@id/labelPrice"
+                tools:text="35,000" />
+
+            <Button
+                android:id="@+id/btnPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/btn_search_bg"
+                android:fontFamily="@font/iransans"
+                android:text="@string/payment"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/labelPrice" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

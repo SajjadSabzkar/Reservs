@@ -53,7 +53,7 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
 
     override fun onClick(salon: Salon?) {
         val bundle = Bundle()
-        bundle.putInt("salon_id", salon!!.id)
+        bundle.putParcelable("salon", salon)
         findNavController().navigate(ir.reservs.reservs.R.id.salonToTimes, bundle)
     }
 

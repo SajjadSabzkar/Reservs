@@ -5,7 +5,7 @@ import ir.reservs.reservs.di.PerFragment;
 import ir.reservs.reservs.di.module.FragmentModule;
 import ir.reservs.reservs.ui.login.login.LoginFragment;
 import ir.reservs.reservs.ui.login.register.RegisterFragment;
-import ir.reservs.reservs.ui.main.details.DetailsFragment;
+import ir.reservs.reservs.ui.main.reserve.ReserveFragment;
 import ir.reservs.reservs.ui.main.history.HistoryFragment;
 import ir.reservs.reservs.ui.main.information.InformationFragment;
 import ir.reservs.reservs.ui.main.password.PasswordFragment;
@@ -26,7 +26,7 @@ public interface FragmentComponent {
 
     void inject(ResultFragment fragment);
 
-    void inject(DetailsFragment fragment);
+    void inject(ReserveFragment fragment);
 
     void inject(SalonListFragment fragment);
 

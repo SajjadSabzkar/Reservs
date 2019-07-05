@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -22,10 +22,11 @@ import javax.inject.Inject;
 
 import ir.reservs.reservs.R;
 import ir.reservs.reservs.model.Day;
+import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.model.Time;
 import ir.reservs.reservs.ui.base.BaseFragment;
 
-public class TimesFragment extends BaseFragment implements TimesContract.View {
+public class TimesFragment extends BaseFragment implements TimesContract.View, OnClickListener {
     @Inject
     WeekDayAdapter weekDayAdapter;
 
@@ -38,6 +39,8 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
     private ProgressBar timesProgressBar;
 
     private RecyclerView timeRecyclerView;
+
+    private Salon salon;
 
     @Nullable
     @Override
@@ -62,7 +65,11 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
         dayRecyclerView.setAdapter(weekDayAdapter);
         timeRecyclerView.setAdapter(timesAdapter);
         timesPresenter.onAttach(this);
-        timesPresenter.initializeViews(getArguments().getInt("salon_id"));
+        timesAdapter.setListener(this);
+        salon = getArguments().getParcelable("salon");
+        if (salon != null) {
+            timesPresenter.initializeViews(salon.getId());
+        }
     }
 
     @Override
@@ -98,6 +105,14 @@ public class TimesFragment extends BaseFragment implements TimesContract.View {
     @Override
     public void clearOldTimes() {
         timesAdapter.clearAll();
+    }
+
+    @Override
+    public void click(@NotNull Time time) {
+        Bundle b = new Bundle();
+        b.putParcelable("time", time);
+        b.putParcelable("salon", salon);
+        Navigation.findNavController(getView()).navigate(R.id.goToReserve, b);
     }
 
     @Override

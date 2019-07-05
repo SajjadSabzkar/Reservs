@@ -15,6 +15,7 @@ import ir.reservs.reservs.ui.main.history.HistoryContract;
 import ir.reservs.reservs.ui.main.history.HistoryPresenter;
 import ir.reservs.reservs.ui.main.information.InformationPresenter;
 import ir.reservs.reservs.ui.main.password.PasswordPresenter;
+import ir.reservs.reservs.ui.main.reserve.ReservePresenter;
 import ir.reservs.reservs.ui.main.salons.SalonListAdapter;
 import ir.reservs.reservs.ui.main.salons.SalonListPresenter;
 import ir.reservs.reservs.ui.main.times.TimesAdapter;
@@ -111,5 +112,11 @@ public class FragmentModule {
     @PerFragment
     RegisterPresenter provideRegisterPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         return new RegisterPresenter(dataManager, compositeDisposable);
+    }
+
+    @Provides
+    @PerFragment
+    ReservePresenter provideReservePresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+        return new ReservePresenter(dataManager, compositeDisposable);
     }
 }
