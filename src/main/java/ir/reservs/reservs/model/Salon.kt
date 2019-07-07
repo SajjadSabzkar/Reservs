@@ -13,4 +13,4 @@ data class Salon(
         var minPrice: Int,
         var maxPrice: Int,
         var cityName: String
-): Parcelable
+) : Parcelable

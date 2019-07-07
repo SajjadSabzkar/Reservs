@@ -98,7 +98,6 @@ public class TimesFragment extends BaseFragment implements TimesContract.View, O
 
     @Override
     public void changeSelectedDay(@NotNull Day day) {
-        Log.e("TimesFragment", "changeSelectedDay" + ": " + 1);
         weekDayAdapter.selectDay(day);
     }
 
@@ -112,6 +111,7 @@ public class TimesFragment extends BaseFragment implements TimesContract.View, O
         Bundle b = new Bundle();
         b.putParcelable("time", time);
         b.putParcelable("salon", salon);
+        b.putParcelable("day",weekDayAdapter.getSelectedDay());
         Navigation.findNavController(getView()).navigate(R.id.goToReserve, b);
     }
 

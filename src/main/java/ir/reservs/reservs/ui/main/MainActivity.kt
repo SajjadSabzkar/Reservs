@@ -1,6 +1,8 @@
 package ir.reservs.reservs.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -11,6 +13,8 @@ import ir.reservs.reservs.ui.base.BaseActivity
 class MainActivity : BaseActivity(), MainContract.View {
 
 
+    private var navController: NavController? = null
+
     override fun onError(msg: String) {
 
     }
@@ -18,13 +22,13 @@ class MainActivity : BaseActivity(), MainContract.View {
     override fun setup() {
         val host: NavHostFragment = supportFragmentManager
                 .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
-        val navController = host.navController
+        navController = host.navController
         setupBottomNavMenu(navController)
     }
 
-    private fun setupBottomNavMenu(navController: NavController) {
+    private fun setupBottomNavMenu(navController: NavController?) {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNav?.setupWithNavController(navController)
+        bottomNav?.setupWithNavController(navController!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +36,14 @@ class MainActivity : BaseActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onNavigateUp(): Boolean {
+        navController?.navigateUp()
+        return super.onNavigateUp()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onNewIntent(intent: Intent?) {
+        Log.e("MainActivity", intent.toString())
+        navController?.handleDeepLink(intent)
+        super.onNewIntent(intent)
     }
-
-
 }

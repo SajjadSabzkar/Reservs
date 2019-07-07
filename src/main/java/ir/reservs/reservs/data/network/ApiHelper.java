@@ -31,6 +31,17 @@ public interface ApiHelper {
     @GET("reserves")
     Single<List<ReserveHistory>> reserves();
 
+    @POST("reserve")
+    @FormUrlEncoded
+    Single<Success> reserve(@Field("time_id") String time_id,
+                            @Field("salon_id") Integer salon_id,
+                            @Field("authority") String authority,
+                            @Field("date") String date);
+
+    @POST("reserve/update")
+    @FormUrlEncoded
+    Single<Success> reserveUpdate(@Field("authority") String authority);
+
     @GET("salons")
     Single<List<Salon>> salons();
 

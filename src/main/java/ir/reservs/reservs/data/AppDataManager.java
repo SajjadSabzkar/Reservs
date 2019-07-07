@@ -38,6 +38,17 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Single<Success> reserve(String time_id, Integer salon_id, String authority, String date) {
+        return mApiHelper.reserve(time_id, salon_id, authority, date);
+    }
+
+    @Override
+    public Single<Success> reserveUpdate(String authority) {
+        return mApiHelper.reserveUpdate(authority);
+    }
+
+
+    @Override
     public Single<List<Salon>> salons() {
         return mApiHelper.salons();
     }

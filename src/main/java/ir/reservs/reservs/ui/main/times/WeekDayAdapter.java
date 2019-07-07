@@ -35,8 +35,6 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.e("WeekDayAdapter", "onBindViewHolder: " + days.get(position).getNum());
-        Log.e("WeekDayAdapter", "onBindViewHolder: " + selectedDay.getNum());
         holder.txtDayName.setText(days.get(position).getName() + "");
         holder.txtDate.setText(days.get(position).getNum() + "");
         if (days.get(position).equals(selectedDay)) {
@@ -73,6 +71,10 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.ViewHold
         this.selectedDay = day;
         notifyDataSetChanged();
         //notifyItemChanged(days.indexOf(selectedDay));
+    }
+
+    public Day getSelectedDay() {
+        return selectedDay;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

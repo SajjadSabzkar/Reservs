@@ -78,4 +78,10 @@
     <string name="phone_semi">تلفن:</string>
     <string name="pay_means_accept_rules">با پرداخت کردن هزینه موافقت خود را با تمامی قوانین و مقررات ورزشی رزرو اعلام میکنید</string>
     <string name="payment">پرداخت</string>
+    <string name="return_credit_to_account">در صورتی که هزینه رزرو از حساب شما کم شد است به زودی به حساب شما باز خواهد گشت.</string>
+    <string name="payment_error">در پرداخت هزینه خطایی اتفاق افتاد</string>
+    <string name="payment_success">پرداخت با موفقیت انجام شد</string>
+    <string name="result_success_body">برای اطمینان و یاد آوری میتوانید به بخش تاریخچه مراجعه کنید</string>
+    <string name="reservable_locations">مکان های قابل رزرو</string>
+    <string name="reserve_history">تاریخچه رزرو</string>
 </resources>

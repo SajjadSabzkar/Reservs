@@ -24,7 +24,8 @@ class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val reserveHistory: ReserveHistory = history[position]
+        //todo  history[position] must not be null
+        val reserveHistory = history[position]
         holder.txtName.text = reserveHistory.name
         holder.txtTime.text = reserveHistory.startTime
         holder.txtTime.append(" الی ")

@@ -83,8 +83,8 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
 
     private fun getDayFromDate(date: JalaliCalendar): Day {
         val firstLetter = date.dayOfWeekString.substring(0, 1)
-        val dayOfMonth = date.day
-        return Day(dayOfMonth, firstLetter)
+        val dateString = dateFormat(date)
+        return Day(dateString, firstLetter)
     }
 
     private fun dateFormat(date: JalaliCalendar?): String {

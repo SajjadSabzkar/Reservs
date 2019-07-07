@@ -28,9 +28,6 @@ public class HistoryPresenter implements HistoryContract.Presenter {
         view.showProgress();
         Disposable disposable = dataManager.reserves()
                 .subscribeOn(Schedulers.io())
-                .doOnError(error -> {
-                    Log.e("HistoryPresenter", "getDataHistory" + ": " + error.getMessage());
-                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         reserves -> {
@@ -55,7 +52,6 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     public void onDetach() {
         view = null;
         if (!compositeDisposable.isDisposed()) {
-            Log.e("SalonListPresenter", "onDetach" + ": composite clear");
             compositeDisposable.clear();
         }
     }

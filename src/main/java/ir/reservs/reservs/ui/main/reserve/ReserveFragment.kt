@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.reserve;
 
+import android.content.Context
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import ir.reservs.reservs.ui.base.BaseFragment;
 import android.widget.Toast
 import com.zarinpal.ewallets.purchase.ZarinPal
 import android.net.Uri
+import android.widget.Button
 import android.widget.TextView
+import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import javax.inject.Inject
@@ -21,16 +24,12 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
     var reservePresenter: ReservePresenter? = null
         @Inject set
 
-    var txtPrice: TextView? = null
-    var txtName: TextView? = null
-    var txtPhone: TextView? = null
-    var txtCityName: TextView? = null
-    var txtLocation: TextView? = null
-    var txtStart: TextView? = null
-    var txtEnd: TextView? = null
-    var txtTime: TextView? = null
-    var salon: Salon? = null
-    var time: Time? = null
+    private var txtName: TextView? = null
+    private var txtPhone: TextView? = null
+    private var txtTime: TextView? = null
+    private var salon: Salon? = null
+    private var time: Time? = null
+    private var day: Day? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reserve, container, false)
@@ -41,6 +40,7 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         reservePresenter?.onAttach(this)
         salon = arguments?.get("salon") as Salon
         time = arguments?.get("time") as Time
+        day = arguments?.get("day") as Day
         //set data from arguments
         view?.findViewById<TextView>(R.id.txtPrice)?.text = time?.price
         view?.findViewById<TextView>(R.id.txtCity)?.text = salon?.cityName
@@ -51,7 +51,10 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         txtName = view?.findViewById(R.id.txtName)
         txtPhone = view?.findViewById(R.id.txtPhone)
         txtTime = view?.findViewById(R.id.txtTime)
-        reservePresenter?.initialize(salon!!, time!!)
+        reservePresenter?.initialize(salon!!, time!!, day!!)
+        view?.findViewById<Button>(R.id.btnPayment)?.setOnClickListener {
+            reservePresenter?.payment()
+        }
     }
 
     override fun initializeViews(name: String, phone: String, time: String) {
@@ -60,17 +63,16 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         txtTime?.text = time
     }
 
+    override fun getContext(): Context? {
+        return super.getContext()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         if (reservePresenter != null) {
             reservePresenter = null
-            txtPrice = null
             txtName = null
             txtPhone = null
-            txtCityName = null
-            txtLocation = null
-            txtStart = null
-            txtEnd = null
             txtTime = null
         }
     }

@@ -37,15 +37,6 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        historyPresenter.onAttach(this);
-        historyRecycler.setAdapter(historyAdapter);
-    }
-
-
-
-    @Override
     public void setHistoryData(List<ReserveHistory> reserves) {
         historyAdapter.addItems(reserves);
     }
@@ -63,15 +54,12 @@ public class HistoryFragment extends BaseFragment implements HistoryContract.Vie
     }
 
     @Override
-    public void onError(String error) {
-        //Snackbar.make(historyRecycler, error, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
     public void setup(View view) {
         getFragmentComponent().inject(this);
         progressBar = view.findViewById(R.id.progressBar);
         historyRecycler = view.findViewById(R.id.historyRecycler);
+        historyPresenter.onAttach(this);
+        historyRecycler.setAdapter(historyAdapter);
     }
 
     @Override
