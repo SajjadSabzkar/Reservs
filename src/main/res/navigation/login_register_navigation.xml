@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="ir.reservs.reservs.ui.login.register.RegisterFragment"
-        android:label="RegisterFragment" />
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/registerToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="ir.reservs.reservs.ui.login.login.LoginFragment"

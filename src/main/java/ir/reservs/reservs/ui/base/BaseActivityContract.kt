@@ -1,6 +1,6 @@
 package ir.reservs.reservs.ui.base;
 
-class BaseContract {
+class BaseActivityContract {
     interface View {
         fun onError(msg: String)
         fun onError(resId: Int)

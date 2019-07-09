@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseFragment
+import ir.reservs.reservs.ui.custome.StateAdapter
 import javax.inject.Inject
 
 
@@ -25,18 +26,20 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
 
     private var progressBar: ProgressBar? = null
 
+    //private var stateAdapter: StateAdapter? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(ir.reservs.reservs.R.layout.fragment_salon_list, container, false)
     }
 
-    override fun setup(view: View?) {
-        salonRecyclerView = view?.findViewById(ir.reservs.reservs.R.id.salonsRecyclerView)
-        progressBar = view?.findViewById(ir.reservs.reservs.R.id.progressBar)
-        //activityComponent.inject(this)
+
+    override fun setup(view: View) {
+        salonRecyclerView = view.findViewById(ir.reservs.reservs.R.id.salonsRecyclerView)
+        progressBar = view.findViewById(ir.reservs.reservs.R.id.progressBar)
         fragmentComponent.inject(this)
-        //fragmentComponnet.inject(this)
         salonListAdapter?.listener = this
-        salonRecyclerView?.adapter = salonListAdapter
+        initializeStateAdapter(salonRecyclerView!!, salonListAdapter!!)
+        salonRecyclerView?.adapter = getStateAdapter()
         salonListPresenter?.onAttach(this)
     }
 
@@ -55,16 +58,6 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
         val bundle = Bundle()
         bundle.putParcelable("salon", salon)
         findNavController().navigate(ir.reservs.reservs.R.id.salonToTimes, bundle)
-    }
-
-    override fun showProgress() {
-        progressBar?.visibility = View.VISIBLE
-        salonRecyclerView?.visibility = View.GONE
-    }
-
-    override fun hideProgress() {
-        progressBar?.visibility = View.GONE
-        salonRecyclerView?.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

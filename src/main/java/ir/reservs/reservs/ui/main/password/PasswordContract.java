@@ -1,13 +1,13 @@
 package ir.reservs.reservs.ui.main.password;
 
-import ir.reservs.reservs.ui.base.BaseContract;
+import ir.reservs.reservs.ui.base.BaseFragmentContract;
 
 public class PasswordContract {
-  interface View extends BaseContract.View {
+  interface View extends BaseFragmentContract.View {
     void passwordChangedSuccessful();
   }
 
-  interface Presenter extends BaseContract.Presenter<View> {
+  interface Presenter extends BaseFragmentContract.Presenter<View> {
     void changePassword(String current_password, String new_password);
   }
 }

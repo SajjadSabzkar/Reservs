@@ -55,7 +55,7 @@
         android:fontFamily="@font/iransans"
         android:gravity="center"
         android:text="@string/login_description"
-        android:textSize="@dimen/body_text_size"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
         android:fontFamily="@font/iransans"
         android:text="@string/tel"
         android:textColor="@color/colorText"
-        android:textSize="@dimen/body_text_size"
+        android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -138,7 +138,7 @@
         android:fontFamily="@font/iransans"
         android:text="@string/password"
         android:textColor="@color/colorText"
-        android:textSize="@dimen/body_text_size"
+        android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPhone" />
@@ -208,42 +208,39 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/enter"
-        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@id/txtQuestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPassword" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <TextView
+        android:id="@+id/txtQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/iransans"
+        android:text="@string/dont_have_account"
+        android:textColor="@color/colorText2"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btnCreateAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn"
-            android:backgroundTint="@color/colorCancel"
-            android:fontFamily="@font/iransans"
-            android:text="@string/create"
-            android:textColor="@color/white"
-            android:textSize="14dp" />
+    <TextView
+        android:id="@+id/txtCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/iransans"
+        android:text="@string/create_account"
+        android:textColor="@color/colorCancel"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/txtQuestions"
+        app:layout_constraintEnd_toStartOf="@id/txtQuestions"
+        app:layout_constraintTop_toTopOf="@id/txtQuestions" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/iransans"
-            android:text="@string/dont_have_account"
-            android:textColor="@color/colorText2"
-            android:textSize="14dp" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

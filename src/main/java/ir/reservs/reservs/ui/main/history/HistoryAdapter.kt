@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.history
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         //todo  history[position] must not be null
+        Log.e("HistoryAdapter", "size:" + history.size.toString());
         val reserveHistory = history[position]
         holder.txtName.text = reserveHistory.name
         holder.txtTime.text = reserveHistory.startTime
@@ -43,8 +45,8 @@ class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adap
     private fun updateStateView(view: View, state: Int): View {
         when (state) {
             1 -> view.setBackgroundResource(R.color.colorFuture)
-            2 -> view.setBackgroundResource(R.color.colorInProcess)
-            3 -> view.setBackgroundResource(R.color.colorCancel)
+            0 -> view.setBackgroundResource(R.color.colorInProcess)
+            -1 -> view.setBackgroundResource(R.color.colorCancel)
         }
         return view
     }

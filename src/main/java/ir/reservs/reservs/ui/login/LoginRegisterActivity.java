@@ -8,6 +8,8 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.inject.Inject;
 
 import dmax.dialog.SpotsDialog;
@@ -26,14 +28,14 @@ public class LoginRegisterActivity extends BaseActivity {
         setContentView(R.layout.layout_login_register);
     }
 
+
     @Override
-    public void onError(String msg) {
+    public void onError(@NotNull String msg) {
 
     }
 
     @Override
     public void setup() {
-        //getActivityComponent().inject(this);
-    }
 
+    }
 }

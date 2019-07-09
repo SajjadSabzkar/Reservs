@@ -37,8 +37,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         txtVersion = findViewById(R.id.txtVersion);
         getActivityComponent().inject(this);
 
-        //todo : most inject not build here
-        //splashPresenter = new SplashPresenter(dataManager, new CompositeDisposable());
         splashPresenter.onAttach(this);
     }
 

@@ -10,9 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseActivity
 
-class MainActivity : BaseActivity(), MainContract.View {
-
-
+class MainActivity : BaseActivity(){
     private var navController: NavController? = null
 
     override fun onError(msg: String) {

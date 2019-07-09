@@ -1,22 +1,16 @@
 package ir.reservs.reservs.ui.login.register
 
+import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.User
-import ir.reservs.reservs.ui.base.BaseContract
+import ir.reservs.reservs.ui.base.BaseFragmentContract
 import ir.reservs.reservs.utils.RetrofitError
 
-class RegisterPresenter(dataManager: DataManager, disposable: CompositeDisposable) : RegisterContract.Presenter {
+class RegisterPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : RegisterContract.Presenter {
     var view: RegisterContract.View? = null
-    val compositeDisposable: CompositeDisposable
-    val dataManager: DataManager
-
-    init {
-        this.dataManager = dataManager
-        compositeDisposable = disposable
-    }
 
     override fun onAttach(view: RegisterContract.View) {
         this.view = view
@@ -35,6 +29,7 @@ class RegisterPresenter(dataManager: DataManager, disposable: CompositeDisposabl
             view?.onError("رمز عبور باید حداقل پنج حرف باشد")
             return
         }
+        Log.e("RegisterPresenter", "checks pass")
         view?.showProgress()
         val dispose = dataManager.register(name, phone, password)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -43,11 +38,15 @@ class RegisterPresenter(dataManager: DataManager, disposable: CompositeDisposabl
                     dataManager.currentUserName = user.name
                     dataManager.currentUserPhone = user.phone
                     dataManager.currentUserImage = user.image
+                    dataManager.accessToken = user.token
                     view?.hideProgress()
                     view?.openMainActivity()
                 }, { error: Throwable ->
                     view?.hideProgress()
-                    RetrofitError.handle(view as BaseContract.View, error)
+                    RetrofitError.handle(view as BaseFragmentContract.View, error)
+                    if (RetrofitError.code(error) == 422) {
+                        view?.onError("تلفن وارد شده معتبر نیست")
+                    }
                 })
         compositeDisposable.add(dispose)
     }

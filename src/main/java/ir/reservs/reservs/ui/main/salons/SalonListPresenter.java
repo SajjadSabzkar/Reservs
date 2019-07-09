@@ -28,18 +28,22 @@ public class SalonListPresenter implements SalonListContract.Presenter {
     }
 
     private void getSalonsFromServer() {
-        view.showProgress();
+        view.loadingState();
         Disposable disposable = dataManager.salons()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         salons -> {
-                            view.setSalonsData(salons);
-                            view.hideProgress();
+                            if (salons.size() > 0) {
+                                view.setSalonsData(salons);
+                                view.normalState();
+                            } else {
+                                view.emptyState();
+                            }
                         },
                         error -> {
                             RetrofitError.INSTANCE.handle(view, error);
-                            view.hideProgress();
+                            view.errorState();
                         }
                 );
         compositeDisposable.add(disposable);

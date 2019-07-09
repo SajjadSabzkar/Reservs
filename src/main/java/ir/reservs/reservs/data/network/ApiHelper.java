@@ -4,11 +4,11 @@ import java.util.List;
 
 import io.reactivex.Single;
 import ir.reservs.reservs.model.ChangePassword;
-import ir.reservs.reservs.model.User;
 import ir.reservs.reservs.model.ReserveHistory;
 import ir.reservs.reservs.model.Salon;
 import ir.reservs.reservs.model.Success;
 import ir.reservs.reservs.model.Time;
+import ir.reservs.reservs.model.User;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -20,7 +20,7 @@ public interface ApiHelper {
     @POST("auth/register")
     @FormUrlEncoded
     Single<User> register(@Field("name") String name,
-                          @Field("phone") String phone,
+                          @Field("phone_number") String phone,
                           @Field("password") String password);
 
 

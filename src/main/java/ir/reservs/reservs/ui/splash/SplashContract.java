@@ -1,6 +1,6 @@
 package ir.reservs.reservs.ui.splash;
 
-import ir.reservs.reservs.ui.base.BaseContract;
+import ir.reservs.reservs.ui.base.BaseFragmentContract;
 
 class SplashContract {
     interface View {
@@ -11,7 +11,7 @@ class SplashContract {
         void onError(String text);
     }
 
-    interface Presenter extends BaseContract.Presenter<View> {
+    interface Presenter extends BaseFragmentContract.Presenter<View> {
 
     }
 }

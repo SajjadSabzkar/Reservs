@@ -1,15 +1,13 @@
 package ir.reservs.reservs.ui.main.times
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Time
-import ir.reservs.reservs.ui.base.BaseContract
+import ir.reservs.reservs.ui.base.BaseFragmentContract
 import ir.reservs.reservs.utils.RetrofitError
 import java.util.*
 
@@ -34,16 +32,15 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
     }
 
     private fun getTimesFromServer(salon_id: Int, date: String) {
-        view?.showProgress()
+        view?.loadingState()
         val disposable = dataManager.times(salon_id, date)
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribeOn(Schedulers.io())
                 ?.subscribe({ times: MutableList<Time> ->
-                    view?.hideProgress()
+                    view?.normalState()
                     view?.updateTimes(times)
                 }, { error: Throwable ->
-                    RetrofitError.handle(view as BaseContract.View, error)
-                    view?.hideProgress()
+                    RetrofitError.handle(view as BaseFragmentContract.View, error)
                 })
         if (disposable != null)
             compositeDisposable.add(disposable)
@@ -57,7 +54,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             days.add(getDayFromDate(jalaliDate))
             jalaliDate = jalaliDate.tomorrow
         }
-        val date: String = jalaliDate.year.toString() + "-" + jalaliDate.month + "-" + jalaliDate.day
+        val date: String = dateFormat(jalaliDate)
         getTimesFromServer(salon_id, date)
         view?.initializeViews(days, days[0])
     }

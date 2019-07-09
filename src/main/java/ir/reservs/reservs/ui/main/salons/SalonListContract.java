@@ -3,18 +3,18 @@ package ir.reservs.reservs.ui.main.salons;
 import java.util.List;
 
 import ir.reservs.reservs.model.Salon;
-import ir.reservs.reservs.ui.base.BaseContract;
+import ir.reservs.reservs.ui.base.BaseFragmentContract;
 
 public class SalonListContract {
 
-    interface View extends BaseContract.View {
+    interface View extends BaseFragmentContract.View {
         void setSalonsData(List<Salon> salons);
 
-        void showProgress();
+        void errorState();
 
-        void hideProgress();
+        void emptyState();
     }
 
-    interface Presenter extends BaseContract.Presenter<View> {
+    interface Presenter extends BaseFragmentContract.Presenter<View> {
     }
 }

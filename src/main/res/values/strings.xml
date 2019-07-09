@@ -84,4 +84,6 @@
     <string name="result_success_body">برای اطمینان و یاد آوری میتوانید به بخش تاریخچه مراجعه کنید</string>
     <string name="reservable_locations">مکان های قابل رزرو</string>
     <string name="reserve_history">تاریخچه رزرو</string>
+    <string name="do_you_have_account">قبلا از ورزشی رزرو استفاده کرده اید؟</string>
+    <string name="login_to_account">ورود به حساب</string>
 </resources>

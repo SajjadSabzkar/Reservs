@@ -12,18 +12,18 @@ import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 
 class AboutFragment : BaseFragment() {
-    override fun setup(view: View?) {
-        view?.findViewById<Button>(R.id.btnGithub)?.setOnClickListener {
+    override fun setup(view: View) {
+        view.findViewById<Button>(R.id.btnGithub)?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://github.com/rfmhb2/reservs")
             startActivity(intent)
         }
-        view?.findViewById<Button>(R.id.btnInstagram)?.setOnClickListener {
+        view.findViewById<Button>(R.id.btnInstagram)?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://instagram.com/mhbolivand")
             startActivity(intent)
         }
-        view?.findViewById<Button>(R.id.btnTelegram)?.setOnClickListener {
+        view.findViewById<Button>(R.id.btnTelegram)?.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://t.me/rfmhb")
             startActivity(intent)

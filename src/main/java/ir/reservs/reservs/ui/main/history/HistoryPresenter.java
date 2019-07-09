@@ -1,7 +1,5 @@
 package ir.reservs.reservs.ui.main.history;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -10,7 +8,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ir.reservs.reservs.data.DataManager;
 import ir.reservs.reservs.utils.RetrofitError;
-import retrofit2.HttpException;
 
 public class HistoryPresenter implements HistoryContract.Presenter {
 
@@ -25,18 +22,18 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     }
 
     public void getDataHistory() {
-        view.showProgress();
+        view.loadingState();
         Disposable disposable = dataManager.reserves()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         reserves -> {
+                            view.normalState();
                             view.setHistoryData(reserves);
-                            view.hideProgress();
                         },
                         error -> {
                             RetrofitError.INSTANCE.handle(view, error);
-                            view.hideProgress();
+                            view.errorState();
                         }
                 );
         compositeDisposable.add(disposable);
@@ -45,7 +42,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     @Override
     public void onAttach(HistoryContract.View view) {
         this.view = view;
-        getDataHistory();
+
     }
 
     @Override

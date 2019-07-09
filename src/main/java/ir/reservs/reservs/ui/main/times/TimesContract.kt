@@ -2,19 +2,17 @@ package ir.reservs.reservs.ui.main.times
 
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Time
-import ir.reservs.reservs.ui.base.BaseContract
+import ir.reservs.reservs.ui.base.BaseFragmentContract
 
 class TimesContract {
-    interface View : BaseContract.View {
+    interface View : BaseFragmentContract.View {
         fun updateTimes(times: MutableList<Time>)
         fun initializeViews(days: MutableList<Day>, selectedDay: Day)
-        fun showProgress()
-        fun hideProgress()
         fun changeSelectedDay(day: Day)
         fun clearOldTimes()
     }
 
-    interface Presenter : BaseContract.Presenter<View> {
+    interface Presenter : BaseFragmentContract.Presenter<View> {
 
     }
 }
