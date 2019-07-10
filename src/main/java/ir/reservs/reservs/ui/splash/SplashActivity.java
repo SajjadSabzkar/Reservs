@@ -29,7 +29,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_splash);
-
     }
 
     @Override
@@ -66,5 +65,25 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
             splashPresenter.onDetach();
             splashPresenter = null;
         }
+    }
+
+    @Override
+    public void emptyState() {
+
+    }
+
+    @Override
+    public void errorState() {
+
+    }
+
+    @Override
+    public void loadingState() {
+
+    }
+
+    @Override
+    public void normalState() {
+
     }
 }

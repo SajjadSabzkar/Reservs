@@ -15,11 +15,7 @@ import ir.reservs.reservs.ui.custome.StateAdapter
 import ir.reservs.reservs.ui.login.LoginRegisterActivity
 
 abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
-    companion object {
-        @JvmStatic
-        lateinit var fragmentComponent: FragmentComponent
-
-    }
+    var fragmentComponent: FragmentComponent? = null
 
     private var stateAdapter: StateAdapter? = null
 
@@ -86,7 +82,7 @@ abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        //graph = null
+        fragmentComponent = null
         stateAdapter = null
     }
 

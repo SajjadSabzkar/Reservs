@@ -86,4 +86,5 @@
     <string name="reserve_history">تاریخچه رزرو</string>
     <string name="do_you_have_account">قبلا از ورزشی رزرو استفاده کرده اید؟</string>
     <string name="login_to_account">ورود به حساب</string>
+    <string name="date_quote">تاریخ:</string>
 </resources>

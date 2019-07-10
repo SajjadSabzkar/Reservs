@@ -28,7 +28,7 @@ public class LoginPresenter implements LoginContract.presenter {
         dataManager.setAccessToken(user.getToken());
         dataManager.setCurrentUserName(user.getName());
         dataManager.setCurrentUserPhone(user.getPhone());
-        dataManager.setCurrentUserImage(user.getImage());
+//        dataManager.setCurrentUserImage(user.getImage());
     }
 
 

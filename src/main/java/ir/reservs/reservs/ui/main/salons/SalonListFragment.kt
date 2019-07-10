@@ -36,7 +36,7 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
     override fun setup(view: View) {
         salonRecyclerView = view.findViewById(ir.reservs.reservs.R.id.salonsRecyclerView)
         progressBar = view.findViewById(ir.reservs.reservs.R.id.progressBar)
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         salonListAdapter?.listener = this
         initializeStateAdapter(salonRecyclerView!!, salonListAdapter!!)
         salonRecyclerView?.adapter = getStateAdapter()

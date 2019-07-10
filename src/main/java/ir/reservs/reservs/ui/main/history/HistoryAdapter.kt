@@ -25,21 +25,20 @@ class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //todo  history[position] must not be null
-        Log.e("HistoryAdapter", "size:" + history.size.toString());
-        val reserveHistory = history[position]
-        holder.txtName.text = reserveHistory.name
-        holder.txtTime.text = reserveHistory.startTime
+        val history = history[position]
+        holder.txtName.text = history.name
+        holder.txtTime.text = history.startTime
         holder.txtTime.append(" الی ")
-        holder.txtTime.append(reserveHistory.endTime)
-        holder.txtDate.text = CommonUtils.dateFormatStandard(reserveHistory.date)
-        holder.txtLocation.text = reserveHistory.location
+        holder.txtTime.append(history.endTime)
+        holder.txtDate.text = CommonUtils.dateFormatStandard(history.date)
+        holder.txtLocation.text = history.location
+        Log.e("HistoryAdapter", "status: ${history.startTime}->" + history.status);
         when {
-            reserveHistory.status == 1 -> holder.txtState.text = "آینده"
-            reserveHistory.status == 0 -> holder.txtState.text = "حال"
-            reserveHistory.status == -1 -> holder.txtState.text = "گذشته"
+            history.status == 1 -> holder.txtState.text = "آینده"
+            history.status == 0 -> holder.txtState.text = "حال"
+            history.status == -1 -> holder.txtState.text = "گذشته"
         }
-        holder.viewState = updateStateView(holder.viewState, reserveHistory.status);
+        holder.viewState = updateStateView(holder.viewState, history.status);
     }
 
     private fun updateStateView(view: View, state: Int): View {

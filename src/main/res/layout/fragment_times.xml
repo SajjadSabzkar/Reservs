@@ -37,29 +37,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <FrameLayout
-        android:layout_width="0dp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timesRecyclerView"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/bottomCard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topCard">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/timesRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="6dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/times_item" />
-
-        <ProgressBar
-            android:id="@+id/timesProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true" />
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/topCard"
+        tools:listitem="@layout/times_item" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomCard"

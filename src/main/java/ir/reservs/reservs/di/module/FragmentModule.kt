@@ -8,7 +8,6 @@ import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.di.PerFragment
 import ir.reservs.reservs.ui.login.register.RegisterPresenter
 import ir.reservs.reservs.ui.main.history.HistoryAdapter
-import ir.reservs.reservs.ui.main.history.HistoryContract
 import ir.reservs.reservs.ui.main.history.HistoryPresenter
 import ir.reservs.reservs.ui.main.information.InformationPresenter
 import ir.reservs.reservs.ui.main.password.PasswordPresenter
@@ -32,8 +31,8 @@ class FragmentModule {
 
     @Provides
     @PerFragment
-    fun provideHistoryPresenter(datamanager: DataManager, disposable: CompositeDisposable): HistoryContract.Presenter {
-        return HistoryPresenter(datamanager, disposable)
+    fun provideHistoryPresenter(dataManager: DataManager, disposable: CompositeDisposable): HistoryPresenter {
+        return HistoryPresenter(dataManager, disposable)
     }
 
 

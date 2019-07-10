@@ -17,7 +17,7 @@ class PreferenceModule {
     }
 
     @Provides
-    fun provideToken(preferencesHelper: PreferencesHelper): String {
-        return preferencesHelper.accessToken;
+    fun provideToken(preferencesHelper: PreferencesHelper): String? {
+        return preferencesHelper.getAccessToken();
     }
 }

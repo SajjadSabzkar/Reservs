@@ -27,7 +27,7 @@ interface ApiHelper {
     fun login(@Field("phone") phone: String, @Field("password") password: String): Single<User>
 
     @GET("reserves")
-    fun reserves(): Single<List<ReserveHistory>>
+    fun reserves(): Single<MutableList<ReserveHistory>>
 
     @POST("reserve")
     @FormUrlEncoded
@@ -41,7 +41,7 @@ interface ApiHelper {
     fun reserveUpdate(@Field("authority") authority: String): Single<Success>
 
     @GET("salons")
-    fun salons(): Single<List<Salon>>
+    fun salons(): Single<MutableList<Salon>>
 
     @PUT("info")
     @FormUrlEncoded
@@ -54,6 +54,6 @@ interface ApiHelper {
                        @Field("new_password") new_password: String): Single<ChangePassword>
 
     @GET("times/{salon_id}/{date}")
-    fun times(@Path("salon_id") salon_id: Int, @Path("date") date: String): Single<List<Time>>
+    fun times(@Path("salon_id") salon_id: Int, @Path("date") date: String): Single<MutableList<Time>>
 
 }

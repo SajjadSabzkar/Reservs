@@ -55,7 +55,7 @@ class NetworkModule {
             val requestBuilder = original.newBuilder()
                     .addHeader("Accept", "application/json")
                     .addHeader("Content-Type", "application/json")
-            val token = appPreferencesHelper.accessToken
+            val token = appPreferencesHelper.getAccessToken()
             if (!TextUtils.isEmpty(token)) {
                 requestBuilder.addHeader(
                         "Authorization",

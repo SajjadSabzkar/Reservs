@@ -3,10 +3,18 @@ package ir.reservs.reservs.data.prefs
 import android.content.Context
 import android.content.SharedPreferences
 
+
 class AppPreferencesHelper(context: Context) : PreferencesHelper {
 
+    private val USER_ID = "PREF_KEY_USER_ID"
+    private val USER_PHONE = "PREF_KEY_USER_PHONE"
+    private val USER_NAME = "PREF_KEY_USER_NAME"
+    private val USER_IMAGE = "PREF_KEY_USER_IMAGE"
+    private val ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN"
 
-    private val mPrefs: SharedPreferences = context.getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+
+    private var mPrefs: SharedPreferences = context.getSharedPreferences("user_pref",
+            Context.MODE_PRIVATE)
 
     override fun getCurrentUserId(): Long? {
         val userId = mPrefs.getLong(USER_ID, -1L)
@@ -18,18 +26,16 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
         mPrefs.edit().putLong(USER_ID, id).apply()
     }
 
-    override fun getCurrentUserPhone(): String? {
-        val userPhone = mPrefs.getString(USER_PHONE, "-1")
-        return if (userPhone == "-1") null else userPhone
+    override fun getCurrentUserPhone(): String {
+        return mPrefs.getString(USER_PHONE, "-1")!!
     }
 
     override fun setCurrentUserPhone(phone: String) {
         mPrefs.edit().putString(USER_PHONE, phone).apply()
     }
 
-    override fun getCurrentUserName(): String? {
-        val userName = mPrefs.getString(USER_NAME, "-1")
-        return if (userName == "-1") null else userName
+    override fun getCurrentUserName(): String {
+        return mPrefs.getString(USER_NAME, "-1")!!
     }
 
     override fun setCurrentUserName(name: String) {
@@ -40,14 +46,12 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
         mPrefs.edit().putString(USER_IMAGE, image).apply()
     }
 
-    override fun getCurrentUserImage(): String? {
-        val userImage = mPrefs.getString(USER_IMAGE, "-1")
-        return if (userImage == "-1") null else userImage
+    override fun getCurrentUserImage(): String {
+        return mPrefs.getString(USER_IMAGE, "-1")!!
     }
 
-    override fun getAccessToken(): String? {
-        val accessToken = mPrefs.getString(ACCESS_TOKEN, "-1")
-        return if (accessToken == "-1") null else accessToken
+    override fun getAccessToken(): String {
+        return mPrefs.getString(ACCESS_TOKEN, "-1")!!
     }
 
     override fun setAccessToken(token: String?) {
@@ -55,14 +59,6 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
     }
 
     override fun removeAccessToken() {
-        accessToken = null
-    }
-
-    companion object {
-        private val USER_ID = "PREF_KEY_USER_ID"
-        private val USER_PHONE = "PREF_KEY_USER_PHONE"
-        private val USER_NAME = "PREF_KEY_USER_NAME"
-        private val USER_IMAGE = "PREF_KEY_USER_IMAGE"
-        private val ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN"
+        setAccessToken(null)
     }
 }

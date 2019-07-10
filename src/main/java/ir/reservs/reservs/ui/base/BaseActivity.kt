@@ -11,11 +11,8 @@ import ir.reservs.reservs.ui.login.LoginRegisterActivity
 
 abstract class BaseActivity : AppCompatActivity(), BaseActivityContract.View {
 
-    companion object {
-        @JvmStatic
-        lateinit var activityComponent: ActivityComponent
 
-    }
+    public var activityComponent: ActivityComponent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseActivityContract.View {
     }
 
     override fun onDestroy() {
+        activityComponent = null
         super.onDestroy()
     }
 

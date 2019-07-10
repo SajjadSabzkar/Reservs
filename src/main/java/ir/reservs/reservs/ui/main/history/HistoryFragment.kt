@@ -16,7 +16,6 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     var historyAdapter: HistoryAdapter? = null
         @Inject set
 
-
     var historyPresenter: HistoryPresenter? = null
         @Inject set
 
@@ -27,16 +26,16 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
         return inflater.inflate(R.layout.layout_history, container, false)
     }
 
-    override fun setHistoryData(reserves: MutableList<ReserveHistory>?) {
-        if (reserves?.size == 0) {
+    override fun setHistoryData(reserves: MutableList<ReserveHistory>) {
+        if (reserves.size == 0) {
             getStateAdapter().currentView = StateAdapter.VIEW_EMPTY
             return
         }
-        historyAdapter?.addItems(reserves!!)
+        historyAdapter?.addItems(reserves)
     }
 
     override fun setup(view: View) {
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         historyRecycler = view.findViewById(R.id.historyRecycler)
         historyPresenter?.onAttach(this)
         initializeStateAdapter(historyRecycler!!, historyAdapter!!)
@@ -47,7 +46,7 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        historyPresenter!!.onDetach()
+        historyPresenter?.onDetach()
         historyPresenter = null
     }
 

@@ -40,7 +40,6 @@ class MainActivity : BaseActivity(){
     }
 
     override fun onNewIntent(intent: Intent?) {
-        Log.e("MainActivity", intent.toString())
         navController?.handleDeepLink(intent)
         super.onNewIntent(intent)
     }

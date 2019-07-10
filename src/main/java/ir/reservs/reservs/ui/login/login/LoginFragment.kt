@@ -24,7 +24,7 @@ class LoginFragment : BaseFragment(), LoginContract.View {
 
 
     override fun setup(view: View) {
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         loginPresenter?.onAttach(this)
         view.findViewById<TextView>(R.id.txtCreateAccount)?.setOnClickListener {
             findNavController().navigate(R.id.go_to_register)

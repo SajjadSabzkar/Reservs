@@ -34,6 +34,41 @@
             android:layout_height="wrap_content"
             android:paddingBottom="16dp">
 
+            <TextView
+                android:id="@+id/labelDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/iransans"
+                android:text="@string/date_quote"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/label_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/iransans"
+                android:textColor="@color/colorText2"
+                app:layout_constraintBottom_toBottomOf="@id/labelDate"
+                app:layout_constraintEnd_toStartOf="@id/labelDate"
+                app:layout_constraintTop_toTopOf="@id/labelDate"
+                tools:text="چهارشنبه 19 تیر" />
+
+            <View
+                android:id="@+id/dividerDate"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtDate" />
+
             <View
                 android:id="@+id/topDot"
                 android:layout_width="10dp"
@@ -42,7 +77,7 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/dot"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/dividerDate" />
 
             <View
                 android:id="@+id/timeline"
@@ -234,13 +269,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/iransans"
-                android:text="09168865663"
                 android:textColor="@color/colorText2"
                 android:textSize="@dimen/label_text_size"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/labelPhone"
                 app:layout_constraintEnd_toStartOf="@id/labelPhone"
-                app:layout_constraintTop_toTopOf="@id/labelPhone" />
+                app:layout_constraintTop_toTopOf="@id/labelPhone"
+                tools:text="09168865663" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

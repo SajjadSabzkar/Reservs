@@ -1,15 +1,26 @@
 package ir.reservs.reservs.data.prefs
 
 interface PreferencesHelper {
-    var currentUserId: Long?
+    fun getCurrentUserId(): Long?
 
-    var currentUserPhone: String
+    fun setCurrentUserId(userId: Long?)
 
-    var currentUserName: String
+    fun getCurrentUserPhone(): String
 
-    var currentUserImage: String
+    fun setCurrentUserPhone(phone: String)
 
-    var accessToken: String
+    fun getCurrentUserName(): String
+
+    fun setCurrentUserName(name: String)
+
+    fun setCurrentUserImage(image: String)
+
+    fun getCurrentUserImage(): String
+
+    fun getAccessToken(): String?
+
+    fun setAccessToken(token: String?)
 
     fun removeAccessToken()
+
 }

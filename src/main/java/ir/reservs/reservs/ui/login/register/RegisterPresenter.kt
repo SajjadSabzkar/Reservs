@@ -35,10 +35,10 @@ class RegisterPresenter(val dataManager: DataManager, val compositeDisposable: C
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ user: User ->
-                    dataManager.currentUserName = user.name
-                    dataManager.currentUserPhone = user.phone
-                    dataManager.currentUserImage = user.image
-                    dataManager.accessToken = user.token
+                    dataManager.setCurrentUserName(user.name)
+                    dataManager.setCurrentUserPhone(user.phone)
+                    dataManager.setCurrentUserImage(user.image)
+                    dataManager.setAccessToken(user.token)
                     view?.hideProgress()
                     view?.openMainActivity()
                 }, { error: Throwable ->

@@ -32,7 +32,7 @@ class ResultPresenter(val dataManager: DataManager, val compositeDisposable: Com
     }
 
     private fun updateServerState(authority: String?) {
-        val disposable = dataManager.reserveUpdate(authority)
+        val disposable = dataManager.reserveUpdate(authority!!)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -47,6 +47,7 @@ class ResultPresenter(val dataManager: DataManager, val compositeDisposable: Com
 
     override fun onDetach() {
         view = null
+        ZarinPal.getPurchase(null)
         if (!compositeDisposable.isDisposed) {
             compositeDisposable.clear()
         }

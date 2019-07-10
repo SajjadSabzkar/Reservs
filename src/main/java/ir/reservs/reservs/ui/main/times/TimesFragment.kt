@@ -29,8 +29,6 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
     var timesPresenter: TimesPresenter? = null
         @Inject set
 
-    private var timesProgressBar: ProgressBar? = null
-
     private var timeRecyclerView: RecyclerView? = null
 
     private var salon: Salon? = null
@@ -41,11 +39,10 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
 
 
     override fun setup(view: View) {
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         val dayRecyclerView = view.findViewById<RecyclerView>(R.id.dayRecyclerView)
 
         timeRecyclerView = view.findViewById(R.id.timesRecyclerView)
-        timesProgressBar = view.findViewById(R.id.timesProgressBar)
         view.findViewById<ConstraintLayout>(R.id.nextConstraint).setOnClickListener {
             timesPresenter?.nextDay()
         }
@@ -94,7 +91,6 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
         weekDayAdapter = null
         timeRecyclerView = null
         timesPresenter = null
-        timesProgressBar = null
         super.onDestroyView()
     }
 

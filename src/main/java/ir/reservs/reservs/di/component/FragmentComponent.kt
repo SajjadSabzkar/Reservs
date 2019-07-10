@@ -18,8 +18,8 @@ import ir.reservs.reservs.ui.main.times.TimesFragment
 @PerFragment
 @Component(dependencies = [ApplicationComponent::class], modules = [FragmentModule::class])
 interface FragmentComponent {
-    fun inject(fragment: HistoryFragment)
     fun inject(fragment: SettingsFragment)
+    fun inject(fragment: HistoryFragment)
     fun inject(fragment: SearchFragment)
     fun inject(fragment: ResultFragment)
     fun inject(fragment: ReserveFragment)

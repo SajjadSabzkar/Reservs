@@ -22,7 +22,7 @@ class RegisterFragment : BaseFragment(), RegisterContract.View {
     private var dialog: AlertDialog? = null
 
     override fun setup(view: View) {
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         registerPresenter?.onAttach(this)
         dialog = SpotsDialog.Builder()
                 .setContext(context)

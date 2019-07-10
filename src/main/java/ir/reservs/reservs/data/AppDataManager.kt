@@ -15,7 +15,7 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return mApiHelper.login(phone, password)
     }
 
-    override fun reserves(): Single<List<ReserveHistory>> {
+    override fun reserves(): Single<MutableList<ReserveHistory>> {
         return mApiHelper.reserves()
     }
 
@@ -28,48 +28,48 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
     }
 
 
-    override fun salons(): Single<List<Salon>> {
+    override fun salons(): Single<MutableList<Salon>> {
         return mApiHelper.salons()
     }
 
     override fun getCurrentUserId(): Long? {
-        return mPreferencesHelper.currentUserId
+        return mPreferencesHelper.getCurrentUserId()
     }
 
     override fun setCurrentUserId(userId: Long?) {
-        mPreferencesHelper.currentUserId = userId
+        mPreferencesHelper.setCurrentUserId(userId)
     }
 
     override fun getCurrentUserPhone(): String {
-        return mPreferencesHelper.currentUserPhone
+        return mPreferencesHelper.getCurrentUserPhone()
     }
 
     override fun setCurrentUserPhone(phone: String) {
-        mPreferencesHelper.currentUserPhone = phone
+        mPreferencesHelper.setCurrentUserPhone(phone)
     }
 
     override fun getCurrentUserName(): String {
-        return mPreferencesHelper.currentUserName
+        return mPreferencesHelper.getCurrentUserName()
     }
 
     override fun setCurrentUserName(name: String) {
-        mPreferencesHelper.currentUserName = name
+        mPreferencesHelper.setCurrentUserName(name)
     }
 
     override fun setCurrentUserImage(image: String) {
-        mPreferencesHelper.currentUserImage = image
+        mPreferencesHelper.setCurrentUserImage(image)
     }
 
     override fun getCurrentUserImage(): String {
-        return mPreferencesHelper.currentUserImage
+        return mPreferencesHelper.getCurrentUserImage()
     }
 
-    override fun getAccessToken(): String {
-        return mPreferencesHelper.accessToken
+    override fun getAccessToken(): String? {
+        return mPreferencesHelper.getAccessToken()
     }
 
-    override fun setAccessToken(token: String) {
-        mPreferencesHelper.accessToken = token
+    override fun setAccessToken(token: String?) {
+        mPreferencesHelper.setAccessToken(token)
     }
 
     override fun removeAccessToken() {
@@ -84,7 +84,7 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return mApiHelper.updatePassword(current_password, new_password)
     }
 
-    override fun times(salon_id: Int, date: String): Single<List<Time>> {
+    override fun times(salon_id: Int, date: String): Single<MutableList<Time>> {
         return mApiHelper.times(salon_id, date)
     }
 }

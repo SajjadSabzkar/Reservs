@@ -28,7 +28,7 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     private var btnResult: Button? = null
 
     override fun setup(view: View) {
-        fragmentComponent.inject(this)
+        fragmentComponent?.inject(this)
         resultPresenter?.onAttach(this)
         dialog = SpotsDialog.Builder()
                 .setContext(context)

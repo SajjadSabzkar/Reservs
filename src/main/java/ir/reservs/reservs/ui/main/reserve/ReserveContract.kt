@@ -9,7 +9,9 @@ import ir.reservs.reservs.ui.base.BaseFragmentContract;
 class ReserveContract {
     interface View : BaseFragmentContract.View {
         fun initializeViews(name: String, phone: String, time: String)
-        fun getContext(): Context?
+        fun context(): Context?
+        fun showProgress()
+        fun hideProgress()
     }
 
     interface Presenter : BaseFragmentContract.Presenter<View> {
