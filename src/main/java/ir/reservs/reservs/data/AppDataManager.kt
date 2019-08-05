@@ -1,35 +1,45 @@
 package ir.reservs.reservs.data
 
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ir.reservs.reservs.data.network.ApiHelper
 import ir.reservs.reservs.data.prefs.PreferencesHelper
 import ir.reservs.reservs.model.*
 
 class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private val mApiHelper: ApiHelper) : DataManager {
 
-    override fun register(name: String, phone: String, password: String): Single<User> {
-        return mApiHelper.register(name, phone, password)
+    override fun updateFcmToken(fcmToken: String): Single<Success> {
+        return config(mApiHelper.updateFcmToken(fcmToken))
     }
 
-    override fun login(phone: String, password: String): Single<User> {
-        return mApiHelper.login(phone, password)
+    override fun register(name: String, phone: String, password: String, fcmToken: String): Single<User> {
+        return config(mApiHelper.register(name, phone, password, fcmToken))
     }
 
-    override fun reserves(): Single<MutableList<ReserveHistory>> {
-        return mApiHelper.reserves()
+    override fun login(phone: String, password: String, fcmToken: String): Single<User> {
+        return config(mApiHelper.login(phone, password, fcmToken))
     }
 
-    override fun reserve(time_id: String, salon_id: Int?, authority: String, date: String): Single<Success> {
-        return mApiHelper.reserve(time_id, salon_id, authority, date)
+    override fun reserves(page: Int): Single<MutableList<History>> {
+        return mApiHelper.reserves(page)
+    }
+
+    override fun reserve(time_id: String, salon_id: Int?, callBackUrl: String, date: String): Single<Payment> {
+        return config(mApiHelper.reserve(time_id, salon_id, callBackUrl, date))
     }
 
     override fun reserveUpdate(authority: String): Single<Success> {
-        return mApiHelper.reserveUpdate(authority)
+        return config(mApiHelper.reserveUpdate(authority))
     }
 
 
     override fun salons(): Single<MutableList<Salon>> {
-        return mApiHelper.salons()
+        return config(mApiHelper.salons())
+    }
+
+    override fun salons(cityId:Int): Single<MutableList<Salon>> {
+        return config(mApiHelper.salons(cityId))
     }
 
     override fun getCurrentUserId(): Long? {
@@ -77,14 +87,22 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
     }
 
     override fun updateName(name: String): Single<Success> {
-        return mApiHelper.updateName(name)
+        return config(mApiHelper.updateName(name))
     }
 
     override fun updatePassword(current_password: String, new_password: String): Single<ChangePassword> {
-        return mApiHelper.updatePassword(current_password, new_password)
+        return config(mApiHelper.updatePassword(current_password, new_password))
     }
 
     override fun times(salon_id: Int, date: String): Single<MutableList<Time>> {
-        return mApiHelper.times(salon_id, date)
+        return config(mApiHelper.times(salon_id, date))
+    }
+
+    override fun cities(): Single<MutableList<City>> {
+        return config(mApiHelper.cities())
+    }
+
+    private fun <T : Any?> config(single: Single<T>): Single<T> {
+        return single.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 }

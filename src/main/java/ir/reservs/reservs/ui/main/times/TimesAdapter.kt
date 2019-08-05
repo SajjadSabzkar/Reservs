@@ -33,6 +33,7 @@ class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
     }
 
     fun addTimes(times: MutableList<Time>) {
+        this.times.clear()
         this.times.addAll(times)
         notifyDataSetChanged()
     }

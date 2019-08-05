@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.main.times
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -8,12 +7,14 @@ import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.utils.RetrofitError
+import ir.reservs.reservs.utils.TimeUtils
 import java.util.*
 
 class TimesPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : TimesContract.Presenter {
     private var view: TimesContract.View? = null
     private var currentDate: JalaliCalendar
     private var salonId: Int? = null
+    private var days: MutableList<Day> = ArrayList()
 
     init {
         this.currentDate = JalaliCalendar(GregorianCalendar())
@@ -30,39 +31,50 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         }
     }
 
-    private fun getTimesFromServer(salon_id: Int, date: String) {
+    private fun getTimesFromServer(date: String) {
         view?.loadingState()
-        val disposable = dataManager.times(salon_id, date)
+        val disposable = dataManager.times(salonId!!, date)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-                    view?.normalState()
-                    view?.updateTimes(it)
+                    if (it.size > 0) {
+                        view?.normalState()
+                        view?.updateTimes(it)
+                    } else {
+                        view?.emptyState()
+                    }
                 }, {
                     RetrofitError.handle(view!!, it)
                 })
         compositeDisposable.add(disposable)
     }
 
-    fun initializeViews(salon_id: Int) {
-        val days = ArrayList<Day>()
-        this.salonId = salon_id
+    fun setSalon(salonId: Int) {
+        this.salonId = salonId
+    }
+
+    fun initializeViews() {
         var jalaliDate = JalaliCalendar(GregorianCalendar())
         for (i in 0..6) {
-            days.add(getDayFromDate(jalaliDate))
+            days.add(TimeUtils.getDayFromDate(jalaliDate))
             jalaliDate = jalaliDate.tomorrow
         }
-        jalaliDate=JalaliCalendar(GregorianCalendar());
-        val date: String = dateFormat(jalaliDate)
-        getTimesFromServer(salon_id, date)
+        jalaliDate = JalaliCalendar(GregorianCalendar());
+        val date: String = TimeUtils.dateFormat(jalaliDate)
+        getTimesFromServer(date)
         view?.initializeViews(days, days[0])
     }
 
     fun nextDay() {
+        if (TimeUtils.getDayFromDate(currentDate).equals(days[6])) {
+            days.add(TimeUtils.getDayFromDate(currentDate.tomorrow))
+            days.removeAt(0)
+            view?.initializeViews(days, days[6])
+        }
         view?.clearOldTimes()
         currentDate = currentDate.tomorrow
-        getTimesFromServer(salonId!!, dateFormat(currentDate))
-        view?.changeSelectedDay(getDayFromDate(currentDate))
+        getTimesFromServer(TimeUtils.dateFormat(currentDate))
+        view?.changeSelectedDay(TimeUtils.getDayFromDate(currentDate))
     }
 
     fun backDay() {
@@ -70,30 +82,63 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             view?.onError("شما در زمان حال هستید")
             return
         }
+        if (TimeUtils.getDayFromDate(currentDate).equals(days[0])) {
+            days.add(0, TimeUtils.getDayFromDate(currentDate.yesterday))
+            days.removeAt(7)
+            view?.initializeViews(days, days[0])
+        }
         view?.clearOldTimes()
         currentDate = currentDate.yesterday
-        getTimesFromServer(salonId!!, dateFormat(currentDate))
-        view?.changeSelectedDay(getDayFromDate(currentDate))
-
+        getTimesFromServer(TimeUtils.dateFormat(currentDate))
+        view?.changeSelectedDay(TimeUtils.getDayFromDate(currentDate))
     }
 
-    private fun getDayFromDate(date: JalaliCalendar): Day {
-        val firstLetter = date.dayOfWeekString.substring(0, 1)
-        val dateString = dateFormat(date)
-        return Day(dateString, firstLetter)
-    }
-
-    private fun dateFormat(date: JalaliCalendar?): String {
-        if (date != null) {
-            return date.year.toString() + "-" + toTwoDigit(date.month) + "-" + date.day
+    fun goToDate(date: String?) {
+        if (date == null) {
+            initializeViews()
+            return
         }
-        return date.toString()
+        val d = TimeUtils.convertStringToDate(date)
+        when (compareDates(d, currentDate)) {
+            ">" -> {
+                days.add(TimeUtils.getDayFromDate(currentDate))
+                currentDate = currentDate.tomorrow
+                goToDate(date)
+            }
+            "=" -> {
+                getTimesFromServer(TimeUtils.dateFormat(currentDate))
+                var selectedIndex = -1
+                if (days.size > 7) {
+                    selectedIndex = 6
+                    days.add(TimeUtils.getDayFromDate(currentDate))
+                    days = days.subList(days.lastIndex - 6, days.size)
+                } else if (days.size < 7) {
+                    selectedIndex = days.size
+                    while (days.size < 7) {
+                        days.add(TimeUtils.getDayFromDate(currentDate))
+                        currentDate = currentDate.tomorrow
+                    }
+                } else {
+                    selectedIndex = 6
+                }
+                currentDate = TimeUtils.convertStringToDate(days[selectedIndex].date)
+                view?.initializeViews(days, days[selectedIndex])
+            }
+            "<" -> {
+                view?.onError("زمان وارد شده نا معتبر است.")
+                view?.errorState()
+            }
+        }
+
     }
 
-    private fun toTwoDigit(num: Int): String {
-        return if (num < 10) {
-            "0$num"
-        } else num.toString()
+    private fun compareDates(d1: JalaliCalendar, d2: JalaliCalendar): String {
+        if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
+            return "="
+        } else if (d1.year > d2.year || d1.month > d2.month || d1.day > d2.day) {
+            return ">"
+        } else {
+            return "<"
+        }
     }
-
 }

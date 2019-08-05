@@ -23,7 +23,7 @@ abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
         super.onViewCreated(view, savedInstanceState)
         fragmentComponent = DaggerFragmentComponent.builder()
                 .applicationComponent(ReserveApplication.getComponent())
-                .fragmentModule(FragmentModule())
+                .fragmentModule(FragmentModule(context!!))
                 .build()
         setup(view)
     }

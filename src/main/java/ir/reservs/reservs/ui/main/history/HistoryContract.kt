@@ -1,17 +1,17 @@
 package ir.reservs.reservs.ui.main.history
 
-import ir.reservs.reservs.model.ReserveHistory
+import androidx.lifecycle.LifecycleOwner
+import androidx.paging.PagedList
+import ir.reservs.reservs.model.History
 import ir.reservs.reservs.ui.base.BaseFragmentContract
 
 class HistoryContract {
 
-    interface View : BaseFragmentContract.View {
-        fun setHistoryData(reserves: MutableList<ReserveHistory>)
+    interface View : BaseFragmentContract.View, LifecycleOwner {
+        fun updateAdapter(it: PagedList<History>)
     }
 
-    interface Presenter : BaseFragmentContract.Presenter<View> {
-        fun getDataHistory()
-    }
+    interface Presenter : BaseFragmentContract.Presenter<View>
 
 
 }

@@ -3,6 +3,8 @@ package ir.reservs.reservs.di.component;
 import dagger.Component
 import ir.reservs.reservs.di.PerFragment
 import ir.reservs.reservs.di.module.FragmentModule
+import ir.reservs.reservs.ui.dialog.city.SelectCityFragment
+import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment
 import ir.reservs.reservs.ui.login.login.LoginFragment
 import ir.reservs.reservs.ui.login.register.RegisterFragment
 import ir.reservs.reservs.ui.main.history.HistoryFragment
@@ -29,4 +31,6 @@ interface FragmentComponent {
     fun inject(fragment: TimesFragment)
     fun inject(fragment: LoginFragment)
     fun inject(fragment: RegisterFragment)
+    fun inject(fragment: SelectCityFragment)
+    fun inject(fragment: SelectSalonFragment)
 }

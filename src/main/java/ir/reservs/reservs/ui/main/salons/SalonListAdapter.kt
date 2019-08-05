@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.main.salons
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +11,12 @@ import com.squareup.picasso.Picasso
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
 
-class SalonListAdapter(val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
+class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
     var listener: SalonOnClickListener? = null
-        set(value) {
-            field = value
-        }
 
     fun addData(data: MutableList<Salon>) {
         mData.addAll(data)
         notifyDataSetChanged()
-        Log.e("Salon Adapter", "mDataSize:" + mData.size)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -38,9 +33,7 @@ class SalonListAdapter(val mData: MutableList<Salon>) : RecyclerView.Adapter<Sal
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.salonCard.setOnClickListener {
-            run {
-                listener?.onClick(mData[position])
-            }
+            listener?.onClick(mData[position])
         }
         Picasso.get()
                 .load(mData[position].thumbnail)

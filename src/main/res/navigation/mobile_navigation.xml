@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/settingsFragment">
+    app:startDestination="@id/historyFragment">
 
     <fragment
         android:id="@+id/historyFragment"
@@ -16,8 +16,23 @@
         android:label="layout_search"
         tools:layout="@layout/layout_search">
         <action
-            android:id="@+id/action_searchFragment_to_navigation"
+            android:id="@+id/fromSearchToTimes"
             app:destination="@id/timesFragment" />
+        <action
+            android:id="@+id/fromSearchToSelectCity"
+            app:destination="@id/selectCity" />
+        <action
+            android:id="@+id/fromSearchToSelectSalon"
+            app:destination="@id/selectSalon" />
+        <argument
+            android:name="city"
+            android:defaultValue="@null"
+            app:argType="ir.reservs.reservs.model.City"
+            app:nullable="true" />
+        <argument
+            android:name="salon"
+            app:argType="ir.reservs.reservs.model.Salon"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -93,4 +108,22 @@
             android:id="@+id/resultToSalons"
             app:destination="@id/salonListFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/selectCity"
+        android:name="ir.reservs.reservs.ui.dialog.city.SelectCityFragment"
+        android:label="SelectCityFragment">
+        <action
+            android:id="@+id/selectCityToSearchFragment"
+            app:destination="@id/searchFragment"
+            app:launchSingleTop="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/selectSalon"
+        android:name="ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment"
+        android:label="SelectCityFragment">
+        <action
+            android:id="@+id/selectSalonToSearchFragment"
+            app:destination="@id/searchFragment"
+            app:launchSingleTop="true" />
+    </dialog>
 </navigation>

@@ -1,44 +1,42 @@
 package ir.reservs.reservs.ui.main.history
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
-import ir.reservs.reservs.model.ReserveHistory
+import ir.reservs.reservs.model.History
 import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.item_history.view.*
 
-class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adapter<HistoryAdapter.Holder>() {
+
+class HistoryAdapter(var history: ArrayList<History>)
+    : PagedListAdapter<History, HistoryAdapter.Holder>(History.difCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view: View = LayoutInflater
+        val view = LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.item_history, parent, false)
         return Holder(view)
-    }
 
-    override fun getItemCount(): Int {
-        return history.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val history = history[position]
-        holder.txtName.text = history.name
-        holder.txtTime.text = history.startTime
+        val history = getItem(position)
+        holder.txtName.text = history?.name
+        holder.txtTime.text = history?.startTime
         holder.txtTime.append(" الی ")
-        holder.txtTime.append(history.endTime)
-        holder.txtDate.text = CommonUtils.dateFormatStandard(history.date)
-        holder.txtLocation.text = history.location
-        Log.e("HistoryAdapter", "status: ${history.startTime}->" + history.status);
+        holder.txtTime.append(history?.endTime)
+        holder.txtDate.text = CommonUtils.dateFormatStandard(history?.date)
+        holder.txtLocation.text = history?.location
         when {
-            history.status == 1 -> holder.txtState.text = "آینده"
-            history.status == 0 -> holder.txtState.text = "حال"
-            history.status == -1 -> holder.txtState.text = "گذشته"
+            history?.status == 1 -> holder.txtState.text = "آینده"
+            history?.status == 0 -> holder.txtState.text = "حال"
+            history?.status == -1 -> holder.txtState.text = "گذشته"
         }
-        holder.viewState = updateStateView(holder.viewState, history.status);
+        holder.viewState = updateStateView(holder.viewState, history!!.status);
     }
 
     private fun updateStateView(view: View, state: Int): View {
@@ -48,11 +46,6 @@ class HistoryAdapter(var history: ArrayList<ReserveHistory>) : RecyclerView.Adap
             -1 -> view.setBackgroundResource(R.color.colorCancel)
         }
         return view
-    }
-
-    fun addItems(reserveHistories: List<ReserveHistory>) {
-        history.addAll(reserveHistories)
-        notifyDataSetChanged()
     }
 
 

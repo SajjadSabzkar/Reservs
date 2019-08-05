@@ -12,6 +12,6 @@ class RegisterContract {
     }
 
     interface Presenter : BaseFragmentContract.Presenter<View> {
-        fun register(name: String, phone: String, password: String)
+        fun register(name: String, phone: String, password: String,fcmToken:String)
     }
 }

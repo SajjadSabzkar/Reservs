@@ -2,15 +2,13 @@ package ir.reservs.reservs;
 
 import org.junit.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.GregorianCalendar;
-
-import ir.huri.jcal.JalaliCalendar;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import ir.reservs.reservs.model.Error;
 import ir.reservs.reservs.utils.CommonUtils;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -18,6 +16,8 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
@@ -50,5 +50,17 @@ public class ExampleUnitTest {
             return "0" + num;
         }
         return num;
+    }
+
+    @Test
+    public void test() {
+        Observable<Error> errorState = Observable.just(new Error(200, "test"));
+        Disposable d = errorState.subscribe(error -> {
+            print(error.getCode() + "");
+        });
+    }
+
+    private void print(String message) {
+        System.out.println(message);
     }
 }

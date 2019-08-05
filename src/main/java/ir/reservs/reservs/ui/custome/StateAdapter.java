@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.custome;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,9 +19,9 @@ public class StateAdapter extends RecyclerView.Adapter {
     public static final int VIEW_LOADING = 102;
     public static final int VIEW_ERROR = 103;
     /* Internally used values for Different View States */
-    public static final int VIEW_TYPE_EMPTY = 201;
-    public static final int VIEW_TYPE_LOADING = 202;
-    public static final int VIEW_TYPE_ERROR = 203;
+    private static final int VIEW_TYPE_EMPTY = 201;
+    private static final int VIEW_TYPE_LOADING = 202;
+    private static final int VIEW_TYPE_ERROR = 203;
     /* Wrapped Adapter */
     private final RecyclerView.Adapter wrapped;
     /* Views for different states*/
@@ -78,7 +77,6 @@ public class StateAdapter extends RecyclerView.Adapter {
     }
 
     public void setCurrentView(@CurrentSetView int currentView) {
-        Log.e("StateAdapter", "state:" + currentView);
         this.currentView = currentView;
         wrapped.notifyDataSetChanged();
         notifyDataSetChanged();

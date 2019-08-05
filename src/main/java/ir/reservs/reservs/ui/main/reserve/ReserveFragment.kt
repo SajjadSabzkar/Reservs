@@ -25,10 +25,12 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
     private var txtName: TextView? = null
     private var txtPhone: TextView? = null
     private var txtTime: TextView? = null
+    private var txtDate: TextView? = null
     private var salon: Salon? = null
     private var time: Time? = null
     private var day: Day? = null
-    private var dialog: AlertDialog? = null
+    var dialog: AlertDialog? = null
+        @Inject set
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reserve, container, false)
@@ -46,16 +48,13 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         view.findViewById<TextView>(R.id.txtLocation)?.text = salon?.title
         view.findViewById<TextView>(R.id.txtStart)?.text = time?.start
         view.findViewById<TextView>(R.id.txtEnd)?.text = time?.end
-        view.findViewById<TextView>(R.id.txtDate)?.text = day?.date
+
         //set data from dataManager or have calc
         txtName = view.findViewById(R.id.txtName)
         txtPhone = view.findViewById(R.id.txtPhone)
         txtTime = view.findViewById(R.id.txtTime)
-        dialog = SpotsDialog.Builder()
-                .setContext(context)
-                .setCancelable(false)
-                .setMessage(R.string.waiting)
-                .build()
+        txtDate = view.findViewById(R.id.txtDate)
+
         reservePresenter?.initialize(salon!!, time!!, day!!)
         view.findViewById<Button>(R.id.btnPayment)?.setOnClickListener {
             reservePresenter?.payment()
@@ -63,10 +62,11 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
 
     }
 
-    override fun initializeViews(name: String, phone: String, time: String) {
+    override fun initializeViews(name: String, phone: String, time: String, date: String) {
         txtName?.text = name
         txtPhone?.text = phone
         txtTime?.text = time
+        txtDate?.text = date
     }
 
     override fun context(): Context? {

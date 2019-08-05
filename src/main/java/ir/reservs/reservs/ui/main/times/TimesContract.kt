@@ -12,7 +12,5 @@ class TimesContract {
         fun clearOldTimes()
     }
 
-    interface Presenter : BaseFragmentContract.Presenter<View> {
-
-    }
+    interface Presenter : BaseFragmentContract.Presenter<View>
 }

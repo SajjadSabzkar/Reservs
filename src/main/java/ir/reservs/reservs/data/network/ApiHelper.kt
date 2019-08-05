@@ -1,40 +1,33 @@
 package ir.reservs.reservs.data.network
 
 import io.reactivex.Single
-import ir.reservs.reservs.model.ChangePassword
-import ir.reservs.reservs.model.ReserveHistory
-import ir.reservs.reservs.model.Salon
-import ir.reservs.reservs.model.Success
-import ir.reservs.reservs.model.Time
-import ir.reservs.reservs.model.User
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import ir.reservs.reservs.model.*
+import retrofit2.http.*
 
 interface ApiHelper {
     @POST("auth/register")
     @FormUrlEncoded
     fun register(@Field("name") name: String,
                  @Field("phone_number") phone: String,
-                 @Field("password") password: String): Single<User>
+                 @Field("password") password: String,
+                 @Field("fcmToken") fcmToken: String): Single<User>
 
 
     @POST("auth/login")
     @FormUrlEncoded
-    fun login(@Field("phone") phone: String, @Field("password") password: String): Single<User>
+    fun login(@Field("phone") phone: String,
+              @Field("password") password: String,
+              @Field("fcmToken") fcmToken: String): Single<User>
 
     @GET("reserves")
-    fun reserves(): Single<MutableList<ReserveHistory>>
+    fun reserves(@Query("page") page: Int): Single<MutableList<History>>
 
     @POST("reserve")
     @FormUrlEncoded
     fun reserve(@Field("time_id") time_id: String,
                 @Field("salon_id") salon_id: Int?,
-                @Field("authority") authority: String,
-                @Field("date") date: String): Single<Success>
+                @Field("CallbackURL") callBackUrl: String,
+                @Field("date") date: String): Single<Payment>
 
     @POST("reserve/update")
     @FormUrlEncoded
@@ -42,6 +35,9 @@ interface ApiHelper {
 
     @GET("salons")
     fun salons(): Single<MutableList<Salon>>
+
+    @GET("city/{city}/salons")
+    fun salons(@Path("city") cityId: Int): Single<MutableList<Salon>>
 
     @PUT("info")
     @FormUrlEncoded
@@ -56,4 +52,10 @@ interface ApiHelper {
     @GET("times/{salon_id}/{date}")
     fun times(@Path("salon_id") salon_id: Int, @Path("date") date: String): Single<MutableList<Time>>
 
+    @PUT("updateFcmToken")
+    @FormUrlEncoded
+    fun updateFcmToken(@Field("fcmToken") fcmToken: String): Single<Success>
+
+    @GET("cities")
+    fun cities(): Single<MutableList<City>>
 }

@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import dmax.dialog.SpotsDialog
+import com.google.firebase.iid.FirebaseInstanceId
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.main.MainActivity
@@ -18,29 +18,32 @@ import javax.inject.Inject
 
 class LoginFragment : BaseFragment(), LoginContract.View {
 
-    private var dialog: AlertDialog? = null
-    var loginPresenter: LoginPresenter? = null
+    var dialog: AlertDialog? = null
         @Inject set
 
+    var loginPresenter: LoginPresenter? = null
+        @Inject set
+    var fcmToken: String? = null
 
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         loginPresenter?.onAttach(this)
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
+            if (!it.isSuccessful) {
+                return@addOnCompleteListener
+            }
+            fcmToken = it.result?.token
+        }
         view.findViewById<TextView>(R.id.txtCreateAccount)?.setOnClickListener {
             findNavController().navigate(R.id.go_to_register)
         }
-        dialog = SpotsDialog.Builder()
-                .setContext(context)
-                .setCancelable(false)
-                .setMessage(R.string.waiting)
-                .build()
 
         val txtPhone = view.findViewById<EditText>(R.id.txtPhone)
         val txtPassword = view.findViewById<EditText>(R.id.txtPassword)
         val btnLogin = view.findViewById<Button>(R.id.btnLogin)
         btnLogin?.setOnClickListener {
             loginPresenter?.login(txtPhone?.text.toString(),
-                    txtPassword?.text.toString())
+                    txtPassword?.text.toString(), fcmToken!!)
         }
 
     }

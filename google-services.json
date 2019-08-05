@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "218227654349",
+    "firebase_url": "https://reservs.firebaseio.com",
+    "project_id": "reservs",
+    "storage_bucket": "reservs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218227654349:android:ccaef23679e8ec93",
+        "android_client_info": {
+          "package_name": "ir.reservs.reservs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218227654349-mnjglkt3luk0fc8t14tqce9jq50qdmbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQDRZ02d_M65wtRU34u1gatElQf5aBEwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218227654349-mnjglkt3luk0fc8t14tqce9jq50qdmbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

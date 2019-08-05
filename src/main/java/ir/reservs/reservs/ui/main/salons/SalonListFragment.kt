@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseFragment
-import ir.reservs.reservs.ui.custome.StateAdapter
 import javax.inject.Inject
 
 
@@ -43,18 +42,16 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
         salonListPresenter?.onAttach(this)
     }
 
-    override fun setSalonsData(salons: MutableList<Salon>?) {
-        if (salons != null) {
-            salonListAdapter?.addData(salons)
-            salonListAdapter?.notifyDataSetChanged()
-        }
+    override fun setSalonsData(salons: MutableList<Salon>) {
+        salonListAdapter?.addData(salons)
+        salonListAdapter?.notifyDataSetChanged()
     }
 
     override fun onError(msg: String) {
         Log.e("SalonListFragment", msg)
     }
 
-    override fun onClick(salon: Salon?) {
+    override fun onClick(salon: Salon) {
         val bundle = Bundle()
         bundle.putParcelable("salon", salon)
         findNavController().navigate(ir.reservs.reservs.R.id.salonToTimes, bundle)

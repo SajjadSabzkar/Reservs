@@ -1,9 +1,7 @@
 package ir.reservs.reservs.ui.login.register
 
 import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.User
 import ir.reservs.reservs.ui.base.BaseFragmentContract
@@ -16,7 +14,7 @@ class RegisterPresenter(val dataManager: DataManager, val compositeDisposable: C
         this.view = view
     }
 
-    override fun register(name: String, phone: String, password: String) {
+    override fun register(name: String, phone: String, password: String, fcmToken: String) {
         if (name.length < 3 || name.indexOf(" ") == -1) {
             view?.onError("نام معتبر وارد کنید")
             return
@@ -31,24 +29,26 @@ class RegisterPresenter(val dataManager: DataManager, val compositeDisposable: C
         }
         Log.e("RegisterPresenter", "checks pass")
         view?.showProgress()
-        val dispose = dataManager.register(name, phone, password)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+        val dispose = dataManager.register(name, phone, password, fcmToken)
                 .subscribe({ user: User ->
-                    dataManager.setCurrentUserName(user.name)
-                    dataManager.setCurrentUserPhone(user.phone)
-                    dataManager.setCurrentUserImage(user.image)
-                    dataManager.setAccessToken(user.token)
+                    saveUser(user)
                     view?.hideProgress()
                     view?.openMainActivity()
-                }, { error: Throwable ->
+                }, {
                     view?.hideProgress()
-                    RetrofitError.handle(view as BaseFragmentContract.View, error)
-                    if (RetrofitError.code(error) == 422) {
+                    RetrofitError.handle(view as BaseFragmentContract.View, it)
+                    if (RetrofitError.code(it) == 422) {
                         view?.onError("تلفن وارد شده معتبر نیست")
                     }
                 })
         compositeDisposable.add(dispose)
+    }
+
+    private fun saveUser(user: User) {
+        dataManager.setAccessToken(user.token)
+        dataManager.setCurrentUserName(user.name)
+        dataManager.setCurrentUserPhone(user.phone)
+//        dataManager.setCurrentUserImage(user.getImage())
     }
 
     override fun onDetach() {

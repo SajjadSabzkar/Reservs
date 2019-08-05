@@ -2,10 +2,11 @@ package ir.reservs.reservs.ui.main.reserve;
 
 import android.content.Intent
 import android.net.Uri
-import com.zarinpal.ewallets.purchase.ZarinPal
+import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
@@ -32,41 +33,32 @@ class ReservePresenter(val dataManager: DataManager, val compositeDisposable: Co
         this.time = time
         this.day = day
         view?.initializeViews(dataManager.getCurrentUserName(),
-                dataManager.getCurrentUserPhone(), calculateTime())
+                dataManager.getCurrentUserPhone(), calculateTime(), dateToString())
     }
 
     private fun calculateTime(): String {
         return TimeUtils.toString(TimeUtils.diff(time?.start!!, time?.end!!))
     }
 
-    override fun payment() {
-        view?.showProgress()
-        val purchase = ZarinPal.getPurchase(view?.context())
-        //val payment = ZarinPal.getPaymentRequest()
-        val payment = ZarinPal.getSandboxPaymentRequest()
-        payment.merchantID = "1ef5dc5a-b65f-11e8-a578-005056a205be"
-        payment.amount = time?.price?.toLong()!!
-        payment.description = dataManager.getCurrentUserName() + ":" + salon?.cityName + "," +
-                salon?.title + "," + time?.start + "," + day?.date
-        payment.setCallbackURL("reservs-app://reservs.ir/")
-        payment.mobile = dataManager.getCurrentUserPhone()
-        purchase.startPayment(payment) { status: Int, authority: String, _: Uri, intent: Intent ->
-            if (status == 100) {
-                saveOrderToServer(intent, authority)
-            } else {
-                view?.hideProgress()
-                view?.onError("پرداخت با خطا مواجه شد")
-            }
-        }
+    private fun dateToString(): String {
+        val da = day?.date?.split("-")
+        val year = da!![0].toInt()
+        val mount = da[1].toInt()
+        val day = da[2].toInt()
+        val jdate = JalaliCalendar(year, mount, day)
+        return "${jdate.dayOfWeekString} ${jdate.day} ${jdate.monthString}"
     }
 
-    private fun saveOrderToServer(intent: Intent, authority: String) {
-
-        val disposable = dataManager.reserve(time?.id!!, salon?.id, authority, day?.date!!)
+    override fun payment() {
+        view?.showProgress()
+        val callback = "reservs-app://reservs.ir/"
+        val disposable = dataManager.reserve(time?.id!!, salon?.id, callback, day?.date!!)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     view?.hideProgress()
+                    Log.e("ReservePresenter", it.redirect)
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.redirect))
                     view?.context()?.startActivity(intent)
                 }, {
                     view?.hideProgress()
@@ -76,7 +68,6 @@ class ReservePresenter(val dataManager: DataManager, val compositeDisposable: Co
     }
 
     override fun onDetach() {
-        ZarinPal.getPurchase(null)
         view = null
         if (!compositeDisposable.isDisposed) {
             compositeDisposable.clear()

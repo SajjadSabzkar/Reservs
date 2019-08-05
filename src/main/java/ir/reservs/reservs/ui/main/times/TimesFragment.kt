@@ -1,11 +1,9 @@
 package ir.reservs.reservs.ui.main.times
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -55,12 +53,12 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
         timesPresenter?.onAttach(this)
         timesAdapter!!.setOnClickListener(this)
         salon = arguments?.getParcelable("salon")
-        timesPresenter?.initializeViews(salon!!.id)
-
+        val date = arguments?.getString("date")
+        timesPresenter?.setSalon(salon!!.id)
+        timesPresenter?.goToDate(date)
     }
 
     override fun updateTimes(times: MutableList<Time>) {
-        Log.e("TimesFragment", "updateTimes: " + times.size)
         timesAdapter?.addTimes(times)
     }
 
@@ -81,7 +79,7 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
         val b = Bundle()
         b.putParcelable("time", reserve)
         b.putParcelable("salon", salon)
-        b.putParcelable("day", weekDayAdapter?.getSelectedDay())
+        b.putParcelable("day", weekDayAdapter?.selectedDay)
         findNavController().navigate(R.id.goToReserve, b)
     }
 

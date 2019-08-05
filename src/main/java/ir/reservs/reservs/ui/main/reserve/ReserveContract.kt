@@ -8,7 +8,7 @@ import ir.reservs.reservs.ui.base.BaseFragmentContract;
 
 class ReserveContract {
     interface View : BaseFragmentContract.View {
-        fun initializeViews(name: String, phone: String, time: String)
+        fun initializeViews(name: String, phone: String, time: String, date: String)
         fun context(): Context?
         fun showProgress()
         fun hideProgress()

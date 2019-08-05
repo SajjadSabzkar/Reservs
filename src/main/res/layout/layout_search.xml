@@ -16,9 +16,9 @@
 
         <ImageView
             android:id="@+id/imgCity"
-            android:contentDescription="@string/content_description_post_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_post_thumbnail"
             android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtCityName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutLocation"
+        android:id="@+id/constraintLayoutSalon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
@@ -59,9 +59,9 @@
 
         <ImageView
             android:id="@+id/imgLocation"
-            android:contentDescription="@string/content_description_post_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_post_thumbnail"
             android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtLocation"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,20 +92,20 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstraintLayoutDate"
+        android:id="@+id/constraintLayoutDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLocation"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSalon"
         tools:layout_editor_absoluteX="12dp">
 
         <ImageView
-            android:contentDescription="@string/content_description_post_thumbnail"
             android:id="@+id/imgDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_post_thumbnail"
             android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,6 +136,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/btnSearch"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_margin="12dp"

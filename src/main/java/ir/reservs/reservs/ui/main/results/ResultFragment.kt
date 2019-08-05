@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import dmax.dialog.SpotsDialog
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import javax.inject.Inject
@@ -21,7 +20,9 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     var resultPresenter: ResultPresenter? = null
         @Inject set
 
-    private var dialog: AlertDialog? = null
+    var dialog: AlertDialog? = null
+        @Inject set
+
     private var imgStatus: ImageView? = null
     private var txtTitleStatus: TextView? = null
     private var txtBodyStatus: TextView? = null
@@ -30,17 +31,12 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         resultPresenter?.onAttach(this)
-        dialog = SpotsDialog.Builder()
-                .setContext(context)
-                .setCancelable(false)
-                .setMessage(R.string.waiting)
-                .build()
         imgStatus = view.findViewById(R.id.imgStatus)
         txtTitleStatus = view.findViewById(R.id.txtTitleStatus)
         txtBodyStatus = view.findViewById(R.id.txtBodyStatus)
         btnResult = view.findViewById(R.id.btnResult)
         val data = activity?.intent?.data
-        resultPresenter?.onReceive(context!!, data!!)
+        resultPresenter?.onReceive(activity!!, data!!)
     }
 
     override fun initializeViews(state: Boolean) {

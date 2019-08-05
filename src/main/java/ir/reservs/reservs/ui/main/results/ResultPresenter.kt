@@ -2,12 +2,9 @@ package ir.reservs.reservs.ui.main.results;
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import com.zarinpal.ewallets.purchase.ZarinPal
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import ir.reservs.reservs.data.DataManager
 
@@ -21,14 +18,7 @@ class ResultPresenter(val dataManager: DataManager, val compositeDisposable: Com
 
     override fun onReceive(context: Context, data: Uri) {
         view?.showProgress()
-        ZarinPal.getPurchase(context).verificationPayment(data) { isPaymentSuccess, _, paymentRequest ->
-            if (isPaymentSuccess) {
-                updateServerState(paymentRequest.authority)
-            } else {
-                view?.hideProgress()
-                view?.initializeViews(false)
-            }
-        }
+        updateServerState(data.authority)
     }
 
     private fun updateServerState(authority: String?) {

@@ -4,10 +4,7 @@ import android.app.Application
 import dagger.Component
 import ir.reservs.reservs.ReserveApplication
 import ir.reservs.reservs.data.DataManager
-import ir.reservs.reservs.di.module.ApplicationModule
-import ir.reservs.reservs.di.module.DataModule
-import ir.reservs.reservs.di.module.NetworkModule
-import ir.reservs.reservs.di.module.PreferenceModule
+import ir.reservs.reservs.di.module.*
 import javax.inject.Singleton
 
 @Singleton
@@ -15,7 +12,8 @@ import javax.inject.Singleton
     ApplicationModule::class,
     DataModule::class,
     NetworkModule::class,
-    PreferenceModule::class
+    PreferenceModule::class,
+    DialogModule::class
 ])
 interface ApplicationComponent {
 
