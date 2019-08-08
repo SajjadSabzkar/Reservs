@@ -11,6 +11,11 @@ import ir.reservs.reservs.model.Day
 
 class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<WeekDayAdapter.ViewHolder>() {
     var selectedDay: Day? = null
+    var listener: OnClickListener? = null
+
+    interface OnClickListener {
+        fun onClick(day: Day)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
@@ -26,6 +31,9 @@ class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<
             holder.txtDate = textSelectStyle(holder.txtDate)
         } else {
             holder.txtDate = textNormalStyle(holder.txtDate)
+        }
+        holder.txtDate.setOnClickListener {
+            listener?.onClick(days[position])
         }
     }
 
@@ -56,6 +64,10 @@ class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<
         this.selectedDay = day
         notifyDataSetChanged()
         //notifyItemChanged(days.indexOf(selectedDay));
+    }
+    fun clearAll() {
+        this.days.clear()
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

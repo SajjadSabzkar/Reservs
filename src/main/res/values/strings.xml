@@ -91,4 +91,5 @@
     <string name="error_occurre">خطایی رخ داد</string>
     <string name="empty_collection">چیزی وجود ندارد</string>
     <string name="empty_description">هیچ محتوایی جهت ارائه وجود ندارد</string>
+    <string name="today">امروز</string>
 </resources>

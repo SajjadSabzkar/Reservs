@@ -24,12 +24,6 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         this.view = view
     }
 
-    override fun onDetach() {
-        this.view = null
-        if (!compositeDisposable.isDisposed) {
-            compositeDisposable.clear()
-        }
-    }
 
     private fun getTimesFromServer(date: String) {
         view?.loadingState()
@@ -132,6 +126,12 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
 
     }
 
+    fun selectDay(day: Day) {
+        currentDate = TimeUtils.convertStringToDate(day.date)
+        getTimesFromServer(day.date)
+        view?.changeSelectedDay(day)
+    }
+
     private fun compareDates(d1: JalaliCalendar, d2: JalaliCalendar): String {
         if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
             return "="
@@ -139,6 +139,13 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             return ">"
         } else {
             return "<"
+        }
+    }
+
+    override fun onDetach() {
+        this.view = null
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.clear()
         }
     }
 }

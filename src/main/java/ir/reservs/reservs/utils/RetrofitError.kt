@@ -7,7 +7,6 @@ object RetrofitError {
     fun handle(view: BaseFragmentContract.View, error: Throwable) {
         try {
             val httpError: HttpException = error as HttpException
-
             when (httpError.code()) {
                 404 -> view.onError("یافت نشد")
                 403 -> view.onTokenExpire()

@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import ir.reservs.reservs.ui.base.BaseFragment
+import ir.reservs.reservs.utils.TimeUtils
 import javax.inject.Inject
 
-class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
-
+class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekDayAdapter.OnClickListener {
     var weekDayAdapter: WeekDayAdapter? = null
         @Inject set
 
@@ -47,11 +49,15 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
         view.findViewById<ConstraintLayout>(R.id.backConstraint).setOnClickListener {
             timesPresenter?.backDay()
         }
+        view.findViewById<TextView>(R.id.txtGoToday).setOnClickListener {
+            timesPresenter?.selectDay(TimeUtils.getDayFromDate(JalaliCalendar()))
+        }
         dayRecyclerView.adapter = weekDayAdapter
         initializeStateAdapter(timeRecyclerView!!, timesAdapter!!)
         timeRecyclerView!!.adapter = getStateAdapter()
         timesPresenter?.onAttach(this)
         timesAdapter!!.setOnClickListener(this)
+        weekDayAdapter?.listener = this
         salon = arguments?.getParcelable("salon")
         val date = arguments?.getString("date")
         timesPresenter?.setSalon(salon!!.id)
@@ -81,6 +87,10 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener {
         b.putParcelable("salon", salon)
         b.putParcelable("day", weekDayAdapter?.selectedDay)
         findNavController().navigate(R.id.goToReserve, b)
+    }
+
+    override fun onClick(day: Day) {
+        timesPresenter?.selectDay(day)
     }
 
     override fun onDestroyView() {

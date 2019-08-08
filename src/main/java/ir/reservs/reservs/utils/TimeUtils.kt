@@ -3,7 +3,15 @@ package ir.reservs.reservs.utils
 import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.model.Day
 
+/**
+ * @author rfmhb2
+ */
 object TimeUtils {
+    /**
+     * @param time1:String time like(13:30)
+     * @param time2:String time like(15:00)
+     * @return String time like(1:30)
+     **/
     fun diff(time1: String, time2: String): String {
         val hour1: Int = time1.split(":")[0].toInt()
         val min1: Int = time1.split(":")[1].toInt()
@@ -22,12 +30,21 @@ object TimeUtils {
         return "$hour:$min"
     }
 
+    /**
+     * @param time String like(1:30)
+     * @return String like ۱ ساعت و ۳۰ دقیقه
+     * change time format to string like(1:30 -> ۱ ساعت و ۳۰ دقیقه)
+     */
     fun toString(time: String): String {
         val h = time.split(":")[0]
         val m = time.split(":")[1]
-        return "$h ساعت و $m دقیقه "
+        return "$h ساعت و $m دقیقه"
     }
 
+    /**
+     * @param date: JalaliCalendar
+     * @return Day
+     */
     fun getDayFromDate(date: JalaliCalendar): Day {
         val firstLetter = date.dayOfWeekString.substring(0, 1)
         val dateString = dateFormat(date)
