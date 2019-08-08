@@ -10,7 +10,7 @@ I try use latest programming technology for develop this project
 ## How get started with this project
 this project need a rest api for starting, so if you do not have rest api this project is not for you.  
 
-## contact me
+## Contact me
 If you think this project have some problem or you have a question about it let me know
 [Telegram](https://t.me/rfmhb) , [Instagram](https://instagram.com/mhbolivand).  
 
