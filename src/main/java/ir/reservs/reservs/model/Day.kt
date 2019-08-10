@@ -14,7 +14,6 @@ data class Day(val date: String, val name: String) : Parcelable {
     }
 
     fun getNum(): String {
-        Log.e("Date:",date)
         return date.split("-")[2]
     }
 }

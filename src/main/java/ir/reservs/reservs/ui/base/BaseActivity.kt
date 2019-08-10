@@ -12,7 +12,7 @@ import ir.reservs.reservs.ui.login.LoginRegisterActivity
 abstract class BaseActivity : AppCompatActivity(), BaseActivityContract.View {
 
 
-    public var activityComponent: ActivityComponent? = null
+    var activityComponent: ActivityComponent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

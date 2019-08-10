@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -11,8 +11,7 @@
     <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="colorPrimaryDark">@color/colorWhite</item>
         <item name="colorPrimary">@color/colorWhite</item>
-        <item name="android:windowLightStatusBar">true</item>
-
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -56,4 +55,5 @@
         <item name="android:textColor">@color/colorText3</item>
         <item name="android:textSize">14dp</item>
     </style>
+
 </resources>

@@ -57,6 +57,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         val date: String = TimeUtils.dateFormat(jalaliDate)
         getTimesFromServer(date)
         view?.initializeViews(days, days[0])
+        view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
     }
 
     fun nextDay() {
@@ -69,6 +70,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         currentDate = currentDate.tomorrow
         getTimesFromServer(TimeUtils.dateFormat(currentDate))
         view?.changeSelectedDay(TimeUtils.getDayFromDate(currentDate))
+        view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
     }
 
     fun backDay() {
@@ -85,6 +87,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         currentDate = currentDate.yesterday
         getTimesFromServer(TimeUtils.dateFormat(currentDate))
         view?.changeSelectedDay(TimeUtils.getDayFromDate(currentDate))
+        view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
     }
 
     fun goToDate(date: String?) {
@@ -117,6 +120,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
                 }
                 currentDate = TimeUtils.convertStringToDate(days[selectedIndex].date)
                 view?.initializeViews(days, days[selectedIndex])
+                view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
             }
             "<" -> {
                 view?.onError("زمان وارد شده نا معتبر است.")

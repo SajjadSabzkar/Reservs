@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import ir.reservs.reservs.ui.base.BaseFragment
+import ir.reservs.reservs.ui.main.MainActivity
 import ir.reservs.reservs.utils.TimeUtils
 import javax.inject.Inject
 
@@ -33,6 +36,8 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
 
     private var salon: Salon? = null
 
+    private var txtDateTitle: TextView? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_times, container, false)
     }
@@ -43,6 +48,7 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
         val dayRecyclerView = view.findViewById<RecyclerView>(R.id.dayRecyclerView)
 
         timeRecyclerView = view.findViewById(R.id.timesRecyclerView)
+        txtDateTitle = view.findViewById(R.id.txtDateTitle)
         view.findViewById<ConstraintLayout>(R.id.nextConstraint).setOnClickListener {
             timesPresenter?.nextDay()
         }
@@ -51,6 +57,10 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
         }
         view.findViewById<TextView>(R.id.txtGoToday).setOnClickListener {
             timesPresenter?.selectDay(TimeUtils.getDayFromDate(JalaliCalendar()))
+        }
+
+        view.findViewById<ImageView>(R.id.imgBackTitle).setOnClickListener {
+            findNavController().popBackStack()
         }
         dayRecyclerView.adapter = weekDayAdapter
         initializeStateAdapter(timeRecyclerView!!, timesAdapter!!)
@@ -62,6 +72,9 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
         val date = arguments?.getString("date")
         timesPresenter?.setSalon(salon!!.id)
         timesPresenter?.goToDate(date)
+
+        view.findViewById<TextView>(R.id.txtSalonName).text = salon?.title
+
     }
 
     override fun updateTimes(times: MutableList<Time>) {
@@ -75,6 +88,10 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
 
     override fun changeSelectedDay(day: Day) {
         weekDayAdapter?.selectDay(day)
+    }
+
+    override fun updateToolbarDate(date: String) {
+        txtDateTitle?.text = date
     }
 
     override fun clearOldTimes() {

@@ -10,6 +10,7 @@ class TimesContract {
         fun initializeViews(days: MutableList<Day>, selectedDay: Day)
         fun changeSelectedDay(day: Day)
         fun clearOldTimes()
+        fun updateToolbarDate(date: String)
     }
 
     interface Presenter : BaseFragmentContract.Presenter<View>

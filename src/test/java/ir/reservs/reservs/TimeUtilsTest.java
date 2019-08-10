@@ -24,6 +24,8 @@ public class TimeUtilsTest {
     @Test
     public void dateDisplayFormatTest() {
         String result = TimeUtils.INSTANCE.dateDisplayFormat(1398, 5, 16);
+        JalaliCalendar date = new JalaliCalendar(1398, 5, 16);
+
         assertEquals(result, "1398/05/16");
 
         result = TimeUtils.INSTANCE.dateDisplayFormat(1400, 1, 31);
@@ -32,10 +34,11 @@ public class TimeUtilsTest {
         result = TimeUtils.INSTANCE.dateDisplayFormat(1400, 12, 29);
         assertEquals(result, "1400/12/29");
     }
+
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         String result = TimeUtils.INSTANCE.toString("1:31");
-        assertEquals(result,"1 ساعت و 31 دقیقه");
+        assertEquals(result, "1 ساعت و 31 دقیقه");
     }
 
     @Test

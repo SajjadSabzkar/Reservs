@@ -69,7 +69,12 @@ object TimeUtils {
     }
 
     fun dateDisplayFormat(year: Int, month: Int, day: Int): String {
-        return "$year/${toTwoDigit(month)}/${toTwoDigit(day)}"
+        val date = JalaliCalendar(year, month, day)
+        return TimeUtils.dateDisplayFormat(date)
+    }
+
+    fun dateDisplayFormat(date: JalaliCalendar): String {
+        return "${date.dayOfWeekString} ${date.day} ${date.monthString} ${date.year}"
     }
 
     fun toTwoDigit(num: Int): String {
