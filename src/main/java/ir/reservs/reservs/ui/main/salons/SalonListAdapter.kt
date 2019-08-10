@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
+import kotlinx.android.synthetic.main.item_salon.view.*
 
 class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
     var listener: SalonOnClickListener? = null
@@ -49,11 +50,11 @@ class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Ada
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        var salonCard: CardView = view.findViewById(R.id.salonCard)
-        var imgThumbnail: ImageView = view.findViewById(R.id.imgThumbnail)
-        var txtLocation: TextView = view.findViewById(R.id.txtLocation)
-        var txtCity: TextView = view.findViewById(R.id.txtCityName)
-        var txtPrice: TextView = view.findViewById(R.id.txtPrice)
+        var salonCard: CardView = view.salonCard
+        var imgThumbnail: ImageView = view.imgThumbnail
+        var txtLocation: TextView = view.txtLocation
+        var txtCity: TextView = view.txtCityName
+        var txtPrice: TextView = view.txtPrice
 
     }
 

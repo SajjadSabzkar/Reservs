@@ -10,20 +10,21 @@ import android.widget.Button
 import android.widget.Toast
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_about.*
 
 class AboutFragment : BaseFragment() {
     override fun setup(view: View) {
-        view.findViewById<Button>(R.id.btnGithub)?.setOnClickListener {
+        btnGithub.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://github.com/rfmhb2/reservs")
             startActivity(intent)
         }
-        view.findViewById<Button>(R.id.btnInstagram)?.setOnClickListener {
+        btnInstagram.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://instagram.com/mhbolivand")
             startActivity(intent)
         }
-        view.findViewById<Button>(R.id.btnTelegram)?.setOnClickListener {
+        btnTelegram.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://t.me/rfmhb")
             startActivity(intent)

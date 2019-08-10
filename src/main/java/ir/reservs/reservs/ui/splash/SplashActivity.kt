@@ -9,11 +9,11 @@ import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.ui.base.BaseActivity
 import ir.reservs.reservs.ui.login.LoginRegisterActivity
 import ir.reservs.reservs.ui.main.MainActivity
+import kotlinx.android.synthetic.main.layout_splash.*
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
-    private var txtVersion: TextView? = null
 
 
     var dataManager: DataManager? = null
@@ -28,9 +28,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun setup() {
-        txtVersion = findViewById(R.id.txtVersion)
         activityComponent!!.inject(this)
-
         splashPresenter!!.onAttach(this)
     }
 
@@ -47,15 +45,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun onError(msg: String) {
-        Snackbar.make(txtVersion!!, msg, Snackbar.LENGTH_LONG).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (splashPresenter != null) {
-            splashPresenter!!.onDetach()
-            splashPresenter = null
-        }
+        Snackbar.make(txtVersion, msg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun emptyState() {
@@ -72,5 +62,13 @@ class SplashActivity : BaseActivity(), SplashContract.View {
 
     override fun normalState() {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (splashPresenter != null) {
+            splashPresenter!!.onDetach()
+            splashPresenter = null
+        }
     }
 }

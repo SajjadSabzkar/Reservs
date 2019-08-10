@@ -13,6 +13,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.main.MainActivity
+import kotlinx.android.synthetic.main.layout_register.*
 import javax.inject.Inject
 
 class RegisterFragment : BaseFragment(), RegisterContract.View {
@@ -32,16 +33,13 @@ class RegisterFragment : BaseFragment(), RegisterContract.View {
             }
             fcmToken = it.result?.token
         }
-        val txtName = view.findViewById<TextView>(R.id.txtName)
-        val txtPhone = view.findViewById<TextView>(R.id.txtPhone)
-        val txtPassword = view.findViewById<TextView>(R.id.txtPassword)
-        view.findViewById<Button>(R.id.btnRegister)?.setOnClickListener {
+        btnRegister.setOnClickListener {
             registerPresenter?.register(txtName?.text.toString(),
                     txtPhone?.text.toString(),
                     txtPassword?.text.toString(),
                     fcmToken!!)
         }
-        view.findViewById<TextView>(R.id.txtLogin)?.setOnClickListener {
+        txtLogin.setOnClickListener {
             findNavController().navigate(R.id.registerToLogin)
         }
     }

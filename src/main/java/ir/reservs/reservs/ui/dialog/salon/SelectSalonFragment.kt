@@ -11,6 +11,7 @@ import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseDialogFragment
 import ir.reservs.reservs.ui.main.salons.SalonListAdapter
 import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
+import kotlinx.android.synthetic.main.select_city_layout.*
 import javax.inject.Inject
 
 class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
@@ -22,7 +23,6 @@ class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
     var selectCityAdapter: SalonListAdapter? = null
         @Inject set
 
-    private var cityRecyclerView: RecyclerView? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,9 +37,8 @@ class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
 
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
-        cityRecyclerView = view.findViewById(R.id.cityRecyclerView)
-        initializeStateAdapter(cityRecyclerView!!, selectCityAdapter!!)
-        cityRecyclerView?.adapter = getStateAdapter()
+        initializeStateAdapter(cityRecyclerView, selectCityAdapter!!)
+        cityRecyclerView.adapter = getStateAdapter()
         selectCityAdapter?.listener = this
         selectCityPresenter?.onAttach(this)
         selectCityPresenter?.fetchSalons(cityId)
@@ -60,7 +59,6 @@ class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
         super.onDestroyView()
         selectCityPresenter?.onDetach()
         listener = null
-        cityRecyclerView = null
         selectCityAdapter = null
     }
 }

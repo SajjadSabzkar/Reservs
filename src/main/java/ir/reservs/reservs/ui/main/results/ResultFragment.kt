@@ -11,11 +11,11 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_result.*
 import javax.inject.Inject
 
 
 class ResultFragment : BaseFragment(), ResultContract.View {
-
 
     var resultPresenter: ResultPresenter? = null
         @Inject set
@@ -23,25 +23,16 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     var dialog: AlertDialog? = null
         @Inject set
 
-    private var imgStatus: ImageView? = null
-    private var txtTitleStatus: TextView? = null
-    private var txtBodyStatus: TextView? = null
-    private var btnResult: Button? = null
-
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         resultPresenter?.onAttach(this)
-        imgStatus = view.findViewById(R.id.imgStatus)
-        txtTitleStatus = view.findViewById(R.id.txtTitleStatus)
-        txtBodyStatus = view.findViewById(R.id.txtBodyStatus)
-        btnResult = view.findViewById(R.id.btnResult)
         val data = activity?.intent?.data
         resultPresenter?.onReceive(activity!!, data!!)
     }
 
     override fun initializeViews(state: Boolean) {
         if (state) {
-            btnResult?.setOnClickListener {
+            btnResult.setOnClickListener {
                 findNavController().navigate(R.id.resultToHistory)
             }
             return

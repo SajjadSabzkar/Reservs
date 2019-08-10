@@ -14,6 +14,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.main.MainActivity
+import kotlinx.android.synthetic.main.layout_login.*
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment(), LoginContract.View {
@@ -34,13 +35,10 @@ class LoginFragment : BaseFragment(), LoginContract.View {
             }
             fcmToken = it.result?.token
         }
-        view.findViewById<TextView>(R.id.txtCreateAccount)?.setOnClickListener {
+        txtCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.go_to_register)
         }
 
-        val txtPhone = view.findViewById<EditText>(R.id.txtPhone)
-        val txtPassword = view.findViewById<EditText>(R.id.txtPassword)
-        val btnLogin = view.findViewById<Button>(R.id.btnLogin)
         btnLogin?.setOnClickListener {
             loginPresenter?.login(txtPhone?.text.toString(),
                     txtPassword?.text.toString(), fcmToken!!)

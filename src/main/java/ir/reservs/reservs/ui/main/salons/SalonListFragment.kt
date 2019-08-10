@@ -23,8 +23,6 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
 
     private var salonRecyclerView: RecyclerView? = null
 
-    private var progressBar: ProgressBar? = null
-
     //private var stateAdapter: StateAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,7 +32,6 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
 
     override fun setup(view: View) {
         salonRecyclerView = view.findViewById(ir.reservs.reservs.R.id.salonsRecyclerView)
-        progressBar = view.findViewById(ir.reservs.reservs.R.id.progressBar)
         fragmentComponent?.inject(this)
         salonListAdapter?.listener = this
         initializeStateAdapter(salonRecyclerView!!, salonListAdapter!!)
@@ -64,7 +61,6 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
             salonListAdapter = null
             salonRecyclerView = null
             salonListPresenter = null
-            progressBar = null
         }
         super.onDestroyView()
     }

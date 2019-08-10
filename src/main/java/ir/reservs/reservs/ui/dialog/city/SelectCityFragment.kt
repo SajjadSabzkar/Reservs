@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.City
 import ir.reservs.reservs.ui.base.BaseDialogFragment
+import kotlinx.android.synthetic.main.select_city_layout.*
 import javax.inject.Inject
 
 class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) : BaseDialogFragment(), SelectCityContract.View, SelectCityAdapter.CityOnClickListener {
@@ -19,7 +20,6 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
     var selectCityAdapter: SelectCityAdapter? = null
         @Inject set
 
-    private var cityRecyclerView: RecyclerView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.select_city_layout, container, false)
@@ -33,9 +33,8 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
 
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
-        cityRecyclerView = view.findViewById(R.id.cityRecyclerView)
-        initializeStateAdapter(cityRecyclerView!!, selectCityAdapter!!)
-        cityRecyclerView?.adapter = getStateAdapter()
+        initializeStateAdapter(cityRecyclerView, selectCityAdapter!!)
+        cityRecyclerView.adapter = getStateAdapter()
         selectCityAdapter?.listener = this
         selectCityPresenter?.onAttach(this)
     }
@@ -46,7 +45,6 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
     }
 
     override fun onClick(city: City) {
-        Log.e("SelectCityFragment", "onClick: $city")
         listener?.onClick(city)
         dismiss()
     }
@@ -55,7 +53,6 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
         super.onDestroyView()
         selectCityPresenter?.onDetach()
         listener = null
-        cityRecyclerView = null
         selectCityAdapter = null
     }
 }

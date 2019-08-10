@@ -17,13 +17,11 @@ import ir.reservs.reservs.ui.dialog.city.SelectCityAdapter
 import ir.reservs.reservs.ui.dialog.city.SelectCityFragment
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment
 import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
+import kotlinx.android.synthetic.main.layout_search.*
 import javax.inject.Inject
 
 class SearchFragment : BaseFragment(), SearchContract.View,
         SalonOnClickListener, SelectCityAdapter.CityOnClickListener {
-    private var txtDate: TextView? = null
-    private var txtCityName: TextView? = null
-    private var txtLocation: TextView? = null
 
     var searchPresenter: SearchPresenter? = null
         @Inject set
@@ -36,12 +34,6 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         searchPresenter?.onAttach(this)
-        txtCityName = view.findViewById(R.id.txtCityName)
-        txtDate = view.findViewById(R.id.txtDate)
-        txtLocation = view.findViewById(R.id.txtLocation)
-        val constraintLayoutCity: ConstraintLayout = view.findViewById(R.id.constraintLayoutCity)
-        val constraintLayoutSalon: ConstraintLayout = view.findViewById(R.id.constraintLayoutSalon)
-        val constraintLayoutDate: ConstraintLayout = view.findViewById(R.id.constraintLayoutDate)
         constraintLayoutCity.setOnClickListener { searchPresenter?.getCity() }
         constraintLayoutSalon.setOnClickListener { searchPresenter?.getSalon() }
         constraintLayoutDate.setOnClickListener { searchPresenter?.getDate() }
@@ -57,21 +49,21 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     }
 
     override fun setDate(date: String) {
-        txtDate?.text = date
+        txtDate.text = date
     }
 
     override fun setCity(city: City) {
-        txtCityName?.text = city.name
+        txtCityName.text = city.name
     }
 
     override fun onClick(salon: Salon) {
-        txtLocation?.text = salon.title
+        txtLocation.text = salon.title
         searchPresenter?.setSalon(salon)
 
     }
 
     override fun onClick(city: City) {
-        txtCityName?.text = city.name
+        txtCityName.text = city.name
         searchPresenter?.setCity(city)
 
     }

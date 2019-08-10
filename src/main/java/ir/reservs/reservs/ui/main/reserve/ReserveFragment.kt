@@ -14,6 +14,7 @@ import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import ir.reservs.reservs.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_reserve.*
 import javax.inject.Inject
 
 
@@ -22,10 +23,6 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
     var reservePresenter: ReservePresenter? = null
         @Inject set
 
-    private var txtName: TextView? = null
-    private var txtPhone: TextView? = null
-    private var txtTime: TextView? = null
-    private var txtDate: TextView? = null
     private var salon: Salon? = null
     private var time: Time? = null
     private var day: Day? = null
@@ -50,23 +47,19 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         view.findViewById<TextView>(R.id.txtEnd)?.text = time?.end
 
         //set data from dataManager or have calc
-        txtName = view.findViewById(R.id.txtName)
-        txtPhone = view.findViewById(R.id.txtPhone)
-        txtTime = view.findViewById(R.id.txtTime)
-        txtDate = view.findViewById(R.id.txtDate)
 
         reservePresenter?.initialize(salon!!, time!!, day!!)
-        view.findViewById<Button>(R.id.btnPayment)?.setOnClickListener {
+        btnPayment.setOnClickListener {
             reservePresenter?.payment()
         }
 
     }
 
     override fun initializeViews(name: String, phone: String, time: String, date: String) {
-        txtName?.text = name
-        txtPhone?.text = phone
-        txtTime?.text = time
-        txtDate?.text = date
+        txtName.text = name
+        txtPhone.text = phone
+        txtTime.text = time
+        txtDate.text = date
     }
 
     override fun context(): Context? {
@@ -86,9 +79,6 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         super.onDestroyView()
         if (reservePresenter != null) {
             reservePresenter = null
-            txtName = null
-            txtPhone = null
-            txtTime = null
         }
         if (dialog != null) {
             dialog?.dismiss()

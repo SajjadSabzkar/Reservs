@@ -10,6 +10,7 @@ import ir.reservs.reservs.R
 import ir.reservs.reservs.model.History
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.custome.StateAdapter
+import kotlinx.android.synthetic.main.layout_history.*
 import javax.inject.Inject
 
 class HistoryFragment : BaseFragment(), HistoryContract.View {
@@ -19,7 +20,6 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     var historyPresenter: HistoryPresenter? = null
         @Inject set
 
-    private var historyRecycler: RecyclerView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_history, container, false)
@@ -27,11 +27,10 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
 
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
-        historyRecycler = view.findViewById(R.id.historyRecycler)
         historyPresenter?.onAttach(this)
-        initializeStateAdapter(historyRecycler!!, historyAdapter as RecyclerView.Adapter<*>)
+        initializeStateAdapter(historyRecycler, historyAdapter as RecyclerView.Adapter<*>)
         getStateAdapter().currentView = StateAdapter.VIEW_EMPTY
-        historyRecycler?.adapter = getStateAdapter()
+        historyRecycler.adapter = getStateAdapter()
         loadingState()
     }
 
@@ -44,7 +43,6 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
         historyPresenter?.onDetach()
         historyPresenter = null
         historyAdapter = null
-        historyRecycler = null
     }
 
 }

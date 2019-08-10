@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day
+import kotlinx.android.synthetic.main.week_list_item.view.*
 
 class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<WeekDayAdapter.ViewHolder>() {
     var selectedDay: Day? = null
@@ -71,8 +72,7 @@ class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txtDayName: TextView = itemView.findViewById(R.id.txtDayName)
-        var txtDate: TextView = itemView.findViewById(R.id.txtDate)
-
+        var txtDayName: TextView = itemView.txtDayName
+        var txtDate: TextView = itemView.txtDate
     }
 }
