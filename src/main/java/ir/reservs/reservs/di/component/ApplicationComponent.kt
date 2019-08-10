@@ -5,6 +5,7 @@ import dagger.Component
 import ir.reservs.reservs.ReserveApplication
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.di.module.*
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
@@ -22,4 +23,6 @@ interface ApplicationComponent {
     fun application(): Application
 
     fun getDataManager(): DataManager
+
+    fun retrofit():Retrofit
 }
