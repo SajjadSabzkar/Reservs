@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.splash
 
-import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import ir.reservs.reservs.data.DataManager

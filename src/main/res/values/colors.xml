@@ -28,5 +28,7 @@
     <color name="grey_10">#e6e6e6</color>
     <color name="grey_20">#cccccc</color>
     <color name="overlay_dark_10">#1A000000</color>
+    <color name="splash_bg">#d0F48991</color>
+    <color name="splash_alpha">#D0B2F489</color>
 
 </resources>

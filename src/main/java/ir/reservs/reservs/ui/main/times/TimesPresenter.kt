@@ -104,7 +104,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             }
             "=" -> {
                 getTimesFromServer(TimeUtils.dateFormat(currentDate))
-                var selectedIndex = -1
+                val selectedIndex: Int
                 if (days.size > 7) {
                     selectedIndex = 6
                     days.add(TimeUtils.getDayFromDate(currentDate))
