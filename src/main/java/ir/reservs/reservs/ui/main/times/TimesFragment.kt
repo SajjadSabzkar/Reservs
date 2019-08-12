@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.R
@@ -59,7 +60,7 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
         timesPresenter?.setSalon(salon!!.id)
         timesPresenter?.goToDate(date)
 
-        view.findViewById<TextView>(R.id.txtSalonName).text = salon?.title
+        txtSalonName.text = salon?.title
 
     }
 
@@ -89,7 +90,11 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
         b.putParcelable("time", reserve)
         b.putParcelable("salon", salon)
         b.putParcelable("day", weekDayAdapter?.selectedDay)
-        findNavController().navigate(R.id.goToReserve, b)
+        val extras = FragmentNavigatorExtras(
+                txtSalonName to "txtSalonName",
+                txtDateTitle to "txtDateTitle"
+        )
+        findNavController().navigate(R.id.goToReserve, b,null,extras)
     }
 
     override fun onClick(day: Day) {

@@ -35,20 +35,11 @@ class ReservePresenter(val dataManager: DataManager, val compositeDisposable: Co
         this.time = time
         this.day = day
         view?.initializeViews(dataManager.getCurrentUserName(),
-                dataManager.getCurrentUserPhone(), calculateTime(), dateToString())
+                dataManager.getCurrentUserPhone(), calculateTime(), TimeUtils.dateDisplayFormat(day.date))
     }
 
     private fun calculateTime(): String {
         return TimeUtils.toString(TimeUtils.diff(time?.start!!, time?.end!!))
-    }
-
-    private fun dateToString(): String {
-        val da = day?.date?.split("-")
-        val year = da!![0].toInt()
-        val mount = da[1].toInt()
-        val day = da[2].toInt()
-        val jdate = JalaliCalendar(year, mount, day)
-        return "${jdate.dayOfWeekString} ${jdate.day} ${jdate.monthString}"
     }
 
     override fun payment() {

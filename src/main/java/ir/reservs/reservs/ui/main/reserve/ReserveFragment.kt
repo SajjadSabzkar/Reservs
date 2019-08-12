@@ -1,11 +1,16 @@
 package ir.reservs.reservs.ui.main.reserve;
 
+import android.annotation.TargetApi
 import android.app.AlertDialog
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.navigation.ActivityNavigator
+import androidx.transition.TransitionInflater
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
@@ -14,7 +19,7 @@ import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import javax.inject.Inject
-
+import android.util.Pair as UtilPair
 
 class ReserveFragment : BaseFragment(), ReserveContract.View {
 
@@ -27,6 +32,14 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
     var dialog: AlertDialog? = null
         @Inject set
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reserve, container, false)
     }
@@ -38,7 +51,7 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         time = arguments?.get("time") as Time
         day = arguments?.get("day") as Day
         //set data from arguments
-        txtPrice.text = CommonUtils.moneyDisplayFormat(time?.price,2)
+        txtPrice.text = CommonUtils.moneyDisplayFormat(time?.price, 2)
         txtCityName.text = salon?.cityName
         txtLocation.text = salon?.title
         txtStart.text = time?.start
