@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
-import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.item_salon.view.*
+import ir.reservs.reservs.utils.CommonUtils.moneyDisplayFormat as mFormat
 
 class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
     var listener: SalonOnClickListener? = null
@@ -45,9 +45,14 @@ class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Ada
 
         holder.txtLocation.text = mData[position].title
         holder.txtCity.text = mData[position].cityName
-        holder.txtPrice.text = String.format("%s < %s",
-                CommonUtils.moneyDisplayFormat(mData[position].minPrice.toString()),
-                CommonUtils.moneyDisplayFormat(mData[position].maxPrice.toString()))
+        val minPrice = mData[position].minPrice.toString()
+        val maxPrice = mData[position].maxPrice.toString()
+        if (minPrice == maxPrice) {
+            holder.txtPrice.text = mFormat(minPrice.toString())
+        } else {
+
+            holder.txtPrice.text = "از ${mFormat(minPrice, 2)} تا ${mFormat(maxPrice)}"
+        }
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
