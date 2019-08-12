@@ -1,8 +1,9 @@
 package ir.reservs.reservs.ui.main.reserve;
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
+import androidx.browser.customtabs.CustomTabsIntent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -11,6 +12,7 @@ import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
+import ir.reservs.reservs.ui.custome.tabs.CustomTabActivityHelper
 import ir.reservs.reservs.utils.RetrofitError
 import ir.reservs.reservs.utils.TimeUtils
 
@@ -57,9 +59,19 @@ class ReservePresenter(val dataManager: DataManager, val compositeDisposable: Co
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     view?.hideProgress()
-                    Log.e("ReservePresenter", it.redirect)
+                    /*
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.redirect))
                     view?.context()?.startActivity(intent)
+                    */
+                    val builder = CustomTabsIntent.Builder()
+                    val customTabIntent = builder.build()
+                    customTabIntent.launchUrl(view?.context(), Uri.parse(it.redirect))
+                    CustomTabActivityHelper.openCustomTab((view?.context() as Activity),
+                            customTabIntent,
+                            Uri.parse(it.redirect)) { it1, it2 ->
+                        it1.startActivity(Intent(Intent.ACTION_VIEW, it2))
+                    }
+
                 }, {
                     view?.hideProgress()
                     RetrofitError.handle(view!!, it)
