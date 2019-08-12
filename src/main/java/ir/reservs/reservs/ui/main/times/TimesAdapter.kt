@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Time
+import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.times_item.view.*
 
 class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
@@ -26,7 +27,7 @@ class TimesAdapter : RecyclerView.Adapter<TimesAdapter.Holder>() {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.txtStart.text = times[position].start
         holder.txtEnd.text = times[position].end
-        holder.btnReserve.text = "${times[position].price} تومان "
+        holder.btnReserve.text = CommonUtils.moneyDisplayFormat(times[position].price)
         holder.btnReserve.setOnClickListener {
             listener?.click(times[position])
         }

@@ -2,12 +2,10 @@ package ir.reservs.reservs.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.provider.Settings;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -16,23 +14,6 @@ import java.util.regex.Pattern;
 
 public class CommonUtils {
     private static final String TAG = "CommonUtils";
-
-    private CommonUtils() {
-        // This utility class is not publicly instantiable
-    }
-
-/*    public static ProgressDialog showLoadingDialog(Context context) {
-        ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.show();
-        if (progressDialog.getWindow() != null) {
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-        progressDialog.setContentView(R.layout.progress_dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        return progressDialog;
-    }*/
 
     @SuppressLint("all")
     public static String getDeviceId(Context context) {
@@ -59,27 +40,19 @@ public class CommonUtils {
         return matcher.matches();
     }
 
-    public static String loadJSONFromAsset(Context context, String jsonFileName)
-            throws IOException {
-
-        AssetManager manager = context.getAssets();
-        InputStream is = manager.open(jsonFileName);
-
-        int size = is.available();
-        byte[] buffer = new byte[size];
-        is.read(buffer);
-        is.close();
-
-        return new String(buffer, StandardCharsets.UTF_8);
-    }
-
     public static String getTimeStamp() {
         return new SimpleDateFormat(Constants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
     }
 
-    public static String dateFormatStandard(String date){
-        return date.replace("-","/")
-                .replace("-","/")
-                .replace("-","/");
+    public static String moneyDisplayFormat(String money) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(Long.valueOf(money))+" تومان";
+    }
+    public static String moneyDisplayFormat(String money,int type) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        if(type==1) {
+            return formatter.format(Long.valueOf(money)) + " تومان";
+        }
+        return formatter.format(Long.valueOf(money));
     }
 }

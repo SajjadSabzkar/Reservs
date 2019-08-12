@@ -92,4 +92,10 @@
     <string name="empty_collection">چیزی وجود ندارد</string>
     <string name="empty_description">هیچ محتوایی جهت ارائه وجود ندارد</string>
     <string name="today">امروز</string>
+    <string name="city_example">شهرستان گتوند</string>
+    <string name="date_example">1398/02/12</string>
+    <string name="time_example">14 الی 16</string>
+    <string name="state_example">منقضی شده</string>
+    <string name="name_location">اسم مکان:</string>
+    <string name="name_">نام:</string>
 </resources>

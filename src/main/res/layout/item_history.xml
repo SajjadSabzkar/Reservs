@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="5dp">
+    android:background="#fff"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="168dp">
 
         <view
             android:id="@+id/viewState"
@@ -26,52 +27,76 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtState"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:fontFamily="@font/iransans"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:paddingTop="4dp"
+            android:paddingTop="40dp"
             android:rotation="90"
-            android:text="منقضی شده"
             android:textColor="@color/colorWhite"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/state_example" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/imgSalon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="64dp"
+            android:contentDescription="@string/content_description"
             android:tint="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_home" />
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtSalonName"
             style="@style/HistoryItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="@string/app_name"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toStartOf="@+id/imageView8"
-            app:layout_constraintTop_toTopOf="@+id/imageView8" />
+            app:layout_constraintBottom_toBottomOf="@+id/imgSalon"
+            app:layout_constraintEnd_toStartOf="@+id/imgSalon"
+            app:layout_constraintTop_toTopOf="@+id/imgSalon"
+            tools:text="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/imgTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/content_description"
+            android:tint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@id/imgSalon"
+            app:layout_constraintTop_toBottomOf="@id/imgSalon"
+            app:srcCompat="@drawable/ic_time" />
 
         <TextView
-            android:id="@+id/txtLocation"
+            android:id="@+id/txtTime"
             style="@style/HistoryItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="سالن شماره دو"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-            app:layout_constraintEnd_toStartOf="@+id/imageView9"
-            app:layout_constraintTop_toTopOf="@+id/imageView9"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintBottom_toBottomOf="@id/imgTime"
+            app:layout_constraintEnd_toStartOf="@id/imgTime"
+            app:layout_constraintTop_toTopOf="@id/imgTime"
+            tools:text="@string/time_example" />
+
+        <ImageView
+            android:id="@+id/imgDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/content_description"
+            android:tint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@id/imgTime"
+            app:layout_constraintTop_toBottomOf="@id/imgTime"
+            app:srcCompat="@drawable/ic_date" />
 
         <TextView
             android:id="@+id/txtDate"
@@ -79,54 +104,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="1398/02/12"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-            app:layout_constraintEnd_toStartOf="@+id/imageView12"
-            app:layout_constraintTop_toTopOf="@+id/imageView12" />
+            app:layout_constraintBottom_toBottomOf="@+id/imgDate"
+            app:layout_constraintEnd_toStartOf="@+id/imgDate"
+            app:layout_constraintTop_toTopOf="@+id/imgDate"
+            tools:text="@string/date_example" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="8dp"
-            android:layout_height="1dp"
-            android:background="@color/colorText"
-            app:layout_constraintBottom_toBottomOf="@+id/txtDate"
-            app:layout_constraintEnd_toStartOf="@+id/txtDate"
-            app:layout_constraintTop_toBottomOf="@+id/txtLocation" />
+        <ImageView
+            android:id="@+id/imgPrice"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/content_description"
+            android:padding="2dp"
+            android:tint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@id/imgDate"
+            app:layout_constraintTop_toBottomOf="@+id/imgDate"
+            app:srcCompat="@drawable/discount" />
 
         <TextView
-            android:id="@+id/txtTime"
+            android:id="@+id/txtPrice"
             style="@style/HistoryItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="14 الی 16"
-            app:layout_constraintBottom_toBottomOf="@+id/txtDate"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/txtDate"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:tint="@color/colorText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8"
-            app:srcCompat="@drawable/ic_location" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
-            android:tint="@color/colorText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9"
-            app:srcCompat="@drawable/ic_time" />
-
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPrice"
+            app:layout_constraintEnd_toStartOf="@+id/imgPrice"
+            app:layout_constraintTop_toTopOf="@+id/imgPrice"
+            tools:text="35 هزار تومان" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

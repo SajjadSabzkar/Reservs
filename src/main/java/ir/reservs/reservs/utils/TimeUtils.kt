@@ -77,6 +77,10 @@ object TimeUtils {
         return "${date.dayOfWeekString} ${date.day} ${date.monthString} ${date.year}"
     }
 
+    fun dateDisplayFormat(date: String): String {
+        return dateDisplayFormat(convertStringToDate(date))
+    }
+
     fun toTwoDigit(num: Int): String {
         return if (num < 10) {
             "0$num"

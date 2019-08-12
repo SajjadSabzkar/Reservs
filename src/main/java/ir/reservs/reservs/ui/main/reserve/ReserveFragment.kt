@@ -6,14 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import dmax.dialog.SpotsDialog
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import ir.reservs.reservs.ui.base.BaseFragment
+import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import javax.inject.Inject
 
@@ -40,14 +38,13 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         time = arguments?.get("time") as Time
         day = arguments?.get("day") as Day
         //set data from arguments
-        view.findViewById<TextView>(R.id.txtPrice)?.text = time?.price
-        view.findViewById<TextView>(R.id.txtCity)?.text = salon?.cityName
-        view.findViewById<TextView>(R.id.txtLocation)?.text = salon?.title
-        view.findViewById<TextView>(R.id.txtStart)?.text = time?.start
-        view.findViewById<TextView>(R.id.txtEnd)?.text = time?.end
+        txtPrice.text = CommonUtils.moneyDisplayFormat(time?.price,2)
+        txtCityName.text = salon?.cityName
+        txtLocation.text = salon?.title
+        txtStart.text = time?.start
+        txtEnd.text = time?.end
 
         //set data from dataManager or have calc
-
         reservePresenter?.initialize(salon!!, time!!, day!!)
         btnPayment.setOnClickListener {
             reservePresenter?.payment()

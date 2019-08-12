@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
+import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.item_salon.view.*
 
 class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
@@ -45,8 +46,8 @@ class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Ada
         holder.txtLocation.text = mData[position].title
         holder.txtCity.text = mData[position].cityName
         holder.txtPrice.text = String.format("%s < %s",
-                mData[position].minPrice,
-                mData[position].maxPrice)
+                CommonUtils.moneyDisplayFormat(mData[position].minPrice.toString()),
+                CommonUtils.moneyDisplayFormat(mData[position].maxPrice.toString()))
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

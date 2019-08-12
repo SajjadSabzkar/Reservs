@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgCity"
+            android:id="@+id/imgPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/content_description_post_thumbnail"
@@ -33,7 +33,7 @@
             android:fontFamily="@font/iransans"
             android:text="@string/city"
             android:textColor="@color/colorText2"
-            app:layout_constraintEnd_toStartOf="@+id/imgCity"
+            app:layout_constraintEnd_toStartOf="@+id/imgPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -25,6 +25,7 @@ import ir.reservs.reservs.ui.main.results.ResultPresenter
 import ir.reservs.reservs.ui.main.salons.SalonListAdapter
 import ir.reservs.reservs.ui.main.salons.SalonListPresenter
 import ir.reservs.reservs.ui.main.search.SearchPresenter
+import ir.reservs.reservs.ui.main.settings.SettingsPresenter
 import ir.reservs.reservs.ui.main.times.TimesAdapter
 import ir.reservs.reservs.ui.main.times.TimesPresenter
 import ir.reservs.reservs.ui.main.times.WeekDayAdapter
@@ -160,7 +161,7 @@ class FragmentModule(val context: Context) {
     @Provides
     @PerFragment
     fun getSelectSalonPresenter(dataManager: DataManager,
-                                   compositeDisposable: CompositeDisposable): SelectSalonPresenter {
+                                compositeDisposable: CompositeDisposable): SelectSalonPresenter {
         return SelectSalonPresenter(dataManager, compositeDisposable)
     }
 
@@ -168,6 +169,12 @@ class FragmentModule(val context: Context) {
     @PerFragment
     fun getSearchPresenter(): SearchPresenter {
         return SearchPresenter()
+    }
+
+    @Provides
+    @PerFragment
+    fun getSettingsPresenter(dataManager: DataManager): SettingsPresenter {
+        return SettingsPresenter(dataManager)
     }
 
     @Provides

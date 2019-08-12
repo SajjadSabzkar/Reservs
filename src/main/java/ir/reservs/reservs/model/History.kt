@@ -8,10 +8,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class History(var id: Int,
                    var name: String,
-                   var location: String,
+                   var salonName: String,
                    var date: String,
                    var startTime: String,
                    var endTime: String,
+                   var price: String,
                    var status: Int) : Parcelable {
     companion object {
         val difCallBack: DiffUtil.ItemCallback<History> = object : DiffUtil.ItemCallback<History>() {
