@@ -1,13 +1,10 @@
 package ir.reservs.reservs.ui.main.results
 
-import android.app.AlertDialog
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
@@ -20,14 +17,11 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     var resultPresenter: ResultPresenter? = null
         @Inject set
 
-    var dialog: AlertDialog? = null
-        @Inject set
-
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         resultPresenter?.onAttach(this)
         val data = activity?.intent?.data
-        resultPresenter?.onReceive(activity!!, data!!)
+        resultPresenter?.onReceive(arguments?.getString("Status")!!)
     }
 
     override fun initializeViews(state: Boolean) {
@@ -54,17 +48,14 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     }
 
     override fun hideProgress() {
-        dialog?.hide()
     }
 
     override fun showProgress() {
-        dialog?.show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         resultPresenter?.onDetach()
-        dialog = null
     }
 
 }

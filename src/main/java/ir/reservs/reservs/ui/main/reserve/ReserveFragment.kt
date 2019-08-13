@@ -1,6 +1,5 @@
 package ir.reservs.reservs.ui.main.reserve;
 
-import android.annotation.TargetApi
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
@@ -8,8 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
-import androidx.navigation.ActivityNavigator
 import androidx.transition.TransitionInflater
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day

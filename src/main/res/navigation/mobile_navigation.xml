@@ -98,15 +98,24 @@
         android:id="@+id/resultFragment"
         android:name="ir.reservs.reservs.ui.main.results.ResultFragment"
         android:label="fragment_result">
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="reservs-app://reservs.ir/.*" />
         <action
             android:id="@+id/resultToHistory"
             app:destination="@id/historyFragment" />
         <action
             android:id="@+id/resultToSalons"
             app:destination="@id/salonListFragment" />
+        <deepLink
+            android:id="@+id/deepLink4"
+            app:uri="reserve-sport.ir/android/app/{Status}"
+            android:autoVerify="true" />
+        <deepLink
+            android:id="@+id/deepLink5"
+            app:uri="reservs.ir/android/app/{Status}"
+            android:autoVerify="true" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="reservs://android/app/{Status}"
+            android:autoVerify="true" />
     </fragment>
     <dialog
         android:id="@+id/selectCity"

@@ -140,9 +140,8 @@ class FragmentModule(val context: Context) {
 
     @Provides
     @PerFragment
-    fun provideResultPresenter(dataManager: DataManager,
-                               compositeDisposable: CompositeDisposable): ResultPresenter {
-        return ResultPresenter(dataManager, compositeDisposable)
+    fun provideResultPresenter(): ResultPresenter {
+        return ResultPresenter()
     }
 
     @Provides
