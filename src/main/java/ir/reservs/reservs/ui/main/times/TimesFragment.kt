@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Day
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.model.Time
 import ir.reservs.reservs.ui.base.BaseFragment
-import ir.reservs.reservs.utils.TimeUtils
 import kotlinx.android.synthetic.main.fragment_times.*
 import javax.inject.Inject
 
@@ -43,7 +40,7 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
             timesPresenter?.backDay()
         }
         txtGoToday.setOnClickListener {
-            timesPresenter?.selectDay(TimeUtils.getDayFromDate(JalaliCalendar()))
+            timesPresenter?.initializeViews()
         }
 
         imgBackTitle.setOnClickListener {
@@ -94,7 +91,7 @@ class TimesFragment : BaseFragment(), TimesContract.View, OnClickListener, WeekD
                 txtSalonName to "txtSalonName",
                 txtDateTitle to "txtDateTitle"
         )
-        findNavController().navigate(R.id.goToReserve, b,null,extras)
+        findNavController().navigate(R.id.goToReserve, b, null, extras)
     }
 
     override fun onClick(day: Day) {

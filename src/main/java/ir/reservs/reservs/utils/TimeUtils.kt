@@ -86,4 +86,14 @@ object TimeUtils {
             "0$num"
         } else num.toString()
     }
+
+    fun compareDates(d1: JalaliCalendar, d2: JalaliCalendar): String {
+        return if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
+            "="
+        } else if (d1.year > d2.year || d1.month > d2.month || d1.day > d2.day) {
+            ">"
+        } else {
+            "<"
+        }
+    }
 }

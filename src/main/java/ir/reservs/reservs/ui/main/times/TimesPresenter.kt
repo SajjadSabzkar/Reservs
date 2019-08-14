@@ -24,6 +24,14 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         this.view = view
     }
 
+    fun updateDaysList(date: JalaliCalendar) {
+        days.clear()
+        var dayCounter = date
+        for (i in 0..6) {
+            days.add(TimeUtils.getDayFromDate(dayCounter))
+            dayCounter = dayCounter.tomorrow
+        }
+    }
 
     private fun getTimesFromServer(date: String) {
         view?.loadingState()
@@ -48,14 +56,9 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
     }
 
     fun initializeViews() {
-        var jalaliDate = JalaliCalendar(GregorianCalendar())
-        for (i in 0..6) {
-            days.add(TimeUtils.getDayFromDate(jalaliDate))
-            jalaliDate = jalaliDate.tomorrow
-        }
-        jalaliDate = JalaliCalendar(GregorianCalendar());
-        val date: String = TimeUtils.dateFormat(jalaliDate)
-        getTimesFromServer(date)
+        currentDate = JalaliCalendar(GregorianCalendar())
+        updateDaysList(currentDate)
+        getTimesFromServer(days[0].date)
         view?.initializeViews(days, days[0])
         view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
     }
@@ -96,7 +99,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             return
         }
         val d = TimeUtils.convertStringToDate(date)
-        when (compareDates(d, currentDate)) {
+        when (TimeUtils.compareDates(d, currentDate)) {
             ">" -> {
                 days.add(TimeUtils.getDayFromDate(currentDate))
                 currentDate = currentDate.tomorrow
@@ -105,18 +108,20 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             "=" -> {
                 getTimesFromServer(TimeUtils.dateFormat(currentDate))
                 val selectedIndex: Int
-                if (days.size > 7) {
-                    selectedIndex = 6
-                    days.add(TimeUtils.getDayFromDate(currentDate))
-                    days = days.subList(days.lastIndex - 6, days.size)
-                } else if (days.size < 7) {
-                    selectedIndex = days.size
-                    while (days.size < 7) {
+                when {
+                    days.size > 7 -> {
+                        selectedIndex = 6
                         days.add(TimeUtils.getDayFromDate(currentDate))
-                        currentDate = currentDate.tomorrow
+                        days = days.subList(days.lastIndex - 6, days.size)
                     }
-                } else {
-                    selectedIndex = 6
+                    days.size < 7 -> {
+                        selectedIndex = days.size
+                        while (days.size < 7) {
+                            days.add(TimeUtils.getDayFromDate(currentDate))
+                            currentDate = currentDate.tomorrow
+                        }
+                    }
+                    else -> selectedIndex = 6
                 }
                 currentDate = TimeUtils.convertStringToDate(days[selectedIndex].date)
                 view?.initializeViews(days, days[selectedIndex])
@@ -134,16 +139,6 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         currentDate = TimeUtils.convertStringToDate(day.date)
         getTimesFromServer(day.date)
         view?.changeSelectedDay(day)
-    }
-
-    private fun compareDates(d1: JalaliCalendar, d2: JalaliCalendar): String {
-        if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
-            return "="
-        } else if (d1.year > d2.year || d1.month > d2.month || d1.day > d2.day) {
-            return ">"
-        } else {
-            return "<"
-        }
     }
 
     override fun onDetach() {
