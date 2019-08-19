@@ -80,9 +80,9 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         searchPresenter?.onDetach()
         searchPresenter = null
+        super.onDestroyView()
     }
 
 }

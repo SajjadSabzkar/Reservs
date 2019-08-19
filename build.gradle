@@ -79,6 +79,7 @@ dependencies {
     implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
     implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.3'
     implementation 'androidx.browser:browser:1.0.0'
+    implementation 'com.mlsdev.rximagepicker:library:2.2.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

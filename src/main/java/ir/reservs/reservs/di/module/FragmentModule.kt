@@ -172,8 +172,8 @@ class FragmentModule(val context: Context) {
 
     @Provides
     @PerFragment
-    fun getSettingsPresenter(dataManager: DataManager): SettingsPresenter {
-        return SettingsPresenter(dataManager)
+    fun getSettingsPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable): SettingsPresenter {
+        return SettingsPresenter(dataManager, compositeDisposable)
     }
 
     @Provides

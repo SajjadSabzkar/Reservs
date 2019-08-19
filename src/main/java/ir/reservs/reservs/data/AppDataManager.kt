@@ -6,8 +6,14 @@ import io.reactivex.schedulers.Schedulers
 import ir.reservs.reservs.data.network.ApiHelper
 import ir.reservs.reservs.data.prefs.PreferencesHelper
 import ir.reservs.reservs.model.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private val mApiHelper: ApiHelper) : DataManager {
+
+    override fun updateAvatar( avatar: MultipartBody.Part): Single<Avatar> {
+        return config(mApiHelper.updateAvatar(avatar))
+    }
 
     override fun updateFcmToken(fcmToken: String): Single<Success> {
         return config(mApiHelper.updateFcmToken(fcmToken))
@@ -38,7 +44,7 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return config(mApiHelper.salons())
     }
 
-    override fun salons(cityId:Int): Single<MutableList<Salon>> {
+    override fun salons(cityId: Int): Single<MutableList<Salon>> {
         return config(mApiHelper.salons(cityId))
     }
 

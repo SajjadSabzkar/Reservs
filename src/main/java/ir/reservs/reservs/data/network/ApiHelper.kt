@@ -2,6 +2,8 @@ package ir.reservs.reservs.data.network
 
 import io.reactivex.Single
 import ir.reservs.reservs.model.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiHelper {
@@ -58,4 +60,8 @@ interface ApiHelper {
 
     @GET("cities")
     fun cities(): Single<MutableList<City>>
+
+    @Multipart
+    @POST("avatar")
+    fun updateAvatar(@Part avatar: MultipartBody.Part): Single<Avatar>
 }

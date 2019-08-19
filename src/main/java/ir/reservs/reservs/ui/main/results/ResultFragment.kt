@@ -20,7 +20,6 @@ class ResultFragment : BaseFragment(), ResultContract.View {
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         resultPresenter?.onAttach(this)
-        val data = activity?.intent?.data
         resultPresenter?.onReceive(arguments?.getString("Status")!!)
     }
 
