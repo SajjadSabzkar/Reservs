@@ -4,7 +4,8 @@ import ir.reservs.reservs.ui.base.BaseFragmentContract;
 
 class SettingsContract {
     interface View : BaseFragmentContract.View {
-        fun setUserInfo(name: String, phone: String, image: String)
+        fun setUserInfo(name: String, phone: String)
+        fun setUserImage(image: String)
         fun openLoginActivity()
     }
 

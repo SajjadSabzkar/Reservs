@@ -29,9 +29,16 @@ class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: C
     }
 
     fun setUserProfileData() {
+        val imageUrl = dataManager.getCurrentUserImage()
+        if (imageUrl != "-1") {
+            loadImageAvatar(imageUrl)
+        }
         view?.setUserInfo(dataManager.getCurrentUserName(),
-                dataManager.getCurrentUserPhone(),
-                dataManager.getCurrentUserImage())
+                dataManager.getCurrentUserPhone())
+    }
+
+    private fun loadImageAvatar(imageUrl: String) {
+
     }
 
     fun pickImage(fragmentManager: FragmentManager, context: Context) {
@@ -46,7 +53,7 @@ class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: C
                     val d2 = dataManager.updateAvatar(part)
                             .subscribe({
                                 dataManager.setCurrentUserImage(it.image_url)
-                                setUserProfileData()
+                                loadImageAvatar(it.image_url)
                             }, {
                                 RetrofitError.handle(view!!, it)
                             })

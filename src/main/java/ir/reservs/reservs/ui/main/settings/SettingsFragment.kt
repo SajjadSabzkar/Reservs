@@ -2,7 +2,6 @@ package ir.reservs.reservs.ui.main.settings;
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.login.LoginRegisterActivity
 import kotlinx.android.synthetic.main.layout_settings.*
-import java.io.File
 import javax.inject.Inject
 
 
@@ -25,12 +23,14 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
         return inflater.inflate(R.layout.layout_settings, container, false)
     }
 
-    override fun setUserInfo(name: String, phone: String, image: String) {
+    override fun setUserInfo(name: String, phone: String) {
         txtName.text = name
         txtPhone.text = phone
-        Picasso.get().load(image).fit().into(imgAvatar)
     }
 
+    override fun setUserImage(image: String) {
+        Picasso.get().load(image).fit().resize(128, 128).into(imgAvatar)
+    }
 
     override fun openLoginActivity() {
         startActivity(Intent(activity, LoginRegisterActivity::class.java))
