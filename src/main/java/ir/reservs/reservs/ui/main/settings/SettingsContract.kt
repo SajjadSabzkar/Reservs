@@ -7,6 +7,8 @@ class SettingsContract {
         fun setUserInfo(name: String, phone: String)
         fun setUserImage(image: String)
         fun openLoginActivity()
+        fun showProgress()
+        fun hideProgress()
     }
 
     interface Presenter : BaseFragmentContract.Presenter<View> {

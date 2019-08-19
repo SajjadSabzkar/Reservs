@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.settings;
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,9 @@ import javax.inject.Inject
 class SettingsFragment : BaseFragment(), SettingsContract.View {
 
     var settingsPresenter: SettingsPresenter? = null
+        @Inject set
+
+    var dialog: AlertDialog? = null
         @Inject set
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,10 +52,22 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
         passwordCard.setOnClickListener { findNavController().navigate(R.id.settingsToPassword) }
     }
 
+    override fun showProgress() {
+        dialog?.show()
+    }
+
+    override fun hideProgress() {
+        dialog?.hide()
+    }
+
     override fun onDestroyView() {
         if (settingsPresenter != null) {
             settingsPresenter?.onDetach()
             settingsPresenter = null
+        }
+        if (dialog != null) {
+            dialog?.dismiss()
+            dialog = null
         }
         super.onDestroyView()
     }

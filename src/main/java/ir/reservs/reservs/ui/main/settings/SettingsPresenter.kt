@@ -46,15 +46,17 @@ class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: C
                 .flatMap {
                     RxImageConverters.uriToFile(context, it, createTempFile(context))
                 }
-
                 .subscribe({ it ->
                     val requestBodyImage = RequestBody.create(MediaType.parse("multipart/form-data"), it)
                     val part = MultipartBody.Part.createFormData("avatar", it.name, requestBodyImage)
+                    view?.showProgress()
                     val d2 = dataManager.updateAvatar(part)
                             .subscribe({
+                                view?.hideProgress()
                                 dataManager.setCurrentUserImage(it.image_url)
                                 loadImageAvatar(it.image_url)
                             }, {
+                                view?.hideProgress()
                                 RetrofitError.handle(view!!, it)
                             })
                     compositeDisposable.add(d2)
