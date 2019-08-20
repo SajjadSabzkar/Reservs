@@ -23,7 +23,7 @@ class LoginPresenter(val dataManager: DataManager, val compositeDisposable: Comp
     }
 
 
-    override fun login(phone: String, password: String, fcmToken: String) {
+    fun login(phone: String, password: String, fcmToken: String?) {
         if (phone.isEmpty()) {
             view?.onError(R.string.empty_phone)
             return
@@ -37,8 +37,11 @@ class LoginPresenter(val dataManager: DataManager, val compositeDisposable: Comp
             return
         }
         view?.showProgress()
+        var token = ""
+        if (fcmToken != null) token = fcmToken
+
         compositeDisposable.add(dataManager
-                .login(phone, password, fcmToken)
+                .login(phone, password, token)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ user ->

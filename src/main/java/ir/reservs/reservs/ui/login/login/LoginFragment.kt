@@ -17,7 +17,7 @@ import ir.reservs.reservs.ui.main.MainActivity
 import kotlinx.android.synthetic.main.layout_login.*
 import javax.inject.Inject
 
-class LoginFragment : BaseFragment(), LoginContract.View {
+class LoginFragment() : BaseFragment(), LoginContract.View {
 
     var dialog: AlertDialog? = null
         @Inject set
@@ -39,9 +39,9 @@ class LoginFragment : BaseFragment(), LoginContract.View {
             findNavController().navigate(R.id.go_to_register)
         }
 
-        btnLogin?.setOnClickListener {
+        btnLogin.setOnClickListener {
             loginPresenter?.login(txtPhone?.text.toString(),
-                    txtPassword?.text.toString(), fcmToken!!)
+                    txtPassword?.text.toString(), fcmToken)
         }
 
     }

@@ -11,7 +11,5 @@ class LoginContract {
         fun hideProgress()
     }
 
-    interface Presenter : BaseFragmentContract.Presenter<View> {
-        fun login(phone: String, password: String, fcmToken: String)
-    }
+    interface Presenter : BaseFragmentContract.Presenter<View>
 }
