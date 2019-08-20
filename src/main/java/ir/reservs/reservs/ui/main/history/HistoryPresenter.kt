@@ -10,16 +10,6 @@ class HistoryPresenter(val dataManager: DataManager,
     private var isLastPage = false
     private var isLoading = false
     private var view: HistoryContract.View? = null
-    /*private val hdFactory = HistoryDataSourceFactory(dataManager as AppDataManager, compositeDisposable)
-    private val pagedListObservable: Observable<PagedList<History>> by lazy {
-        val config: PagedList.Config = PagedList.Config.Builder()
-                .setInitialLoadSizeHint(2)
-                .setEnablePlaceholders(true)
-                .setPageSize(2)
-                .build()
-        RxPagedListBuilder(hdFactory, config)
-                .buildObservable()
-    }*/
 
     override fun onAttach(view: HistoryContract.View) {
         this.view = view

@@ -87,7 +87,7 @@
     <string name="do_you_have_account">قبلا از ورزشی رزرو استفاده کرده اید؟</string>
     <string name="login_to_account">ورود به حساب</string>
     <string name="date_quote">تاریخ:</string>
-    <string name="please_check_your_internet">خطای اتصال به شبکه. لطفا اتصال اینترنت خود را بررسی کنید</string>
+    <string name="please_check_your_internet">خطای اتصال به اینترنت. لطفا اتصال اینترنت خود را بررسی کنید.</string>
     <string name="error_occurre">خطایی رخ داد</string>
     <string name="empty_collection">چیزی وجود ندارد</string>
     <string name="empty_description">هیچ محتوایی جهت ارائه وجود ندارد</string>
@@ -98,4 +98,5 @@
     <string name="state_example">منقضی شده</string>
     <string name="name_location">اسم مکان:</string>
     <string name="name_">نام:</string>
+    <string name="error_in_internet">خطای اتصال به اینترنت</string>
 </resources>

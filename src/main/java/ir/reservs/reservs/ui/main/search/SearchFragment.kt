@@ -1,11 +1,12 @@
 package ir.reservs.reservs.ui.main.search
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
@@ -24,10 +25,8 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     var searchPresenter: SearchPresenter? = null
         @Inject set
 
-   /* var dialog: AlertDialog
-    init{
-        dialog=AlertDialog.Builder(context!!).
-    }*/
+    var dialog: AlertDialog? = null
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_search, container, false)
@@ -40,6 +39,12 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         constraintLayoutSalon.setOnClickListener { searchPresenter?.getSalon() }
         constraintLayoutDate.setOnClickListener { searchPresenter?.getDate() }
         view.findViewById<Button>(R.id.btnSearch).setOnClickListener { searchPresenter?.search() }
+
+        dialog = AlertDialog.Builder(context!!)
+                .setView(LayoutInflater.from(context).inflate(R.layout.dialog_error,null,false))
+                .setPositiveButton(R.string.ok_btn) { dialogInterface: DialogInterface, _: Int ->
+                    dialogInterface.dismiss()
+                }.create()
     }
 
     override fun openCityDialog() {
@@ -69,7 +74,7 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     }
 
     override fun onError() {
-
+        dialog?.show()
     }
 
     override fun getFManager(): FragmentManager {
@@ -86,6 +91,8 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     override fun onDestroyView() {
         searchPresenter?.onDetach()
         searchPresenter = null
+        dialog?.dismiss()
+        dialog = null
         super.onDestroyView()
     }
 
