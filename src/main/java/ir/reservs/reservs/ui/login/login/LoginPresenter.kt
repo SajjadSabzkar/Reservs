@@ -45,14 +45,12 @@ class LoginPresenter(val dataManager: DataManager, val compositeDisposable: Comp
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ user ->
-                    Log.e("LoginPresenter", "onLogin" + ": " + user.name)
                     saveUser(user)
                     view?.hideProgress()
                     view?.openMainActivity()
                 }, { error ->
                     RetrofitError.handle(view as BaseFragmentContract.View, error)
                     view?.hideProgress()
-                    Log.e("LoginPresenter", "onLogin" + ": " + error.message)
                 }))
     }
 

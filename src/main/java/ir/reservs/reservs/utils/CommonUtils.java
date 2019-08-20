@@ -40,10 +40,6 @@ public class CommonUtils {
         return matcher.matches();
     }
 
-    public static String getTimeStamp() {
-        return new SimpleDateFormat(Constants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
-    }
-
     public static String moneyDisplayFormat(String money) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(Long.valueOf(money))+" تومان";

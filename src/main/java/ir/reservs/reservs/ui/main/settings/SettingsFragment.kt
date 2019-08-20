@@ -33,7 +33,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
     }
 
     override fun setUserImage(image: String) {
-        Picasso.get().load(image).fit().resize(128, 128).into(imgAvatar)
+        Picasso.get().load(image).resize(128, 128).into(imgAvatar)
     }
 
     override fun openLoginActivity() {

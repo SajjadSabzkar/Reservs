@@ -27,7 +27,6 @@ class RegisterPresenter(val dataManager: DataManager, val compositeDisposable: C
             view?.onError("رمز عبور باید حداقل پنج حرف باشد")
             return
         }
-        Log.e("RegisterPresenter", "checks pass")
         view?.showProgress()
         val dispose = dataManager.register(name, phone, password, fcmToken)
                 .subscribe({ user: User ->

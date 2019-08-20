@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseDialogFragment
@@ -14,7 +13,7 @@ import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
 import kotlinx.android.synthetic.main.select_city_layout.*
 import javax.inject.Inject
 
-class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
+class SelectSalonFragment(var listener: SelectSalonListener?, private val cityId: Int)
     : BaseDialogFragment(), SelectSalonContract.View, SalonOnClickListener {
 
     var selectCityPresenter: SelectSalonPresenter? = null
@@ -23,7 +22,10 @@ class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
     var selectCityAdapter: SalonListAdapter? = null
         @Inject set
 
-
+    interface SelectSalonListener {
+        fun onError()
+        fun onSelect(salon: Salon)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.select_city_layout, container, false)
@@ -45,13 +47,17 @@ class SelectSalonFragment(var listener: SalonOnClickListener?, val cityId: Int)
     }
 
     override fun setList(salons: MutableList<Salon>) {
-        Log.e("SelectSalonFragment", "setList: " + salons.size)
         selectCityAdapter?.addData(salons)
         normalState()
     }
 
     override fun onClick(salon: Salon) {
-        listener?.onClick(salon)
+        listener?.onSelect(salon)
+        dismiss()
+    }
+
+    override fun errorState() {
+        listener?.onError()
         dismiss()
     }
 

@@ -14,13 +14,14 @@ import ir.reservs.reservs.model.City
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.ui.dialog.city.SelectCityFragment
+import ir.reservs.reservs.ui.dialog.city.SelectCityFragment.SelectCityListener
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment
-import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
+import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment.SelectSalonListener
 import kotlinx.android.synthetic.main.layout_search.*
 import javax.inject.Inject
 
 class SearchFragment : BaseFragment(), SearchContract.View,
-        SalonOnClickListener, SelectCityFragment.SelectCityListener {
+        SelectSalonListener, SelectCityListener {
 
     var searchPresenter: SearchPresenter? = null
         @Inject set
@@ -41,7 +42,7 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         view.findViewById<Button>(R.id.btnSearch).setOnClickListener { searchPresenter?.search() }
 
         dialog = AlertDialog.Builder(context!!)
-                .setView(LayoutInflater.from(context).inflate(R.layout.dialog_error,null,false))
+                .setView(View.inflate(context, R.layout.dialog_error, null))
                 .setPositiveButton(R.string.ok_btn) { dialogInterface: DialogInterface, _: Int ->
                     dialogInterface.dismiss()
                 }.create()
@@ -63,7 +64,7 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         txtCityName.text = city.name
     }
 
-    override fun onClick(salon: Salon) {
+    override fun onSelect(salon: Salon) {
         txtLocation.text = salon.title
         searchPresenter?.setSalon(salon)
     }
