@@ -4,30 +4,35 @@ import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import ir.reservs.reservs.model.Error
+import io.reactivex.subjects.PublishSubject
 import ir.reservs.reservs.model.History
 
 class HistoryDataSource(val dataManager: AppDataManager, val compositeDisposable: CompositeDisposable)
     : PageKeyedDataSource<Int, History>() {
+
+    private val stateSubject = PublishSubject.create<Int>()
+    val stateObservable: Observable<Int> = stateSubject
+
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, History>) {
         val d = dataManager.reserves(1)
-                .subscribe({ list ->
+                .subscribe { list ->
+                    if (list.size > 0) {
+                        //   stateSubject.onNext(1)
+                    } else {
+                        // stateSubject.onNext(0)
+                    }
                     callback.onResult(list, null, 2)
-                }, {
-                    Log.e("HistoryDataSource", "loadInitial: Error->" + it.message)
-                    //errorState.errorState.postValue(Error(300, "internet connection"))
-                })
+                }
         compositeDisposable.add(d)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, History>) {
-        Log.e("HistoryDataSource", "loadAfter: " + params.key)
+        stateSubject.onNext(1)
+        stateSubject.onComplete()
         val d = dataManager.reserves(params.key)
-                .subscribe({
+                .subscribe { it ->
                     callback.onResult(it, params.key + 1)
-                }, {
-                   // errorState.postValue(Error(300, "internet connection"))
-                })
+                }
         compositeDisposable.add(d)
     }
 

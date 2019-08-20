@@ -28,7 +28,7 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
     }
 
     override fun reserves(page: Int): Single<MutableList<History>> {
-        return mApiHelper.reserves(page)
+        return config(mApiHelper.reserves(page))
     }
 
     override fun reserve(time_id: String, salon_id: Int?, callBackUrl: String, date: String): Single<Payment> {

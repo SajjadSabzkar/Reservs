@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.History
@@ -13,31 +12,37 @@ import ir.reservs.reservs.utils.TimeUtils
 import kotlinx.android.synthetic.main.item_history.view.*
 
 
-class HistoryAdapter(var history: ArrayList<History>)
-    : PagedListAdapter<History, HistoryAdapter.Holder>(History.difCallBack) {
+class HistoryAdapter(var history: ArrayList<History>) : RecyclerView.Adapter<HistoryAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.item_history, parent, false)
         return Holder(view)
-
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val history = getItem(position)
-        holder.txtSalonName.text = history?.salonName
-        holder.txtTime.text = history?.startTime
+        val item = history[position]
+        holder.txtSalonName.text = item.salonName
+        holder.txtTime.text = item.startTime
         holder.txtTime.append(" الی ")
-        holder.txtTime.append(history?.endTime)
-        holder.txtDate.text = TimeUtils.dateDisplayFormat(history?.date!!)
-        holder.txtPrice.text = CommonUtils.moneyDisplayFormat(history.price)
+        holder.txtTime.append(item.endTime)
+        holder.txtDate.text = TimeUtils.dateDisplayFormat(item.date)
+        holder.txtPrice.text = CommonUtils.moneyDisplayFormat(item.price)
         when {
-            history.status == 1 -> holder.txtState.text = "آینده"
-            history.status == 0 -> holder.txtState.text = "حال"
-            history.status == -1 -> holder.txtState.text = "گذشته"
+            item.status == 1 -> holder.txtState.text = "آینده"
+            item.status == 0 -> holder.txtState.text = "حال"
+            item.status == -1 -> holder.txtState.text = "گذشته"
         }
-        holder.viewState = updateStateView(holder.viewState, history.status);
+        holder.viewState = updateStateView(holder.viewState, item.status)
+    }
+
+    override fun getItemCount(): Int {
+        return history.size
+    }
+
+    fun addHistory(items: MutableList<History>) {
+        history.addAll(items)
     }
 
     private fun updateStateView(view: View, state: Int): View {

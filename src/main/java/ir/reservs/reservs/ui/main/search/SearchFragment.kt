@@ -24,10 +24,10 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     var searchPresenter: SearchPresenter? = null
         @Inject set
 
-    var dialog: AlertDialog
+   /* var dialog: AlertDialog
     init{
         dialog=AlertDialog.Builder(context!!).
-    }
+    }*/
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_search, container, false)

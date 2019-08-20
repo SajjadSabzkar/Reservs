@@ -19,14 +19,10 @@ data class History(var id: Int,
             override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
                 val dateCheck = (oldItem.date == newItem.date)
                 val timeCheck = (oldItem.startTime == newItem.startTime)
-                Log.e("History", "areItemsTheSame: $oldItem")
-                Log.e("History", "areItemsTheSame: $newItem")
                 return (dateCheck && timeCheck)
             }
 
             override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
-                Log.e("History", "areContentsTheSame: $oldItem")
-                Log.e("History", "areContentsTheSame: $newItem")
                 return oldItem == newItem
             }
         }
