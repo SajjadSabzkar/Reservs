@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="MDialog">
- <!--       <attr name="mdialog_emoji" format="enum">
-            <enum name="success" value="1" />
-            <enum name="failed" value="0" />
-        </attr>
-        <attr name="mdialog_title" format="string" />
-        <attr name="mdialog_description" format="string" />
-        <attr name="mdialog_button_text" format="string" />
-        <attr name="mdialog_button_background" format="color" />
-        <attr name="mdialog_button_text_color" format="color" />-->
-    </declare-styleable>
+
 </resources>
