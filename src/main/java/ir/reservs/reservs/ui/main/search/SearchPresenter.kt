@@ -53,7 +53,7 @@ class SearchPresenter : SearchContract.Presenter, DateSetListener {
 
     override fun onDateSet(id: Int, calendar: Calendar?, day: Int, month: Int, year: Int) {
         date = TimeUtils.dateFormat(year, month, day)
-        view!!.setDate(TimeUtils.dateDisplayFormat(year, month, day))
+        view!!.displayDate(TimeUtils.dateDisplayFormat(year, month, day))
     }
 
     fun search() {

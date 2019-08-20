@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.City
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseFragment
-import ir.reservs.reservs.ui.dialog.city.SelectCityAdapter
 import ir.reservs.reservs.ui.dialog.city.SelectCityFragment
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment
 import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
@@ -21,11 +19,15 @@ import kotlinx.android.synthetic.main.layout_search.*
 import javax.inject.Inject
 
 class SearchFragment : BaseFragment(), SearchContract.View,
-        SalonOnClickListener, SelectCityAdapter.CityOnClickListener {
+        SalonOnClickListener, SelectCityFragment.SelectCityListener {
 
     var searchPresenter: SearchPresenter? = null
         @Inject set
 
+    var dialog: AlertDialog
+    init{
+        dialog=AlertDialog.Builder(context!!).
+    }
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.layout_search, container, false)
@@ -48,23 +50,25 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         SelectSalonFragment(this, cityId).show(fragmentManager!!, "")
     }
 
-    override fun setDate(date: String) {
+    override fun displayDate(date: String) {
         txtDate.text = date
     }
 
-    override fun setCity(city: City) {
+    override fun displayCity(city: City) {
         txtCityName.text = city.name
     }
 
     override fun onClick(salon: Salon) {
         txtLocation.text = salon.title
         searchPresenter?.setSalon(salon)
-
     }
 
-    override fun onClick(city: City) {
+    override fun onSelect(city: City) {
         txtCityName.text = city.name
         searchPresenter?.setCity(city)
+    }
+
+    override fun onError() {
 
     }
 

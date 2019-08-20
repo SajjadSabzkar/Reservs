@@ -7,9 +7,9 @@ import ir.reservs.reservs.ui.base.BaseFragmentContract
 
 class SearchContract {
     interface View : BaseFragmentContract.View {
-        fun setDate(date: String)
+        fun displayDate(date: String)
 
-        fun setCity(city: City)
+        fun displayCity(city: City)
 
         fun getFManager(): FragmentManager
 

@@ -1,18 +1,16 @@
 package ir.reservs.reservs.ui.dialog.city
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.City
 import ir.reservs.reservs.ui.base.BaseDialogFragment
 import kotlinx.android.synthetic.main.select_city_layout.*
 import javax.inject.Inject
 
-class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) : BaseDialogFragment(), SelectCityContract.View, SelectCityAdapter.CityOnClickListener {
+class SelectCityFragment(var listener: SelectCityListener?) : BaseDialogFragment(), SelectCityContract.View, SelectCityAdapter.CityOnClickListener {
 
     var selectCityPresenter: SelectCityPresenter? = null
         @Inject set
@@ -20,6 +18,10 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
     var selectCityAdapter: SelectCityAdapter? = null
         @Inject set
 
+    interface SelectCityListener {
+        fun onError()
+        fun onSelect(city: City)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.select_city_layout, container, false)
@@ -45,7 +47,12 @@ class SelectCityFragment(var listener: SelectCityAdapter.CityOnClickListener?) :
     }
 
     override fun onClick(city: City) {
-        listener?.onClick(city)
+        listener?.onSelect(city)
+        dismiss()
+    }
+
+    override fun errorState() {
+        listener?.onError()
         dismiss()
     }
 
