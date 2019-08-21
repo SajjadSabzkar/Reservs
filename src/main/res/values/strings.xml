@@ -99,4 +99,8 @@
     <string name="name_location">اسم مکان:</string>
     <string name="name_">نام:</string>
     <string name="error_in_internet">خطای اتصال به اینترنت</string>
+    <string name="forget_description">شماره تلفنی را که قبلا با آن ثبت نام کرده اید را وارد نمایید تا کلمه عبور برایتان از طریق پیامک ارسال گردد.</string>
+    <string name="send_password">ارسال کلمه عبور</string>
+    <string name="forget_password">بازیابی کلمه عبور</string>
+    <string name="forget_password_question">کلمه عبور رو فراموش کردی؟</string>
 </resources>

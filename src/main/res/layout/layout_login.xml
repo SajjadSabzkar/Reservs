@@ -44,24 +44,6 @@
         app:srcCompat="@drawable/authentication" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:fontFamily="@font/iransans"
-        android:gravity="center"
-        android:text="@string/login_description"
-        android:textSize="@dimen/label_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +56,7 @@
         android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -210,37 +192,70 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
         android:text="@string/enter"
-        app:layout_constraintBottom_toTopOf="@id/txtQuestions"
+        app:layout_constraintBottom_toTopOf="@id/llRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPassword" />
 
-    <TextView
-        android:id="@+id/txtQuestions"
+    <LinearLayout
+        android:id="@+id/llRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/iransans"
-        android:text="@string/dont_have_account"
-        android:textColor="@color/colorText2"
-        android:textSize="14dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/llForget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txtCreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/iransans"
+            android:text="@string/create_account"
+            android:textColor="@color/colorCancel"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransans"
+            android:text="@string/dont_have_account"
+            android:textColor="@color/colorText2"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llForget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/txtCreateAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/iransans"
-        android:text="@string/create_account"
-        android:textColor="@color/colorCancel"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/txtQuestions"
-        app:layout_constraintEnd_toStartOf="@id/txtQuestions"
-        app:layout_constraintTop_toTopOf="@id/txtQuestions" />
+        <TextView
+            android:id="@+id/txtForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/iransans"
+            android:text="@string/forget_password"
+            android:textColor="@color/colorCancel"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/txtQuestionForget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransans"
+            android:text="@string/forget_password_question"
+            android:textColor="@color/colorText2"
+            android:textSize="14dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

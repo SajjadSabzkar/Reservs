@@ -20,5 +20,16 @@
         <action
             android:id="@+id/go_to_register"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/loginToForget"
+            app:destination="@id/forgetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetFragment"
+        android:name="ir.reservs.reservs.ui.login.forget.ForgetFragment"
+        android:label="ForgetFragment" >
+        <action
+            android:id="@+id/forgetToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

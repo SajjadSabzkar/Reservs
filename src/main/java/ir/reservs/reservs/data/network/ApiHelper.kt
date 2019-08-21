@@ -3,7 +3,6 @@ package ir.reservs.reservs.data.network
 import io.reactivex.Single
 import ir.reservs.reservs.model.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiHelper {
@@ -20,6 +19,10 @@ interface ApiHelper {
     fun login(@Field("phone") phone: String,
               @Field("password") password: String,
               @Field("fcmToken") fcmToken: String): Single<User>
+
+    @POST("auth/forget")
+    @FormUrlEncoded
+    fun forget(@Field("phone_number") phone: String): Single<Success>
 
     @GET("reserves")
     fun reserves(@Query("page") page: Int): Single<MutableList<History>>

@@ -7,11 +7,13 @@ import ir.reservs.reservs.data.network.ApiHelper
 import ir.reservs.reservs.data.prefs.PreferencesHelper
 import ir.reservs.reservs.model.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private val mApiHelper: ApiHelper) : DataManager {
+    override fun forget(phone: String): Single<Success> {
+        return config(mApiHelper.forget(phone))
+    }
 
-    override fun updateAvatar( avatar: MultipartBody.Part): Single<Avatar> {
+    override fun updateAvatar(avatar: MultipartBody.Part): Single<Avatar> {
         return config(mApiHelper.updateAvatar(avatar))
     }
 

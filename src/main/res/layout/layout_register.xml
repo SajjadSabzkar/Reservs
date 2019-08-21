@@ -258,37 +258,39 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/create"
-        app:layout_constraintBottom_toBottomOf="@id/txtQuestions"
+        app:layout_constraintBottom_toBottomOf="@id/llLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPassword" />
 
-    <TextView
-        android:id="@+id/txtQuestions"
+    <LinearLayout
+        android:id="@+id/llLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/iransans"
-        android:text="@string/do_you_have_account"
-        android:textColor="@color/colorText2"
-        android:textSize="14dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/txtLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/iransans"
-        android:text="@string/login_to_account"
-        android:textColor="@color/colorCancel"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/txtQuestions"
-        app:layout_constraintEnd_toStartOf="@id/txtQuestions"
-        app:layout_constraintTop_toTopOf="@id/txtQuestions" />
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/iransans"
+            android:text="@string/login_to_account"
+            android:textColor="@color/colorCancel"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/txtQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransans"
+            android:text="@string/do_you_have_account"
+            android:textColor="@color/colorText2"
+            android:textSize="14dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

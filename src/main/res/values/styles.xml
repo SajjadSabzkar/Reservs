@@ -30,6 +30,7 @@
         <item name="android:fontFamily">@font/iransans</item>
         <item name="android:textSize">@dimen/actionbar_text_size</item>
         <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorText</item>
     </style>
 

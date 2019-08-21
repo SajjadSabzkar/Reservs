@@ -12,8 +12,8 @@ import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.di.PerFragment
 import ir.reservs.reservs.ui.dialog.city.SelectCityAdapter
 import ir.reservs.reservs.ui.dialog.city.SelectCityPresenter
-
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonPresenter
+import ir.reservs.reservs.ui.login.forget.ForgetPresenter
 import ir.reservs.reservs.ui.login.login.LoginPresenter
 import ir.reservs.reservs.ui.login.register.RegisterPresenter
 import ir.reservs.reservs.ui.main.history.HistoryAdapter
@@ -174,6 +174,12 @@ class FragmentModule(val context: Context) {
     @PerFragment
     fun getSettingsPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable): SettingsPresenter {
         return SettingsPresenter(dataManager, compositeDisposable)
+    }
+
+    @Provides
+    @PerFragment
+    fun getForgetPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable): ForgetPresenter {
+        return ForgetPresenter(dataManager, compositeDisposable)
     }
 
     @Provides

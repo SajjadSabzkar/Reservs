@@ -6,12 +6,10 @@ import ir.reservs.reservs.data.DataManager
 import javax.inject.Inject
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
-    override fun onMessageReceived(removeMessage: RemoteMessage?) {
+    override fun onMessageReceived(removeMessage: RemoteMessage) {
         super.onMessageReceived(removeMessage)
     }
-
-    override fun onNewToken(token: String?) {
+    override fun onNewToken(token: String) {
         super.onNewToken(token)
     }
-
 }

@@ -6,9 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.iid.FirebaseInstanceId
 import ir.reservs.reservs.R
@@ -37,6 +34,10 @@ class LoginFragment() : BaseFragment(), LoginContract.View {
         }
         txtCreateAccount.setOnClickListener {
             findNavController().navigate(R.id.go_to_register)
+        }
+
+        txtForgetPassword.setOnClickListener {
+            findNavController().navigate(R.id.loginToForget)
         }
 
         btnLogin.setOnClickListener {
