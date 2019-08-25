@@ -18,7 +18,9 @@ class LoginPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         dataManager.setAccessToken(user.token)
         dataManager.setCurrentUserName(user.name)
         dataManager.setCurrentUserPhone(user.phone)
-        dataManager.setCurrentUserImage(user.image)
+        if (user.image.isNotEmpty()) {
+            dataManager.setCurrentUserImage(user.image)
+        }
     }
 
 

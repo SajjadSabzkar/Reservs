@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.layout_forget.*
-import kotlinx.android.synthetic.main.layout_login.*
 import kotlinx.android.synthetic.main.layout_login.txtPhone
 import javax.inject.Inject
 
@@ -39,7 +38,7 @@ class ForgetFragment() : BaseFragment(), ForgetContract.View {
     }
 
     override fun goToLoginFragment() {
-        findNavController().navigate(R.id.forgetToLogin)
+        findNavController().popBackStack()
     }
 
     override fun showProgress() {
