@@ -1,10 +1,10 @@
-package ir.reservs.reservs.ui.login.login
+package ir.reservs.reservs.ui.login.send
 
 import ir.reservs.reservs.ui.base.BaseFragmentContract
 
-class LoginContract {
+class SendContract {
     interface View : BaseFragmentContract.View {
-        fun openMainActivity()
+        fun goToVerifyState(phone:String)
 
         fun showProgress()
 

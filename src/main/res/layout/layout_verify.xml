@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
@@ -35,19 +36,20 @@
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:contentDescription="@string/vector_for_login_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:srcCompat="@drawable/authentication" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/labelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:fontFamily="@font/iransans"
@@ -57,7 +59,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPhone"
@@ -75,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/labelPhone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,7 +102,9 @@
                 android:id="@+id/txtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autofillHints=""
                 android:background="#00000000"
+                android:enabled="false"
                 android:fontFamily="@font/iransans"
                 android:gravity="center"
                 android:hint="@string/tel_sample"
@@ -111,52 +114,53 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/labelVerifyInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:fontFamily="@font/iransans"
-        android:text="@string/password"
+        android:text="@string/verify_code"
         android:textColor="@color/colorText"
         android:textSize="@dimen/label_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardPhone" />
 
+
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardPassword"
+        android:id="@+id/cardConfirm"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        app:cardBackgroundColor="@color/colorWhite"
         app:cardCornerRadius="12dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@id/labelVerifyInput"
+        tools:layout_editor_absoluteY="451dp"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorWhite"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 app:srcCompat="@drawable/ic_key" />
 
             <View
-                android:id="@+id/divider2"
+                android:id="@+id/dividerKey"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
@@ -164,98 +168,49 @@
                 android:background="@color/colorText" />
 
             <EditText
-                android:id="@+id/txtPassword"
+                android:id="@+id/txtConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#00000000"
-                android:ems="10"
                 android:fontFamily="@font/iransans"
                 android:gravity="center"
-                android:hint="پسورد شما"
-                android:inputType="textPassword"
-                android:textSize="@dimen/body_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                android:hint="@string/input_confirm_code"
+                android:inputType="numberPassword"
+                android:textSize="@dimen/body_text_size" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSubmit"
         style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/enter"
-        app:layout_constraintBottom_toTopOf="@id/llRegister"
+        android:text="@string/accept"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/cardConfirm" />
 
-    <LinearLayout
-        android:id="@+id/llRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/llForget"
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/ButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/change_phone"
+        android:backgroundTint="#2B2B2B"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/txtCreateAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/iransans"
-            android:text="@string/create_account"
-            android:textColor="@color/colorCancel"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtQuestions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iransans"
-            android:text="@string/dont_have_account"
-            android:textColor="@color/colorText2"
-            android:textSize="14dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llForget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/txtForgetPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/iransans"
-            android:text="@string/forget_password"
-            android:textColor="@color/colorCancel"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtQuestionForget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/iransans"
-            android:text="@string/forget_password_question"
-            android:textColor="@color/colorText2"
-            android:textSize="14dp" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSubmit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

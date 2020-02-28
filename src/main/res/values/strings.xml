@@ -18,6 +18,7 @@
     <string name="login_description">به حساب خود در ورزشی رزرو وارد شوید تا از تاریخچه رزرو خود با خبر شوید.</string>
     <string name="empty_password">پسورد اجباری است. لطفا پسورد را وارد کنید.</string>
     <string name="empty_phone">تلفن اجباری است. لطفا تلفن را وارد کنید.</string>
+    <string name="empty_confirm_code">کد دریافتی را وارد نمایید.</string>
     <string name="invalid_phone">تلفن وارد شده صحیح نمی باشد.</string>
     <string name="invalid_password">اطلاعات وارد شده صحیح نیستند.</string>
     <string name="bottom_history">تاریخچه</string>
@@ -103,4 +104,11 @@
     <string name="send_password">ارسال کلمه عبور</string>
     <string name="forget_password">بازیابی کلمه عبور</string>
     <string name="forget_password_question">کلمه عبور رو فراموش کردی؟</string>
+    <string name="vector_for_login_fragment">vector for login fragment</string>
+    <string name="send_verification_code">ارسال کد فعال سازی</string>
+    <string name="input_confirm_code">کد دریافتی را وارد نمایید.</string>
+    <string name="btn_send_cdoe">ارسال کد فعال سازی</string>
+    <string name="btn_verify_code">بررسی صحت کد</string>
+    <string name="verify_code">کد تایید</string>
+    <string name="change_phone">ویرایش شماره</string>
 </resources>

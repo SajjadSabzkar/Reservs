@@ -14,8 +14,9 @@ import ir.reservs.reservs.ui.dialog.city.SelectCityAdapter
 import ir.reservs.reservs.ui.dialog.city.SelectCityPresenter
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonPresenter
 import ir.reservs.reservs.ui.login.forget.ForgetPresenter
-import ir.reservs.reservs.ui.login.login.LoginPresenter
 import ir.reservs.reservs.ui.login.register.RegisterPresenter
+import ir.reservs.reservs.ui.login.send.SendPresenter
+import ir.reservs.reservs.ui.login.verify.VerifyPresenter
 import ir.reservs.reservs.ui.main.history.HistoryAdapter
 import ir.reservs.reservs.ui.main.history.HistoryPresenter
 import ir.reservs.reservs.ui.main.information.InformationPresenter
@@ -126,9 +127,16 @@ class FragmentModule(val context: Context) {
 
     @Provides
     @PerFragment
-    fun provideLoginPresenter(dataManager: DataManager,
-                              compositeDisposable: CompositeDisposable): LoginPresenter {
-        return LoginPresenter(dataManager, compositeDisposable)
+    fun provideSendPresenter(dataManager: DataManager,
+                             compositeDisposable: CompositeDisposable): SendPresenter {
+        return SendPresenter(dataManager, compositeDisposable)
+    }
+
+    @Provides
+    @PerFragment
+    fun provideVerifyPresenter(dataManager: DataManager,
+                               compositeDisposable: CompositeDisposable): VerifyPresenter {
+        return VerifyPresenter(dataManager, compositeDisposable)
     }
 
     @Provides

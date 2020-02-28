@@ -1,4 +1,4 @@
-package ir.reservs.reservs.ui.login.login;
+package ir.reservs.reservs.ui.login.verify
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -7,42 +7,29 @@ import ir.reservs.reservs.R
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.model.User
 import ir.reservs.reservs.ui.base.BaseFragmentContract
-import ir.reservs.reservs.utils.CommonUtils
 import ir.reservs.reservs.utils.RetrofitError
 
-class LoginPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : LoginContract.Presenter {
-
-    private var view: LoginContract.View? = null
+class VerifyPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : VerifyContract.Presenter {
+    private var view: VerifyContract.View? = null
 
     private fun saveUser(user: User) {
         dataManager.setAccessToken(user.token)
         dataManager.setCurrentUserName(user.name)
         dataManager.setCurrentUserPhone(user.phone)
+        dataManager.setIsVerify(user.is_verify)
         if (user.image.isNotEmpty()) {
             dataManager.setCurrentUserImage(user.image)
         }
     }
 
-
-    fun login(phone: String, password: String, fcmToken: String?) {
-        if (phone.isEmpty()) {
-            view?.onError(R.string.empty_phone)
-            return
-        }
-        if (!CommonUtils.isPhoneValid(phone)) {
-            view?.onError(R.string.invalid_phone)
-            return
-        }
-        if (password.isEmpty()) {
-            view?.onError(R.string.empty_password)
+    fun confirmCode(phone: String, code: String) {
+        if (code.isEmpty()) {
+            view?.onError(R.string.empty_confirm_code)
             return
         }
         view?.showProgress()
-        var token = ""
-        if (fcmToken != null) token = fcmToken
-
         compositeDisposable.add(dataManager
-                .login(phone, password, token)
+                .confirmCode(phone, code)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ user ->
@@ -55,10 +42,9 @@ class LoginPresenter(val dataManager: DataManager, val compositeDisposable: Comp
                 }))
     }
 
-    override fun onAttach(view: LoginContract.View) {
+    override fun onAttach(view: VerifyContract.View) {
         this.view = view
     }
-
 
     override fun onDetach() {
         view = null

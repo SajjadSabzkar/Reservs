@@ -6,8 +6,9 @@ import ir.reservs.reservs.di.module.FragmentModule
 import ir.reservs.reservs.ui.dialog.city.SelectCityFragment
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonFragment
 import ir.reservs.reservs.ui.login.forget.ForgetFragment
-import ir.reservs.reservs.ui.login.login.LoginFragment
 import ir.reservs.reservs.ui.login.register.RegisterFragment
+import ir.reservs.reservs.ui.login.send.SendFragment
+import ir.reservs.reservs.ui.login.verify.VerifyFragment
 import ir.reservs.reservs.ui.main.history.HistoryFragment
 import ir.reservs.reservs.ui.main.information.InformationFragment
 import ir.reservs.reservs.ui.main.password.PasswordFragment
@@ -30,7 +31,8 @@ interface FragmentComponent {
     fun inject(fragment: InformationFragment)
     fun inject(fragment: PasswordFragment)
     fun inject(fragment: TimesFragment)
-    fun inject(fragment: LoginFragment)
+    fun inject(fragment: SendFragment)
+    fun inject(fragment: VerifyFragment)
     fun inject(fragment: RegisterFragment)
     fun inject(fragment: SelectCityFragment)
     fun inject(fragment: SelectSalonFragment)

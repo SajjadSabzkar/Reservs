@@ -9,7 +9,8 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000</color>
     <color name="colorDialogButton">#2A93FF</color>
-    <color name="colorButton">#8074C8</color>
+    <color name="colorButton">#000000</color>
+    <!--<color name="colorButton">#8074C8</color>-->
     <color name="colorText">#A1A4C1</color>
     <color name="colorText2">#686767</color>
     <color name="colorText3">#212121</color>

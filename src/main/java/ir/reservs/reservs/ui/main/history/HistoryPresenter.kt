@@ -22,8 +22,11 @@ class HistoryPresenter(val dataManager: DataManager,
                 .subscribe({
                     isLoading = false
                     page++
-                    view?.normalState()
                     view?.updateAdapter(it)
+                    if (it.size > 0)
+                        view?.normalState()
+                    else
+                        view?.emptyState()
                 }, {
                     view?.errorState()
                 })

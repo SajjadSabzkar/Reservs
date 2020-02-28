@@ -23,4 +23,7 @@ interface PreferencesHelper {
 
     fun removeAccessToken()
 
+    fun setIsVerify(status: Boolean)
+
+    fun getVerify(): Boolean
 }

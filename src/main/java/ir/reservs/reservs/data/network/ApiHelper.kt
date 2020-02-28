@@ -20,6 +20,14 @@ interface ApiHelper {
               @Field("password") password: String,
               @Field("fcmToken") fcmToken: String): Single<User>
 
+    @POST("auth/phone")
+    @FormUrlEncoded
+    fun sendPhone(@Field("phone") phone: String): Single<Message>
+
+    @POST("auth/confirm")
+    @FormUrlEncoded
+    fun confirmCode(@Field("phone") phone: String, @Field("code") code: String): Single<User>
+
     @POST("auth/forget")
     @FormUrlEncoded
     fun forget(@Field("phone_number") phone: String): Single<Success>
@@ -47,7 +55,6 @@ interface ApiHelper {
     @PUT("info")
     @FormUrlEncoded
     fun updateName(@Field("name") name: String): Single<Success>
-
 
     @PUT("password")
     @FormUrlEncoded

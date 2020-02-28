@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_register_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/sendFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -11,25 +11,32 @@
         android:label="RegisterFragment" >
         <action
             android:id="@+id/registerToLogin"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/sendFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="ir.reservs.reservs.ui.login.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:id="@+id/sendFragment"
+        android:name="ir.reservs.reservs.ui.login.send.SendFragment"
+        android:label="sendFrgment">
         <action
             android:id="@+id/go_to_register"
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/loginToForget"
-            app:destination="@id/forgetFragment" />
+            app:destination="@id/verifyFragment" />
+        <argument
+            android:name="phone"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
-        android:id="@+id/forgetFragment"
-        android:name="ir.reservs.reservs.ui.login.forget.ForgetFragment"
-        android:label="ForgetFragment" >
+        android:id="@+id/verifyFragment"
+        android:name="ir.reservs.reservs.ui.login.verify.VerifyFragment"
+        android:label="VerifyFragment">
         <action
             android:id="@+id/forgetToLogin"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/sendFragment" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -9,6 +9,14 @@ import ir.reservs.reservs.model.*
 import okhttp3.MultipartBody
 
 class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private val mApiHelper: ApiHelper) : DataManager {
+    override fun confirmCode(phone: String, code: String): Single<User> {
+        return config(mApiHelper.confirmCode(phone, code))
+    }
+
+    override fun sendPhone(phone: String): Single<Message> {
+        return config(mApiHelper.sendPhone(phone))
+    }
+
     override fun forget(phone: String): Single<Success> {
         return config(mApiHelper.forget(phone))
     }
@@ -92,6 +100,14 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
 
     override fun removeAccessToken() {
         mPreferencesHelper.removeAccessToken()
+    }
+
+    override fun setIsVerify(status: Boolean) {
+        mPreferencesHelper.setIsVerify(status)
+    }
+
+    override fun getVerify(): Boolean {
+        return mPreferencesHelper.getVerify()
     }
 
     override fun updateName(name: String): Single<Success> {

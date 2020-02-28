@@ -56,7 +56,7 @@ class ReservePresenter(val dataManager: DataManager, val compositeDisposable: Co
                     */
                     val builder = CustomTabsIntent.Builder()
                     val customTabIntent = builder.build()
-                    customTabIntent.launchUrl(view?.context(), Uri.parse(it.redirect))
+                    customTabIntent.launchUrl(view?.context()!!, Uri.parse(it.redirect))
                     CustomTabActivityHelper.openCustomTab((view?.context() as Activity),
                             customTabIntent,
                             Uri.parse(it.redirect)) { it1, it2 ->

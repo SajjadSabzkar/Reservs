@@ -10,6 +10,7 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
     private val USER_PHONE = "PREF_KEY_USER_PHONE"
     private val USER_NAME = "PREF_KEY_USER_NAME"
     private val USER_IMAGE = "PREF_KEY_USER_IMAGE"
+    private val USER_IS_VERIFY = "PREF_KEY_USER_IS_VERIFY"
     private val ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN"
 
 
@@ -60,5 +61,13 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
 
     override fun removeAccessToken() {
         setAccessToken(null)
+    }
+
+    override fun setIsVerify(status: Boolean) {
+        mPrefs.edit().putBoolean(USER_IS_VERIFY, status).apply()
+    }
+
+    override fun getVerify(): Boolean {
+        return mPrefs.getBoolean(USER_IS_VERIFY, false)
     }
 }
