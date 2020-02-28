@@ -21,7 +21,7 @@ class AboutFragment : BaseFragment() {
         }
         btnInstagram.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://instagram.com/mhbolivand")
+            intent.data = Uri.parse("https://instagram.com/reservs.ir")
             startActivity(intent)
         }
         btnTelegram.setOnClickListener {
