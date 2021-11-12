@@ -1,13 +1,13 @@
 package ir.reservs.reservs.ui.dialog.salon
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
 import ir.reservs.reservs.ui.base.BaseDialogFragment
+import ir.reservs.reservs.ui.main.MainActivity
 import ir.reservs.reservs.ui.main.salons.SalonListAdapter
 import ir.reservs.reservs.ui.main.salons.SalonOnClickListener
 import kotlinx.android.synthetic.main.select_city_layout.*
@@ -49,6 +49,10 @@ class SelectSalonFragment(var listener: SelectSalonListener?, private val cityId
     override fun setList(salons: MutableList<Salon>) {
         selectCityAdapter?.addData(salons)
         normalState()
+    }
+
+    override fun onError(msg: String?, type: String) {
+        (requireActivity() as MainActivity).onError(msg!!,type)
     }
 
     override fun onClick(salon: Salon) {

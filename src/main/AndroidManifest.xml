@@ -22,17 +22,13 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.main.MainActivity">
+            <nav-graph android:value="@navigation/mobile_navigation" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.main.MainActivity">
-            <nav-graph android:value="@navigation/mobile_navigation" />
-        </activity>
-        <activity android:name=".ui.login.LoginRegisterActivity" />
 
         <service
             android:name=".service.MyFirebaseMessagingService"

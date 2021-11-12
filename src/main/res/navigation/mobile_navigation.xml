@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/historyFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/historyFragment"
@@ -43,11 +43,13 @@
             android:id="@+id/settingsToInformation"
             app:destination="@id/informationFragment" />
         <action
-            android:id="@+id/settingsToPassword"
-            app:destination="@id/passwordFragment" />
-        <action
             android:id="@+id/settingsToAbout"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:popUpTo="@id/sendFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/salonListFragment"
@@ -59,14 +61,13 @@
             app:destination="@id/timesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/passwordFragment"
-        android:name="ir.reservs.reservs.ui.main.password.PasswordFragment"
-        android:label="PasswordFragment" />
-    <fragment
         android:id="@+id/informationFragment"
         android:name="ir.reservs.reservs.ui.main.information.InformationFragment"
         android:label="layout_informaion"
-        tools:layout="@layout/layout_informaion" />
+        tools:layout="@layout/layout_informaion">
+        <action android:id="@+id/from_information_to_settings"
+            app:destination="@id/settingsFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/timesFragment"
         android:name="ir.reservs.reservs.ui.main.times.TimesFragment"
@@ -106,16 +107,16 @@
             app:destination="@id/salonListFragment" />
         <deepLink
             android:id="@+id/deepLink4"
-            app:uri="reserve-sport.ir/android/app/{Status}"
-            android:autoVerify="true" />
+            android:autoVerify="true"
+            app:uri="reserve-sport.ir/android/app/{Status}" />
         <deepLink
             android:id="@+id/deepLink5"
-            app:uri="reservs.ir/android/app/{Status}"
-            android:autoVerify="true" />
+            android:autoVerify="true"
+            app:uri="reservs.ir/android/app/{Status}" />
         <deepLink
             android:id="@+id/deepLink"
-            app:uri="reservs://android/app/{Status}"
-            android:autoVerify="true" />
+            android:autoVerify="true"
+            app:uri="reservs://android/app/{Status}" />
     </fragment>
     <dialog
         android:id="@+id/selectCity"
@@ -135,4 +136,49 @@
             app:destination="@id/searchFragment"
             app:launchSingleTop="true" />
     </dialog>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ir.reservs.reservs.ui.main.splash.SplashFragment"
+        android:label="SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="ir.reservs.reservs.ui.main.send.SendFragment"
+        android:label="SendFragment">
+        <action
+            android:id="@+id/action_sendFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment"
+            app:popUpTo="@id/sendFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="ir.reservs.reservs.ui.main.verify.VerifyFragment"
+        android:label="VerifyFragment">
+        <action
+            android:id="@+id/action_verifyFragment_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:popUpTo="@id/verifyFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_verifyFragment_to_informationFragment"
+            app:destination="@id/informationFragment"
+            app:popUpTo="@id/verifyFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_verifyFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:popUpTo="@id/verifyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

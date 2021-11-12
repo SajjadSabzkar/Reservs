@@ -40,13 +40,11 @@ class WeekDayAdapter(private val days: MutableList<Day>) : RecyclerView.Adapter<
 
     private fun textSelectStyle(txt: TextView): TextView {
         txt.setBackgroundResource(R.drawable.square_selected_bg)
-        txt.setTextColor(Color.WHITE)
         return txt
     }
 
     private fun textNormalStyle(txt: TextView): TextView {
         txt.setBackgroundResource(R.drawable.square_bg)
-        txt.setTextColor(Color.GRAY)
         return txt
     }
 

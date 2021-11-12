@@ -7,9 +7,6 @@ import ir.reservs.reservs.di.component.DaggerApplicationComponent;
 import ir.reservs.reservs.di.module.ApplicationModule;
 
 
-/**
- * Created by mhrezai on 08/10/2018.
- */
 
 public class ReserveApplication extends Application {
     private static ApplicationComponent applicationComponent;

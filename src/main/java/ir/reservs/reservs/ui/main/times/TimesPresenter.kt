@@ -24,7 +24,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         this.view = view
     }
 
-    fun updateDaysList(date: JalaliCalendar) {
+    private fun updateDaysList(date: JalaliCalendar) {
         days.clear()
         var dayCounter = date
         for (i in 0..6) {
@@ -139,6 +139,7 @@ class TimesPresenter(val dataManager: DataManager, val compositeDisposable: Comp
         currentDate = TimeUtils.convertStringToDate(day.date)
         getTimesFromServer(day.date)
         view?.changeSelectedDay(day)
+        view?.updateToolbarDate(TimeUtils.dateDisplayFormat(currentDate))
     }
 
     override fun onDetach() {

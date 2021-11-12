@@ -13,6 +13,7 @@
         style="@style/WeekNameTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/iransans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,11 +26,13 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/square_bg"
         android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/iransans"
         android:gravity="center"
         android:padding="8dp"
+        android:textColor="@color/colorTextSecond"
         app:layout_constraintEnd_toEndOf="@+id/txtDayName"
         app:layout_constraintStart_toStartOf="@+id/txtDayName"
         app:layout_constraintTop_toBottomOf="@+id/txtDayName"
-        tools:text="1"
-        android:focusable="true" />
+        tools:text="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

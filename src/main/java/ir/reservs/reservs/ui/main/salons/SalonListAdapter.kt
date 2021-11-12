@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.Salon
+import ir.reservs.reservs.utils.CommonUtils.moneyFormat
 import kotlinx.android.synthetic.main.item_salon.view.*
-import ir.reservs.reservs.utils.CommonUtils.moneyDisplayFormat as mFormat
+
 
 class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Adapter<SalonListAdapter.Holder>() {
     var listener: SalonOnClickListener? = null
@@ -34,34 +35,37 @@ class SalonListAdapter(private val mData: MutableList<Salon>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.salonCard.setOnClickListener {
-            listener?.onClick(mData[position])
+        holder.imgThumbnail.clipToOutline = true
+        holder.salonCard.setOnClickListener { listener?.onClick(mData[position]) }
+        if (mData[position].thumbnail.isEmpty()) {
+            holder.imgThumbnail.setImageResource(R.drawable.rectangle)
+        } else {
+            Picasso.get()
+                    .load(mData[position].thumbnail)
+                    .resize(136, 136)
+                    .into(holder.imgThumbnail)
         }
-        Picasso.get()
-                .load(mData[position].thumbnail)
-                .resize(136, 136)
-                .error(R.drawable.avatar)
-                .into(holder.imgThumbnail)
 
         holder.txtLocation.text = mData[position].title
         holder.txtCity.text = mData[position].cityName
         val minPrice = mData[position].minPrice.toString()
         val maxPrice = mData[position].maxPrice.toString()
-        if (minPrice == maxPrice) {
-            holder.txtPrice.text = mFormat(minPrice.toString())
-        } else {
+        holder.txtPrice.text = moneyFormat(maxPrice)
+        holder.txtBasePrice.text = moneyFormat(minPrice)
 
-            holder.txtPrice.text = "از ${mFormat(minPrice, 2)} تا ${mFormat(maxPrice)}"
-        }
+        holder.btnToGoReserve.setOnClickListener { listener?.onClick(mData[position]) }
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        var salonCard: CardView = view.salonCard
+        var salonCard: ConstraintLayout = view.salonCard
         var imgThumbnail: ImageView = view.imgThumbnail
         var txtLocation: TextView = view.txtLocation
         var txtCity: TextView = view.txtCityName
         var txtPrice: TextView = view.txtPrice
-
+        var txtBasePrice: TextView = view.txtBasePrice
+        var txtBasePriceLable: TextView = view.txtBasePriceLabel
+        var imgRange: ImageView = view.imgRangePrice
+        var btnToGoReserve = view.btnToGoReserve
     }
 
 }

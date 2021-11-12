@@ -19,11 +19,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/content_description_post_thumbnail"
-            android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtCityName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtCityName"
-            app:srcCompat="@drawable/ic_city" />
+            app:srcCompat="@drawable/ic_city"
+            app:tint="@color/colorText" />
 
         <TextView
             android:id="@+id/txtCityName"
@@ -62,11 +62,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/content_description_post_thumbnail"
-            android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtLocation"
-            app:srcCompat="@drawable/ic_location" />
+            app:srcCompat="@drawable/ic_location"
+            app:tint="@color/colorText" />
 
         <TextView
             android:id="@+id/txtLocation"
@@ -106,11 +106,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/content_description_post_thumbnail"
-            android:tint="@color/colorText"
             app:layout_constraintBottom_toBottomOf="@+id/txtDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtDate"
-            app:srcCompat="@drawable/ic_date" />
+            app:srcCompat="@drawable/ic_date"
+            app:tint="@color/colorText" />
 
         <TextView
             android:id="@+id/txtDate"
@@ -140,6 +140,7 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_margin="12dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/btn_search_bg"
         android:fontFamily="@font/iransans"
         android:gravity="center"
@@ -147,7 +148,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

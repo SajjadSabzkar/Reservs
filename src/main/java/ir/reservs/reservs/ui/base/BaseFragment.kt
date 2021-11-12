@@ -1,18 +1,19 @@
 package ir.reservs.reservs.ui.base
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ReserveApplication
 import ir.reservs.reservs.di.component.DaggerFragmentComponent
 import ir.reservs.reservs.di.component.FragmentComponent
 import ir.reservs.reservs.di.module.FragmentModule
 import ir.reservs.reservs.ui.custome.StateAdapter
-import ir.reservs.reservs.ui.login.LoginRegisterActivity
+import ir.reservs.reservs.ui.main.MainActivity
+import kotlinx.android.synthetic.main.empty_layout.*
 
 abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
     var fragmentComponent: FragmentComponent? = null
@@ -23,21 +24,21 @@ abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
         super.onViewCreated(view, savedInstanceState)
         fragmentComponent = DaggerFragmentComponent.builder()
                 .applicationComponent(ReserveApplication.getComponent())
-                .fragmentModule(FragmentModule(context!!))
+                .fragmentModule(FragmentModule(requireContext()))
                 .build()
         setup(view)
     }
 
 
     override fun onTokenExpire() {
-        val i = Intent(context, LoginRegisterActivity::class.java)
-        startActivity(i)
-        activity?.finish()
+        Log.e("BaseFragment", "onTokenExpire")
+        //clearData
+        findNavController().navigate(R.id.sendFragment)
     }
 
 
-    override fun onError(msg: String) {
-        Snackbar.make(view!!, msg, Snackbar.LENGTH_LONG).show()
+    override fun onError(msg: String?, type: String) {
+        (activity as MainActivity).onError(msg!!, type)
     }
 
     fun initializeStateAdapter(recyclerView: RecyclerView,
@@ -63,6 +64,12 @@ abstract class BaseFragment : Fragment(), BaseFragmentContract.View {
 
     override fun emptyState() {
         stateAdapter?.currentView = StateAdapter.VIEW_EMPTY
+    }
+
+    public fun emptyState(title: String, description: String) {
+        stateAdapter?.currentView = StateAdapter.VIEW_EMPTY
+        txtTitle.text = title
+        txtDescription.text = description
     }
 
     override fun loadingState() {

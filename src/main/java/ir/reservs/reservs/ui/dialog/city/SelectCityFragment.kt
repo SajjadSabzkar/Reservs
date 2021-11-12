@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import ir.reservs.reservs.R
 import ir.reservs.reservs.model.City
 import ir.reservs.reservs.ui.base.BaseDialogFragment
+import ir.reservs.reservs.ui.main.MainActivity
 import kotlinx.android.synthetic.main.select_city_layout.*
 import javax.inject.Inject
 
@@ -44,6 +45,10 @@ class SelectCityFragment(var listener: SelectCityListener?) : BaseDialogFragment
     override fun setList(cities: MutableList<City>) {
         selectCityAdapter?.addAll(cities)
         normalState()
+    }
+
+    override fun onError(msg: String?, type: String) {
+        (requireActivity() as MainActivity).onError(msg!!,type)
     }
 
     override fun onClick(city: City) {

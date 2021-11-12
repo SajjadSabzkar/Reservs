@@ -10,10 +10,11 @@ import com.mlsdev.rximagepicker.Sources
 import io.reactivex.disposables.CompositeDisposable
 import ir.reservs.reservs.data.DataManager
 import ir.reservs.reservs.utils.RetrofitError
-import okhttp3.MediaType
+import ir.reservs.reservs.utils.TimeUtils.timestampToPersian
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.File
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.asRequestBody
 
 class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: CompositeDisposable) : SettingsContract.Presenter {
 
@@ -24,17 +25,18 @@ class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: C
     }
 
     override fun logoutUser() {
-        dataManager.removeAccessToken()
-        view?.openLoginActivity()
+        dataManager.logout()
+        view?.openLoginPage()
     }
 
     fun setUserProfileData() {
+        Log.e("birthday", dataManager.getUserBirthday() + "")
         val imageUrl = dataManager.getCurrentUserImage()
         if (imageUrl != "-1") {
             view?.setUserImage(imageUrl)
         }
-        view?.setUserInfo(dataManager.getCurrentUserName(),
-                dataManager.getCurrentUserPhone())
+        view?.setUserInfo(dataManager.getCurrentUserName(), dataManager.getCurrentUserPhone(),
+                dataManager.getCredit())
     }
 
     fun pickImage(fragmentManager: FragmentManager, context: Context) {
@@ -43,7 +45,11 @@ class SettingsPresenter(val dataManager: DataManager, val compositeDisposable: C
                     RxImageConverters.uriToFile(context, it, createTempFile(context))
                 }
                 .subscribe({ it ->
-                    val requestBodyImage = RequestBody.create(MediaType.parse("multipart/form-data"), it)
+                    if (it.length() / 1024 / 1024 > 2) {
+                        view?.onError("حجم عکس انتخابی نباید بیشتر از ۲ مگابایت باشد.")
+                        return@subscribe
+                    }
+                    val requestBodyImage = it.asRequestBody("multipart/form-data".toMediaType())
                     val part = MultipartBody.Part.createFormData("avatar", it.name, requestBodyImage)
                     view?.showProgress()
                     val d2 = dataManager.updateAvatar(part)

@@ -58,4 +58,8 @@
         <item name="android:textSize">14dp</item>
     </style>
 
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/colorCancel</item>
+    </style>
+
 </resources>

@@ -13,20 +13,18 @@ import ir.reservs.reservs.di.PerFragment
 import ir.reservs.reservs.ui.dialog.city.SelectCityAdapter
 import ir.reservs.reservs.ui.dialog.city.SelectCityPresenter
 import ir.reservs.reservs.ui.dialog.salon.SelectSalonPresenter
-import ir.reservs.reservs.ui.login.forget.ForgetPresenter
-import ir.reservs.reservs.ui.login.register.RegisterPresenter
-import ir.reservs.reservs.ui.login.send.SendPresenter
-import ir.reservs.reservs.ui.login.verify.VerifyPresenter
+import ir.reservs.reservs.ui.main.send.SendPresenter
+import ir.reservs.reservs.ui.main.verify.VerifyPresenter
 import ir.reservs.reservs.ui.main.history.HistoryAdapter
 import ir.reservs.reservs.ui.main.history.HistoryPresenter
 import ir.reservs.reservs.ui.main.information.InformationPresenter
-import ir.reservs.reservs.ui.main.password.PasswordPresenter
 import ir.reservs.reservs.ui.main.reserve.ReservePresenter
 import ir.reservs.reservs.ui.main.results.ResultPresenter
 import ir.reservs.reservs.ui.main.salons.SalonListAdapter
 import ir.reservs.reservs.ui.main.salons.SalonListPresenter
 import ir.reservs.reservs.ui.main.search.SearchPresenter
 import ir.reservs.reservs.ui.main.settings.SettingsPresenter
+import ir.reservs.reservs.ui.main.splash.SplashPresenter
 import ir.reservs.reservs.ui.main.times.TimesAdapter
 import ir.reservs.reservs.ui.main.times.TimesPresenter
 import ir.reservs.reservs.ui.main.times.WeekDayAdapter
@@ -38,6 +36,12 @@ class FragmentModule(val context: Context) {
     @PerFragment
     fun provideCompositeDisposable(): CompositeDisposable {
         return CompositeDisposable()
+    }
+
+    @Provides
+    @PerFragment
+    fun provideSplashPresenter(dataManager: DataManager, disposable: CompositeDisposable): SplashPresenter {
+        return SplashPresenter(dataManager, disposable)
     }
 
     @Provides
@@ -93,14 +97,6 @@ class FragmentModule(val context: Context) {
 
     @Provides
     @PerFragment
-    fun providePasswordPresenter(dataManager: DataManager,
-                                 compositeDisposable: CompositeDisposable): PasswordPresenter {
-        return PasswordPresenter(dataManager, compositeDisposable)
-
-    }
-
-    @Provides
-    @PerFragment
     fun provideTimesPresenter(dataManager: DataManager,
                               compositeDisposable: CompositeDisposable): TimesPresenter {
         return TimesPresenter(dataManager, compositeDisposable)
@@ -116,13 +112,6 @@ class FragmentModule(val context: Context) {
     @PerFragment
     fun provideTimesAdapter(): TimesAdapter {
         return TimesAdapter()
-    }
-
-    @Provides
-    @PerFragment
-    fun provideRegisterPresenter(dataManager: DataManager,
-                                 compositeDisposable: CompositeDisposable): RegisterPresenter {
-        return RegisterPresenter(dataManager, compositeDisposable)
     }
 
     @Provides
@@ -182,12 +171,6 @@ class FragmentModule(val context: Context) {
     @PerFragment
     fun getSettingsPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable): SettingsPresenter {
         return SettingsPresenter(dataManager, compositeDisposable)
-    }
-
-    @Provides
-    @PerFragment
-    fun getForgetPresenter(dataManager: DataManager, compositeDisposable: CompositeDisposable): ForgetPresenter {
-        return ForgetPresenter(dataManager, compositeDisposable)
     }
 
     @Provides

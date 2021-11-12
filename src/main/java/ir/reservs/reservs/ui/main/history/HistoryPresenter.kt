@@ -2,6 +2,7 @@ package ir.reservs.reservs.ui.main.history
 
 import io.reactivex.disposables.CompositeDisposable
 import ir.reservs.reservs.data.DataManager
+import ir.reservs.reservs.utils.RetrofitError
 
 class HistoryPresenter(val dataManager: DataManager,
                        private val compositeDisposable: CompositeDisposable)
@@ -25,9 +26,15 @@ class HistoryPresenter(val dataManager: DataManager,
                     view?.updateAdapter(it)
                     if (it.size > 0)
                         view?.normalState()
-                    else
-                        view?.emptyState()
+                    else {
+                        if (page == 1)
+                            view?.emptyState()
+                        else
+                            isLastPage = true
+                    }
                 }, {
+                    isLoading = false
+                    RetrofitError.handle(view!!, it)
                     view?.errorState()
                 })
         compositeDisposable.add(d)

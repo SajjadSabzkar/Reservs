@@ -9,9 +9,12 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
     private val USER_ID = "PREF_KEY_USER_ID"
     private val USER_PHONE = "PREF_KEY_USER_PHONE"
     private val USER_NAME = "PREF_KEY_USER_NAME"
+    private val USER_AGE = "PREF_KEY_USER_AGE"
     private val USER_IMAGE = "PREF_KEY_USER_IMAGE"
     private val USER_IS_VERIFY = "PREF_KEY_USER_IS_VERIFY"
+    private val USER_BIRTHDAY = "PREF_KEY_USER_BIRTHDAY"
     private val ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN"
+    private val USER_CREDIT = "PREF_KEY_USER_CREDIT"
 
 
     private var mPrefs: SharedPreferences = context.getSharedPreferences("user_pref",
@@ -28,22 +31,26 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
     }
 
     override fun getCurrentUserPhone(): String {
-        return mPrefs.getString(USER_PHONE, "-1")!!
+        return mPrefs.getString(USER_PHONE, "")!!
     }
 
-    override fun setCurrentUserPhone(phone: String) {
+    override fun setCurrentUserPhone(phone: String?) {
         mPrefs.edit().putString(USER_PHONE, phone).apply()
     }
 
     override fun getCurrentUserName(): String {
-        return mPrefs.getString(USER_NAME, "-1")!!
+        return mPrefs.getString(USER_NAME, "")!!
     }
 
-    override fun setCurrentUserName(name: String) {
+    override fun setCurrentUserName(name: String?) {
         mPrefs.edit().putString(USER_NAME, name).apply()
     }
 
-    override fun setCurrentUserImage(image: String) {
+    override fun setCurrentUserAge(age: String?) {
+        mPrefs.edit().putString(USER_AGE, age).apply()
+    }
+
+    override fun setCurrentUserImage(image: String?) {
         mPrefs.edit().putString(USER_IMAGE, image).apply()
     }
 
@@ -51,16 +58,25 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
         return mPrefs.getString(USER_IMAGE, "-1")!!
     }
 
-    override fun getAccessToken(): String {
-        return mPrefs.getString(ACCESS_TOKEN, "-1")!!
+    override fun getCurrentUserAge(): String {
+        return mPrefs.getString(USER_AGE, "")!!
+    }
+
+    override fun getAccessToken(): String? {
+        return mPrefs.getString(ACCESS_TOKEN, null)
     }
 
     override fun setAccessToken(token: String?) {
         mPrefs.edit().putString(ACCESS_TOKEN, token).apply()
     }
 
-    override fun removeAccessToken() {
+    override fun logout() {
         setAccessToken(null)
+        setCurrentUserAge(null)
+        setCurrentUserName(null)
+        setCurrentUserImage(null)
+        setCurrentUserId(null)
+        setCurrentUserPhone(null)
     }
 
     override fun setIsVerify(status: Boolean) {
@@ -69,5 +85,22 @@ class AppPreferencesHelper(context: Context) : PreferencesHelper {
 
     override fun getVerify(): Boolean {
         return mPrefs.getBoolean(USER_IS_VERIFY, false)
+    }
+
+    override fun setUserBirthday(birthday: String) {
+        mPrefs.edit().putString(USER_BIRTHDAY, birthday).apply()
+    }
+
+    override fun getUserBirthday(): String? {
+        return mPrefs.getString(USER_BIRTHDAY, null)
+
+    }
+
+    override fun setCredit(amount: Long) {
+        mPrefs.edit().putLong(USER_CREDIT, amount).apply()
+    }
+
+    override fun getCredit(): Long {
+        return mPrefs.getLong(USER_CREDIT, 0)
     }
 }

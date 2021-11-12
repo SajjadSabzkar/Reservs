@@ -1,11 +1,9 @@
 package ir.reservs.reservs.ui.main.salons
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import ir.reservs.reservs.model.Salon
@@ -42,10 +40,6 @@ class SalonListFragment : BaseFragment(), SalonListContract.View, SalonOnClickLi
     override fun setSalonsData(salons: MutableList<Salon>) {
         salonListAdapter?.addData(salons)
         salonListAdapter?.notifyDataSetChanged()
-    }
-
-    override fun onError(msg: String) {
-        Log.e("SalonListFragment", msg)
     }
 
     override fun onClick(salon: Salon) {

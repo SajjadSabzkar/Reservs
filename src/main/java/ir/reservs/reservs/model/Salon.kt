@@ -7,6 +7,8 @@ import kotlinx.android.parcel.Parcelize
 data class Salon(
         var id: Int,
         var title: String,
+        var address: String,
+        var zone: String,
         var description: String,
         var thumbnail: String,
         var week: Int,

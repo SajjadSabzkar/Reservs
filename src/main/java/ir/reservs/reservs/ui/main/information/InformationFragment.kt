@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ui.base.BaseFragment
+import ir.reservs.reservs.ui.main.MainActivity
 import kotlinx.android.synthetic.main.layout_informaion.*
 import javax.inject.Inject
 
@@ -22,29 +21,39 @@ class InformationFragment : BaseFragment(), InformationContract.View {
         return inflater.inflate(R.layout.layout_informaion, container, false)
     }
 
-
-    override fun onError(msg: String) {
-        Snackbar.make(txtName, msg, Snackbar.LENGTH_LONG).show()
-    }
-
     override fun setup(view: View) {
         fragmentComponent?.inject(this)
         informationPresenter!!.onAttach(this)
-        btnConfirm.setOnClickListener { informationPresenter!!.confirmInformation(txtName!!.text.toString()) }
-        informationPresenter!!.initializeViews()
+        btnConfirm.setOnClickListener {
+            informationPresenter!!.confirmInformation(txtName.text.toString())
+        }
+        cardBirthday.setOnClickListener {
+            informationPresenter?.getDate()
+        }
+        informationPresenter?.initializeViews()
     }
 
     override fun onError(resId: Int) {
         onError(getString(resId))
     }
 
-    override fun nameUpdated(name: String) {
-        onError(String.format("نام شما به %s تغییر کرد.", name))
-        NavHostFragment.findNavController(this).popBackStack()
+    override fun informationUpdated() {
+        onError("اطلاعات شما با موفقیت بروز شد.")
+        findNavController().navigate(R.id.settingsFragment)
+        (activity as MainActivity).showBottomNavigation()
     }
 
-    override fun initializeViews(name: String) {
-        txtName!!.setText(name)
+    override fun displayDate(date: String) {
+        txtBirthday.text = date
+    }
+
+    override fun getFManager(): FragmentManager {
+        return childFragmentManager
+    }
+
+    override fun initializeViews(name: String, age: String) {
+        txtName.setText(name)
+        txtBirthday.text = age
     }
 
     override fun onDestroy() {

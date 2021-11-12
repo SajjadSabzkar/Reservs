@@ -5,6 +5,6 @@ package ir.reservs.reservs.utils;
  */
 
 public class Constants {
-    public static final String BASE_URL = "http://reserve-sport.ir/api/mobile/";
+    public static final String BASE_URL = "https://api.reservs.ir/api/mobile/";
     public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 }

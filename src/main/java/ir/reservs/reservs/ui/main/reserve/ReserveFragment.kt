@@ -16,7 +16,6 @@ import ir.reservs.reservs.ui.base.BaseFragment
 import ir.reservs.reservs.utils.CommonUtils
 import kotlinx.android.synthetic.main.fragment_reserve.*
 import javax.inject.Inject
-import android.util.Pair as UtilPair
 
 class ReserveFragment : BaseFragment(), ReserveContract.View {
 
@@ -48,7 +47,7 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         time = arguments?.get("time") as Time
         day = arguments?.get("day") as Day
         //set data from arguments
-        txtPrice.text = CommonUtils.moneyDisplayFormat(time?.price, 2)
+        txtPrice.text = CommonUtils.moneyDisplayFormat(time?.price.toString(), 2)
         txtCityName.text = salon?.cityName
         txtLocation.text = salon?.title
         txtStart.text = time?.start
@@ -59,14 +58,18 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         btnPayment.setOnClickListener {
             reservePresenter?.payment()
         }
+        switchUserCredit.setOnCheckedChangeListener { _, isChecked ->
+            reservePresenter?.changeUseCredit(isChecked)
+        }
 
     }
 
-    override fun initializeViews(name: String, phone: String, time: String, date: String) {
+    override fun initializeViews(name: String, phone: String, time: String, date: String, credit: String) {
         txtName.text = name
         txtPhone.text = phone
         txtTime.text = time
         txtDate.text = date
+        txtCredit.text = credit
     }
 
     override fun context(): Context? {
@@ -81,9 +84,12 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
         dialog?.hide()
     }
 
+    override fun updatePriceAfterUserCredit(remainingPriceToPay: String, remainingUserCredit: String) {
+        txtCredit.text = remainingUserCredit
+        txtPrice.text = remainingPriceToPay
+    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
         if (reservePresenter != null) {
             reservePresenter = null
         }
@@ -91,6 +97,7 @@ class ReserveFragment : BaseFragment(), ReserveContract.View {
             dialog?.dismiss()
             dialog = null
         }
+        super.onDestroy()
     }
 
 }

@@ -2,6 +2,7 @@ package ir.reservs.reservs.utils
 
 import ir.huri.jcal.JalaliCalendar
 import ir.reservs.reservs.model.Day
+import java.util.*
 
 /**
  * @author rfmhb2
@@ -95,5 +96,21 @@ object TimeUtils {
         } else {
             "<"
         }
+    }
+
+    fun timestampToPersian(date: Long): String? {
+        val jcal = JalaliCalendar(Date(date))
+        return jcal.year.toString() + "/" + jcal.month.toString() + "/" + jcal.day.toString()
+    }
+
+    fun persianToTimestamp(persianDate: String?): Long? {
+        val birthdaySplit = persianDate?.split("/")
+        val year = birthdaySplit?.get(0)?.toInt()
+        val month = birthdaySplit?.get(1)?.toInt()
+        val day = birthdaySplit?.get(2)?.toInt()
+        if (day != null && month != null && year != null) {
+            return JalaliCalendar(year, month, day).toGregorian().timeInMillis
+        }
+        return null;
     }
 }

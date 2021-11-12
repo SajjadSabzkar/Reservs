@@ -1,5 +1,6 @@
 package ir.reservs.reservs.ui.main.history
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class HistoryAdapter(var history: ArrayList<History>) : RecyclerView.Adapter<His
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = history[position]
         holder.txtSalonName.text = item.salonName
+        Log.e("item",item.startTime+","+item.endTime)
         holder.txtTime.text = item.startTime
         holder.txtTime.append(" الی ")
         holder.txtTime.append(item.endTime)

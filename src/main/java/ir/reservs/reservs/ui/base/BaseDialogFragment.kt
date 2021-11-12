@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import ir.reservs.reservs.R
 import ir.reservs.reservs.ReserveApplication
 import ir.reservs.reservs.di.component.DaggerFragmentComponent
@@ -21,16 +20,14 @@ abstract class BaseDialogFragment: DialogFragment(), BaseFragmentContract.View  
         super.onViewCreated(view, savedInstanceState)
         fragmentComponent = DaggerFragmentComponent.builder()
                 .applicationComponent(ReserveApplication.getComponent())
-                .fragmentModule(FragmentModule(context!!))
+                .fragmentModule(FragmentModule(requireContext()))
                 .build()
         setup(view)
     }
 
     abstract fun setup(view: View)
 
-    override fun onError(msg: String) {
-        Snackbar.make(view!!, msg, Snackbar.LENGTH_LONG).show()
-    }
+
 
     fun initializeStateAdapter(recyclerView: RecyclerView,
                                recyclerAdapter: RecyclerView.Adapter<*>) {

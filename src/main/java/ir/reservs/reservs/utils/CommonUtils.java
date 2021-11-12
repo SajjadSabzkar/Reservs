@@ -36,6 +36,11 @@ public class CommonUtils {
         return matcher.matches();
     }
 
+    public static String moneyFormat(String money) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(Long.parseLong(money) / 1000);
+    }
+
     public static String moneyDisplayFormat(String money) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(Long.valueOf(money)) + " تومان";

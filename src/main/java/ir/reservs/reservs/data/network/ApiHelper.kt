@@ -17,8 +17,7 @@ interface ApiHelper {
     @POST("auth/login")
     @FormUrlEncoded
     fun login(@Field("phone") phone: String,
-              @Field("password") password: String,
-              @Field("fcmToken") fcmToken: String): Single<User>
+              @Field("password") password: String): Single<User>
 
     @POST("auth/phone")
     @FormUrlEncoded
@@ -40,7 +39,8 @@ interface ApiHelper {
     fun reserve(@Field("time_id") time_id: String,
                 @Field("salon_id") salon_id: Int?,
                 @Field("CallbackURL") callBackUrl: String,
-                @Field("date") date: String): Single<Payment>
+                @Field("date") date: String,
+                @Field("credit") credit: Boolean): Single<Payment>
 
     @POST("reserve/update")
     @FormUrlEncoded
@@ -54,7 +54,11 @@ interface ApiHelper {
 
     @PUT("info")
     @FormUrlEncoded
-    fun updateName(@Field("name") name: String): Single<Success>
+    fun updateInformation(@Field("name") name: String,
+                          @Field("birthday") birthday: String?): Single<Success>
+
+    @GET("info")
+    fun getUserInformation(): Single<User>
 
     @PUT("password")
     @FormUrlEncoded
@@ -74,4 +78,16 @@ interface ApiHelper {
     @Multipart
     @POST("avatar")
     fun updateAvatar(@Part avatar: MultipartBody.Part): Single<Avatar>
+
+    @POST("device/store")
+    @FormUrlEncoded
+    fun storeDevice(
+            @Field("uniqueId") uniqueId: String? = null,
+            @Field("push_token") push_token: String? = null,
+            @Field("app_version") app_version: String? = null,
+            @Field("api_level") api_level: String? = null,
+            @Field("operator") operator: String? = null,
+            @Field("brand") brand: String? = null,
+            @Field("model") model: String? = null
+    ): Single<Message>
 }

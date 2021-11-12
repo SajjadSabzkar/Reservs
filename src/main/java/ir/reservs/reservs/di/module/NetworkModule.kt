@@ -54,6 +54,7 @@ class NetworkModule {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
                     .addHeader("Accept", "application/json")
+                    .addHeader("platform", "android")
                     .addHeader("Content-Type", "application/json")
             val token = appPreferencesHelper.getAccessToken()
             if (!TextUtils.isEmpty(token)) {

@@ -25,6 +25,12 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return config(mApiHelper.updateAvatar(avatar))
     }
 
+    override fun storeDevice(uniqueId: String?, push_token: String?, app_version: String?, api_level: String?,
+                             operator: String?, brand: String?, model: String?): Single<Message> {
+        return config(mApiHelper.storeDevice(uniqueId, push_token, app_version,
+                api_level, operator, brand, model))
+    }
+
     override fun updateFcmToken(fcmToken: String): Single<Success> {
         return config(mApiHelper.updateFcmToken(fcmToken))
     }
@@ -33,16 +39,17 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return config(mApiHelper.register(name, phone, password, fcmToken))
     }
 
-    override fun login(phone: String, password: String, fcmToken: String): Single<User> {
-        return config(mApiHelper.login(phone, password, fcmToken))
+    override fun login(phone: String, password: String): Single<User> {
+        return config(mApiHelper.login(phone, password))
     }
 
     override fun reserves(page: Int): Single<MutableList<History>> {
         return config(mApiHelper.reserves(page))
     }
 
-    override fun reserve(time_id: String, salon_id: Int?, callBackUrl: String, date: String): Single<Payment> {
-        return config(mApiHelper.reserve(time_id, salon_id, callBackUrl, date))
+
+    override fun reserve(time_id: String, salon_id: Int?, callBackUrl: String, date: String, credit: Boolean): Single<Payment> {
+        return config(mApiHelper.reserve(time_id, salon_id, callBackUrl, date, credit))
     }
 
     override fun reserveUpdate(authority: String): Single<Success> {
@@ -70,7 +77,7 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return mPreferencesHelper.getCurrentUserPhone()
     }
 
-    override fun setCurrentUserPhone(phone: String) {
+    override fun setCurrentUserPhone(phone: String?) {
         mPreferencesHelper.setCurrentUserPhone(phone)
     }
 
@@ -78,16 +85,24 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return mPreferencesHelper.getCurrentUserName()
     }
 
-    override fun setCurrentUserName(name: String) {
+    override fun setCurrentUserName(name: String?) {
         mPreferencesHelper.setCurrentUserName(name)
     }
 
-    override fun setCurrentUserImage(image: String) {
+    override fun setCurrentUserAge(age: String?) {
+        mPreferencesHelper.setCurrentUserAge(age)
+    }
+
+    override fun setCurrentUserImage(image: String?) {
         mPreferencesHelper.setCurrentUserImage(image)
     }
 
     override fun getCurrentUserImage(): String {
         return mPreferencesHelper.getCurrentUserImage()
+    }
+
+    override fun getCurrentUserAge(): String {
+        return mPreferencesHelper.getCurrentUserAge()
     }
 
     override fun getAccessToken(): String? {
@@ -98,8 +113,8 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         mPreferencesHelper.setAccessToken(token)
     }
 
-    override fun removeAccessToken() {
-        mPreferencesHelper.removeAccessToken()
+    override fun logout() {
+        mPreferencesHelper.logout()
     }
 
     override fun setIsVerify(status: Boolean) {
@@ -110,8 +125,28 @@ class AppDataManager(private val mPreferencesHelper: PreferencesHelper, private 
         return mPreferencesHelper.getVerify()
     }
 
-    override fun updateName(name: String): Single<Success> {
-        return config(mApiHelper.updateName(name))
+    override fun setUserBirthday(birthday: String) {
+        mPreferencesHelper.setUserBirthday(birthday)
+    }
+
+    override fun getUserBirthday(): String? {
+        return mPreferencesHelper.getUserBirthday()
+    }
+
+    override fun setCredit(amount: Long) {
+        mPreferencesHelper.setCredit(amount)
+    }
+
+    override fun getCredit(): Long {
+        return mPreferencesHelper.getCredit()
+    }
+
+    override fun updateInformation(name: String, birthday: String?): Single<Success> {
+        return config(mApiHelper.updateInformation(name, birthday))
+    }
+
+    override fun getUserInformation(): Single<User> {
+        return config(mApiHelper.getUserInformation())
     }
 
     override fun updatePassword(current_password: String, new_password: String): Single<ChangePassword> {

@@ -3,7 +3,7 @@ package ir.reservs.reservs.utils
 import android.util.Log
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
 import ir.reservs.reservs.ReserveApplication
-import ir.reservs.reservs.model.ErrorMessage
+import ir.reservs.reservs.model.Message
 import ir.reservs.reservs.ui.base.BaseFragmentContract
 import okhttp3.ResponseBody
 import retrofit2.Converter
@@ -13,6 +13,7 @@ object RetrofitError {
     fun handle(view: BaseFragmentContract.View, error: Throwable) {
         try {
             val httpError = error as HttpException
+            Log.e("httpStatusCode", httpError.message())
             when (httpError.code()) {
                 404 -> view.onError("یافت نشد")
                 403 -> view.onTokenExpire()
@@ -20,17 +21,19 @@ object RetrofitError {
                 500 -> view.onError("خطا از سمت سرور لطفا بعدا تلاش کنید")
                 400 -> {
                     try {
-                        val errorMessage = getErrorBodyAs(ErrorMessage::class.java, httpError)
-                        view.onError(errorMessage?.error!!)
+                        val errorMessage = getErrorBodyAs(Message::class.java, httpError)
+                        view.onError(errorMessage?.message!!)
                     } catch (error: Exception) {
                         view.onError(httpError.message())
                     }
                 }
-                //422 -> view.onError("مقادیر ورودی نامعتبر")
+                422 -> view.onError("مقادیر ورودی نامعتبر")
                 else -> view.onError("خطای ناشناخته کد:" + httpError.code())
             }
         } catch (error: Throwable) {
+            Log.e("Throwable", "error.message:" + error.message)
             view.onError("خطا در اتصال به اینترنت")
+
             view.errorState()
         }
     }

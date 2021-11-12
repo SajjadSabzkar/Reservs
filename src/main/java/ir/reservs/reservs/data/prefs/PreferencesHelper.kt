@@ -7,23 +7,35 @@ interface PreferencesHelper {
 
     fun getCurrentUserPhone(): String
 
-    fun setCurrentUserPhone(phone: String)
+    fun setCurrentUserPhone(phone: String?)
 
     fun getCurrentUserName(): String
 
-    fun setCurrentUserName(name: String)
+    fun setCurrentUserName(name: String?)
 
-    fun setCurrentUserImage(image: String)
+    fun setCurrentUserAge(age: String?)
+
+    fun setCurrentUserImage(image: String?)
 
     fun getCurrentUserImage(): String
+
+    fun getCurrentUserAge(): String
 
     fun getAccessToken(): String?
 
     fun setAccessToken(token: String?)
 
-    fun removeAccessToken()
+    fun logout()
 
     fun setIsVerify(status: Boolean)
 
     fun getVerify(): Boolean
+
+    fun setUserBirthday(birthday: String)
+
+    fun getUserBirthday(): String?
+
+    fun setCredit(amount: Long)
+
+    fun getCredit(): Long
 }

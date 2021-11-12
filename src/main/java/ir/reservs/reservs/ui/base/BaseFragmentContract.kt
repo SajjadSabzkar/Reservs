@@ -2,7 +2,7 @@ package ir.reservs.reservs.ui.base;
 
 class BaseFragmentContract {
     interface View {
-        fun onError(msg: String)
+        fun onError(msg: String?, type: String = "INFO")
         fun onError(resId: Int)
         fun onTokenExpire()
         fun emptyState()

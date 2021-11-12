@@ -74,8 +74,9 @@ class SearchPresenter : SearchContract.Presenter, DateSetListener {
     }
 
     override fun onDetach() {
-        datePicker?.dismiss()
-        datePicker = null
+        if (datePicker != null) {
+            datePicker?.dismiss()
+        }
         view = null
     }
 

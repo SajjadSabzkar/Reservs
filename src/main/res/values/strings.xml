@@ -14,7 +14,7 @@
     <string name="lorem">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</string>
     <string name="enter">ورود</string>
     <string name="password">رمز عبور</string>
-    <string name="tel_sample">09168865663 مثل</string>
+    <string name="tel_sample">شماره تلفن همراه</string>
     <string name="login_description">به حساب خود در ورزشی رزرو وارد شوید تا از تاریخچه رزرو خود با خبر شوید.</string>
     <string name="empty_password">پسورد اجباری است. لطفا پسورد را وارد کنید.</string>
     <string name="empty_phone">تلفن اجباری است. لطفا تلفن را وارد کنید.</string>
@@ -34,9 +34,6 @@
     <string name="change_password">تغییر رمز عبور</string>
     <string name="logout">خروج از سیستم</string>
     <string name="city">شهر</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">جستجو</string>
     <string name="location">مکان</string>
     <string name="date">تاریخ</string>
@@ -44,7 +41,7 @@
     <string name="confirm_changes">ثبت تغییرات</string>
     <string name="current_password">رمز فعلی شما</string>
     <string name="new_password">رمز جدید</string>
-    <string name="please_input_official_name">از این نام برای شناسایی شما هنگام ورود به مکان ورزشی استفاده میشود لطفا نام رسمی خود را وارد کنید.</string>
+    <string name="please_input_official_name">از این مشخصات برای شناسایی شما هنگام ورود به مکان ورزشی استفاده میشود.</string>
     <string name="name_example">مثل: حسن رضایی</string>
     <string name="official_name">نام و نام خانوادگی</string>
     <string name="input_your_name">نام خود را وارد کنید.</string>
@@ -79,7 +76,7 @@
     <string name="city_semi">شهر:</string>
     <string name="phone_semi">تلفن:</string>
     <string name="pay_means_accept_rules">با پرداخت کردن هزینه موافقت خود را با تمامی قوانین و مقررات ورزشی رزرو اعلام میکنید</string>
-    <string name="payment">پرداخت</string>
+    <string name="payment">تکمیل و پرداخت</string>
     <string name="return_credit_to_account">در صورتی که هزینه رزرو از حساب شما کم شد است به زودی به حساب شما باز خواهد گشت.</string>
     <string name="payment_error">در پرداخت هزینه خطایی اتفاق افتاد</string>
     <string name="payment_success">پرداخت با موفقیت انجام شد</string>
@@ -112,4 +109,11 @@
     <string name="btn_verify_code">بررسی صحت کد</string>
     <string name="verify_code">کد تایید</string>
     <string name="change_phone">ویرایش شماره</string>
+    <string name="birthday">تاریخ تولد</string>
+    <string name="gender">جنسیت</string>
+    <string name="male">آقا</string>
+    <string name="female">خانم</string>
+    <string name="salon_call_to_action">مشاهده سانس و رزرو</string>
+    <string name="thousand_toman">هزار تومان</string>
+    <string name="reserve_time">رزرو سانس</string>
 </resources>

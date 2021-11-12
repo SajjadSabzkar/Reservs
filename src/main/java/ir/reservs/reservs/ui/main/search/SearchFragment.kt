@@ -41,7 +41,7 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         constraintLayoutDate.setOnClickListener { searchPresenter?.getDate() }
         view.findViewById<Button>(R.id.btnSearch).setOnClickListener { searchPresenter?.search() }
 
-        dialog = AlertDialog.Builder(context!!)
+        dialog = AlertDialog.Builder(requireContext())
                 .setView(View.inflate(context, R.layout.dialog_error, null))
                 .setPositiveButton(R.string.ok_btn) { dialogInterface: DialogInterface, _: Int ->
                     dialogInterface.dismiss()
@@ -49,11 +49,11 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     }
 
     override fun openCityDialog() {
-        SelectCityFragment(this).show(fragmentManager!!, "")
+        SelectCityFragment(this).show(getFManager(), "")
     }
 
     override fun openSalonDialog(cityId: Int) {
-        SelectSalonFragment(this, cityId).show(fragmentManager!!, "")
+        SelectSalonFragment(this, cityId).show(getFManager(), "")
     }
 
     override fun displayDate(date: String) {
@@ -79,7 +79,7 @@ class SearchFragment : BaseFragment(), SearchContract.View,
     }
 
     override fun getFManager(): FragmentManager {
-        return fragmentManager!!
+        return childFragmentManager;
     }
 
     override fun goToTimesFragment(salon: Salon, date: String) {
@@ -89,12 +89,12 @@ class SearchFragment : BaseFragment(), SearchContract.View,
         findNavController().navigate(R.id.fromSearchToTimes, b)
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         searchPresenter?.onDetach()
         searchPresenter = null
         dialog?.dismiss()
         dialog = null
-        super.onDestroyView()
+        super.onDestroy()
     }
 
 }

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/item_bg"
+    android:elevation="4dp"
+    android:padding="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:id="@+id/topDot"
@@ -24,7 +32,7 @@
         <View
             android:id="@+id/timeline"
             android:layout_width="2dp"
-            android:layout_height="24dp"
+            android:layout_height="48dp"
             android:background="@color/colorCancel"
             app:layout_constraintEnd_toEndOf="@id/topDot"
             app:layout_constraintStart_toStartOf="@id/topDot"
@@ -45,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/iransans"
+            android:textColor="@color/colorText"
             android:textSize="16dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/topDot"
             app:layout_constraintEnd_toStartOf="@id/topDot"
             app:layout_constraintTop_toTopOf="@id/topDot"
@@ -57,26 +67,61 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/iransans"
+            android:textColor="@color/colorText"
             android:textSize="16dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/bottomDot"
             app:layout_constraintEnd_toStartOf="@id/bottomDot"
             app:layout_constraintTop_toTopOf="@id/bottomDot"
             tools:text="19:00" />
 
+        <TextView
+            android:id="@+id/txtRemaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/colorTextSecond"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomDot"
+            app:layout_constraintEnd_toStartOf="@id/timeline"
+            app:layout_constraintTop_toTopOf="@+id/topDot"
+            tools:text="۱ ساعت و ۱۰ دقیقه" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/iransans"
+            android:textColor="@color/colorText"
+            android:textFontWeight="800"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/btnReserve"
+            app:layout_constraintEnd_toEndOf="@id/btnReserve"
+            app:layout_constraintStart_toStartOf="@id/btnReserve"
+            tools:text="۷۵ هزار تومان" />
+
         <Button
             android:id="@+id/btnReserve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_margin="8dp"
             android:background="@drawable/reserve_btn_bg"
             android:fontFamily="@font/iransans"
             android:padding="6dp"
+            android:text="@string/reserve_time"
             android:textColor="@color/white"
+            android:textFontWeight="800"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="35,000 تومان" />
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
